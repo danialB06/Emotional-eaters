@@ -27,7 +27,7 @@ const HomeStackNavigator = () => {
       ),
     }}
   >
-    <Stack.Screen name="Home" component={HomeScreen} />
+    <Stack.Screen name="HomeScreen" component={HomeScreen} />
     <Stack.Screen name="GoalsScreen" component={GoalsScreen} />
     <Stack.Screen name="NewGoalScreen" component={NewGoalScreen} />
     <Stack.Screen name="AlarmsScreen" component={AlarmsScreen} />
