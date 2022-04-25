@@ -1,11 +1,9 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Button } from "react-native";
 
-
-export default function ChatScreen({ navigation }) {
+export default function NewGoalScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Chat Screen</Text>
-      
+      <Text>NewGoalsScreen</Text>
     </View>
   );
 }
