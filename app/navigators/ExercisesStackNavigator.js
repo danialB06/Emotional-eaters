@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // screens
 import ExercisesScreen from "../screens/exerciseScreens/ExercisesScreen";
 import BodyScanFirstScreen from "../screens/exerciseScreens/BodyScanFirstScreen";
-
+import BodyScanBodyMap from "../screens/exerciseScreens/BodyScanBodyMap";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,11 +26,15 @@ const ExercisesStackNavigator = () => {
         ),
       }}
     >
-      <Stack.Screen name="ExercisesScreen" component={ExercisesScreen} />
+      <Stack.Screen 
+        name="ExercisesScreen" 
+        component={ExercisesScreen} />
       <Stack.Screen
         name="BodyScanFirstScreen"
-        component={BodyScanFirstScreen}
-      />
+        component={BodyScanFirstScreen}/>
+      <Stack.Screen
+        name="BodyScanBodyMap"
+        component={BodyScanBodyMap}/>
     </Stack.Navigator>
   );
 };

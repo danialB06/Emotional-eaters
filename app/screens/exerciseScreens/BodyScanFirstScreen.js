@@ -1,15 +1,19 @@
-import { View, StyleSheet, Text, TouchableOpacity, Animated} from "react-native";
+import { View, StyleSheet, Text, Pressable } from "react-native";
 
 export default function BodyScanFirstScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.pageTitle}>Bodyscan</Text>
-
-      <TouchableOpacity style={styles.submitButton}>
-          <Text style={styles.submitText}>
-            Start
-          </Text>
-      </TouchableOpacity>
+      <Text style={styles.exerExpl}>
+        This exercise aims to make you more aware of what you feel in your body. It also makes you think about the role emotions can play in this. The great thing is that our body can tell us a lot about the emotions we experience. 
+        {"\n"}{"\n"}
+        Press the button to start exercise.
+      </Text>
+      <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("BodyScanBodyMap")}>
+        <Text style={styles.startText}>
+          Start
+        </Text>
+      </Pressable >
     </View>
   );
 }
@@ -24,7 +28,19 @@ const styles = StyleSheet.create({
     fontSize: 40,
     paddingTop: "10%",
   },
-  submitButton:{
+  exerExpl:{
+    padding: 40,
+    marginTop: "15%",
+    marginBottom: "20%",
+    backgroundColor: "#F3F3F3",
+    borderRadius: 50,
+    borderColor: "#000000",
+    borderWidth: 2,
+    fontSize: 15,
+    width: "90%",
+    fontSize: 20,
+  },
+  startButton:{
     alignItems: "center",
     backgroundColor: "#F3F3F3",
     padding: 20,
@@ -35,7 +51,7 @@ const styles = StyleSheet.create({
     bottom: "5%",
     position: "absolute",
   },
-  submitText:{
+  startText:{
     fontSize: 20,
   }
 });
