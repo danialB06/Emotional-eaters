@@ -10,6 +10,11 @@ import OppositeGameFirstPracticeScreen from "../screens/exerciseScreens/opposite
 import OppositeGameSecondPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameSecondPracticeScreen";
 import OppositeGameThirdPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameThirdPracticeScreen";
 import OppositeGameFinishedPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameFinishedPracticeScreen";
+import OppositeGameFinishedExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameFinishedExerciseScreen";
+import OppositeGameThirdExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameThirdExerciseScreen";
+import OppositeGameSecondExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameSecondExerciseScreen";
+import OppositeGameFirstExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameFirstExerciseScreen";
+import OppositeGameFourthExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameFourthExerciseScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -54,6 +59,26 @@ const ExercisesStackNavigator = () => {
       <Stack.Screen
         name="OppositeGameFinishedPracticeScreen"
         component={OppositeGameFinishedPracticeScreen}
+      />
+      <Stack.Screen
+        name="OppositeGameFirstExerciseScreen"
+        component={OppositeGameFirstExerciseScreen}
+      />
+      <Stack.Screen
+        name="OppositeGameSecondExerciseScreen"
+        component={OppositeGameSecondExerciseScreen}
+      />
+      <Stack.Screen
+        name="OppositeGameThirdExerciseScreen"
+        component={OppositeGameThirdExerciseScreen}
+      />
+      <Stack.Screen
+        name="OppositeGameFourthExerciseScreen"
+        component={OppositeGameFourthExerciseScreen}
+      />
+      <Stack.Screen
+        name="OppositeGameFinishedExerciseScreen"
+        component={OppositeGameFinishedExerciseScreen}
       />
     </Stack.Navigator>
   );

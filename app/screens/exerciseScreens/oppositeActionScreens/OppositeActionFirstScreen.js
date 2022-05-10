@@ -32,7 +32,10 @@ export default function OppositeActionFirstScreen({ navigation }) {
         >
           <Text style={styles.submitText}>Practice</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.submitButton}>
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={() => navigation.navigate("OppositeGameFirstExerciseScreen")}
+        >
           <Text style={styles.submitText}>Start</Text>
         </TouchableOpacity>
       </View>
