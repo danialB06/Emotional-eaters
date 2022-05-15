@@ -1,158 +1,80 @@
-import { View, Image, StyleSheet, Text, Pressable } from "react-native";
+import { View, Image, StyleSheet, Text, Pressable, ScrollView } from "react-native";
 import { useState, useEffect } from 'react';
 
 export default function BodyScanBodyMap({ navigation }) {
-
   //Bodypart evaluation scores
   const [evalForehead, setEvalForehead] = useState(1);
   const [evalEyes, setEvalEyes] = useState(1);
   const [evalJaw, setEvalJaw] = useState(1);
-  const [evalShoulders, setevalShoulders] = useState(1);
-
-  if(evalForehead == 1){
-    var foreheadImg = require("../../assets/bodyscan/headForehead.png");
-  }else{
-    var foreheadImg = require("../../assets/bodyscan/headForeheadB.png");
-  }
-
-  if(evalEyes == 1){
-    var eyesImg = require("../../assets/bodyscan/headEyes.png");
-  }else{
-    var eyesImg = require("../../assets/bodyscan/headEyesB.png");
-  }
-
-  if(evalJaw == 1){
-    var jawImg = require("../../assets/bodyscan/headJaw.png");
-  }else{
-    var jawImg = require("../../assets/bodyscan/headJawB.png");
-  }
-
-  if(evalShoulders == 1){
-    var shoulderImg = require("../../assets/bodyscan/bodyShoulders.png");
-  }else{
-    var shoulderImg = require("../../assets/bodyscan/bodyShouldersB.png");
-  }
+  const [evalShoulders, setEvalShoulders] = useState(1);
+  const [evalChest, setEvalChest] = useState(1);
+  const [evalGut, setEvalGut] = useState(1);
+  const [evalCrotch, setEvalCrotch] = useState(1);
+  const [evalUpperLegs, setEvalUpperLegs] = useState(1);
+  const [evalLowerLegs, setEvalLowerLegs] = useState(1);
+  const [evalFeet, setEvalFeet] = useState(1);
+  const [evalUpperArms, setEvalUpperArms] = useState(1);
+  const [evalLowerArms, setEvalLowerArms] = useState(1);
+  const [evalHands, setEvalHands] = useState(1);
+  
+  var foreheadImg = evalForehead == 1 ? require("../../assets/bodyscan/headForehead.png") : require("../../assets/bodyscan/headForeheadB.png");
+  var eyesImg = evalEyes == 1 ? require("../../assets/bodyscan/headEyes.png") : require("../../assets/bodyscan/headEyesB.png");
+  var jawImg = evalJaw == 1 ? require("../../assets/bodyscan/headJaw.png") : require("../../assets/bodyscan/headJawB.png");
+  var shoulderImg = evalShoulders == 1 ? require("../../assets/bodyscan/bodyShoulders.png") : require("../../assets/bodyscan/bodyShouldersB.png");
+  var chestImg = evalChest == 1 ? require("../../assets/bodyscan/bodyChest.png") : require("../../assets/bodyscan/bodyChestB.png");
+  var gutImg = evalGut == 1 ? require("../../assets/bodyscan/bodyGut.png") : require("../../assets/bodyscan/bodyGutB.png");
+  var crotchImg = evalCrotch == 1 ?  require("../../assets/bodyscan/bodyCrotch.png") : require("../../assets/bodyscan/bodyCrotchB.png");
+  var upperLegsImg = evalUpperLegs == 1 ? require("../../assets/bodyscan/legsUpper.png") : require("../../assets/bodyscan/legsUpperB.png");
+  var lowerLegsImg = evalLowerLegs == 1 ? require("../../assets/bodyscan/legsLower.png") : require("../../assets/bodyscan/legsLowerB.png");
+  var feetImg = evalFeet == 1 ? require("../../assets/bodyscan/legsFeet.png") : require("../../assets/bodyscan/legsFeetB.png");
+  var upperArmsImg = evalUpperArms == 1 ? require("../../assets/bodyscan/armsUpper.png") : require("../../assets/bodyscan/armsUpperB.png");
+  var lowerArmsImg = evalLowerArms == 1 ? require("../../assets/bodyscan/armsLower.png") : require("../../assets/bodyscan/armsLowerB.png");
+  var handsImg = evalHands == 1 ? require("../../assets/bodyscan/armsHands.png") : require("../../assets/bodyscan/armsHandsB.png");
 
   return(
-  <View style={styles.container}>
-      <Text style={styles.pageTitle}>Bodymap</Text>
-        <Image //Head
-          style={styles.bodyImage}
-          source={foreheadImg}
-        />
-        <Image
-          style={styles.bodyImage}
-          source={eyesImg}
-        />
-        <Image
-          style={styles.bodyImage}
-          source={jawImg}
-        />
+    <View style={styles.container}>
+      <Text style={styles.exerExpl}>
+        <Text style={styles.greenText}>Green</Text> = pleasant. <Text style={styles.redText}>Red</Text> = unpleasant.
+      </Text>
+      <View style={styles.bodyMapContainer}>
+        <Image style={styles.bodyImage} source={foreheadImg}/>
+        <Image style={styles.bodyImage} source={eyesImg}/>
+        <Image style={styles.bodyImage} source={jawImg}/>
+        <Image style={styles.bodyImage}source={shoulderImg}/>
+        <Image style={styles.bodyImage} source={chestImg}/>
+        <Image style={styles.bodyImage} source={gutImg}/>
+        <Image style={styles.bodyImage} source={crotchImg}/>
+        <Image style={styles.bodyImage} source={handsImg}/>
+        <Image style={styles.bodyImage} source={lowerArmsImg}/>
+        <Image style={styles.bodyImage} source={upperArmsImg}/>
+        <Image style={styles.bodyImage} source={upperLegsImg}/>
+        <Image style={styles.bodyImage} source={lowerLegsImg}/>
+        <Image style={styles.bodyImage} source={feetImg}/>
+        <Image style={styles.bodyImage} source={require("../../assets/bodyscan/body.png")}/>
 
-        <Image //Body
-          style={styles.bodyImage}
-          source={shoulderImg}
-        />
-        <Image
-          style={styles.bodyImage}
-          source={require("../../assets/bodyscan/bodyChest.png")}
-        />
-        <Image
-          style={styles.bodyImage}
-          source={require("../../assets/bodyscan/bodyGut.png")}
-        />
-        <Image
-          style={styles.bodyImage}
-          source={require("../../assets/bodyscan/bodyCrotch.png")}
-        />
-
-        <Image //Arms
-          style={styles.bodyImage}
-          source={require("../../assets/bodyscan/armsHands.png")}
-        />
-        <Image
-          style={styles.bodyImage}
-          source={require("../../assets/bodyscan/armsLower.png")}
-        />
-        <Image
-          style={styles.bodyImage}
-          source={require("../../assets/bodyscan/armsUpper.png")}
-        />
-
-        <Image //Legs
-          style={styles.bodyImage}
-          source={require("../../assets/bodyscan/legsUpper.png")}
-        />
-        <Image
-          style={styles.bodyImage}
-          source={require("../../assets/bodyscan/legsLower.png")}
-        />
-        <Image
-          style={styles.bodyImage}
-          source={require("../../assets/bodyscan/legsFeet.png")}
-        />
-
-        <Image //Body outline - needs to be drawn last!
-          style={styles.bodyImage}
-          source={require("../../assets/bodyscan/body.png")}
-        />
-
-        <Pressable 
-          style={bodyParts.bodyForehead}
-          onPress={()=>setEvalForehead(evalForehead * -1)}
-        />
-        <Pressable 
-          style={bodyParts.bodyEyes}
-          onPress={()=>setEvalEyes(evalEyes * -1)}
-        />
-        <Pressable 
-          style={bodyParts.bodyJaw}
-          onPress={()=>setEvalJaw(evalJaw * -1)}
-        />
-
-        <Pressable 
-          style={bodyParts.bodyShoulders}
-          onPress={()=>setevalShoulders(evalShoulders * -1)}
-        />
-        <Pressable 
-          style={bodyParts.bodyChest}
-        />
-        <Pressable 
-          style={bodyParts.bodyGut}
-        />
-        <Pressable 
-          style={bodyParts.bodyCrotch}
-        />
-
-        <Pressable 
-          style={bodyParts.bodyUpperlegs}
-        />
-        <Pressable 
-          style={bodyParts.bodyLowerLegs}
-        />
-        <Pressable 
-          style={bodyParts.bodyFeet}
-        />
-
-        <Pressable 
-          style={bodyParts.bodyUpperArmLeft}
-        />
-        <Pressable 
-          style={bodyParts.bodyUpperArmRight}
-        />
-        <Pressable 
-          style={bodyParts.bodyLowerArmLeft}
-        />
-        <Pressable 
-          style={bodyParts.bodyLowerArmRight}
-        />    
-        <Pressable 
-          style={bodyParts.bodyHandLeft}
-        />
-        <Pressable 
-          style={bodyParts.bodyHandRight}
-        />                                 
-    </View>
+        <Pressable style={bodyParts.bodyForehead} onPress={()=>setEvalForehead(evalForehead * -1)} />
+        <Pressable style={bodyParts.bodyEyes} onPress={()=>setEvalEyes(evalEyes * -1)} />
+        <Pressable style={bodyParts.bodyJaw} onPress={()=>setEvalJaw(evalJaw * -1)} />
+        <Pressable style={bodyParts.bodyShoulders} onPress={()=>setEvalShoulders(evalShoulders * -1)}/>
+        <Pressable style={bodyParts.bodyChest} onPress={()=>setEvalChest(evalChest * -1)} />
+        <Pressable style={bodyParts.bodyGut} onPress={()=>setEvalGut(evalGut * -1)} />
+        <Pressable style={bodyParts.bodyCrotch} onPress={()=>setEvalCrotch(evalCrotch * -1)} />
+        <Pressable style={bodyParts.bodyUpperlegs} onPress={()=>setEvalUpperLegs(evalUpperLegs * -1)} />
+        <Pressable style={bodyParts.bodyLowerLegs} onPress={()=>setEvalLowerLegs(evalLowerLegs * -1)} />
+        <Pressable style={bodyParts.bodyFeet} onPress={()=>setEvalFeet(evalFeet * -1)} />
+        <Pressable style={bodyParts.bodyUpperArmLeft} onPress={()=>setEvalUpperArms(evalUpperArms * -1)} />
+        <Pressable style={bodyParts.bodyUpperArmRight} onPress={()=>setEvalUpperArms(evalUpperArms * -1)} />
+        <Pressable style={bodyParts.bodyLowerArmLeft} onPress={()=>setEvalLowerArms(evalLowerArms * -1)} />
+        <Pressable style={bodyParts.bodyLowerArmRight} onPress={()=>setEvalLowerArms(evalLowerArms * -1)} />   
+        <Pressable style={bodyParts.bodyHandLeft} onPress={()=>setEvalHands(evalHands * -1)} />
+        <Pressable style={bodyParts.bodyHandRight} onPress={()=>setEvalHands(evalHands * -1)} />
+      </View>
+      <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("BodyScanBodyMap")}>
+        <Text style={styles.startText}>
+          Submit
+        </Text>
+      </Pressable >
+    </View> 
   );
 }
 
@@ -162,27 +84,52 @@ const styles = StyleSheet.create({
     backgroundColor: "#B9D5EB",
     alignItems: "center",
   },
+  bodyMapContainer:{
+    alignItems: "center",
+    top: -155,
+  },
   pageTitle:{
     fontSize: 40,
     paddingTop: "4%",
   },
   exerExpl:{
-    padding: 40,
-    marginTop: "15%",
+    padding: 10,
+    textAlign: "center",
+    marginTop: 10,
     marginBottom: "20%",
-    backgroundColor: "#F3F3F3",
-    borderRadius: 50,
+    borderRadius: 30,
     borderColor: "#000000",
     borderWidth: 2,
-    fontSize: 15,
     width: "90%",
     fontSize: 20,
   },
+  greenText:{
+    fontWeight: "bold",
+    color: "#2ABD4E",
+  },
+  redText:{
+    fontWeight: "bold",
+    color: "#E8594E",
+  },
   bodyImage:{
-    padding: 40,
     top: 80,
+    padding: 40,
     position: "absolute",
   },
+  startButton:{
+    alignItems: "center",
+    backgroundColor: "#F3F3F3",
+    padding: 15,
+    width: 140,
+    borderRadius: 100,
+    borderColor: "#000000",
+    borderWidth: 2,
+    bottom: 5,
+    position: "absolute",
+  },
+  startText:{
+    fontSize: 20,
+  }
 });
 
 const bodyParts = StyleSheet.create({
