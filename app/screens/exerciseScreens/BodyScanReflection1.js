@@ -1,17 +1,18 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
 
-export default function BodyScanFirstScreen({ navigation }) {
+export default function BodyScanReflection1({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.pageTitle}>Bodyscan</Text>
       <Text style={styles.exerExpl}>
-        This exercise aims to make you more aware of what you feel in your body. It also makes you think about the role emotions can play in this. The great thing is that our body can tell us a lot about the emotions we experience. 
+        <Text style={{fontWeight: 'bold'}}>Instruction for challenge 2</Text>
         {"\n"}{"\n"}
-        Press the button to start exercise.
+        <Text style={{fontWeight: 'bold'}}>Step 1: </Text>Think back to the 'body scan exercise'.{"\n"}{"\n"}
+        <Text style={{fontWeight: 'bold'}}>Step 2: </Text>Think about a possible explanation for what you have been feeling in your body.{"\n"}{"\n"}
+        <Text style={{fontWeight: 'bold'}}>Step 3: </Text>Answer the statement below.
       </Text>
-      <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("BodyScanBodyMap")}>
+      <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("BodyScanReflection2")}>
         <Text style={styles.startText}>
-          Start
+          Next
         </Text>
       </Pressable >
     </View>
@@ -24,13 +25,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#B9D5EB",
     alignItems: "center",
   },
-  pageTitle:{
-    fontSize: 40,
-    paddingTop: "10%",
-  },
   exerExpl:{
     padding: 40,
-    marginTop: "15%",
+    marginTop: "20%",
     marginBottom: "20%",
     backgroundColor: "#F3F3F3",
     borderRadius: 50,
@@ -48,7 +45,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderColor: "#000000",
     borderWidth: 2,
-    bottom: "5%",
+    bottom: "10%",
     position: "absolute",
   },
   startText:{
