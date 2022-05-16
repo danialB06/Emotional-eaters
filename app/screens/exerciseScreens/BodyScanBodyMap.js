@@ -1,5 +1,5 @@
-import { View, Image, StyleSheet, Text, Pressable, ScrollView } from "react-native";
-import { useState, useEffect } from 'react';
+import { View, Image, StyleSheet, Text, Pressable } from "react-native";
+import { useState } from 'react';
 
 export default function BodyScanBodyMap({ navigation }) {
   //Bodypart evaluation scores
@@ -69,7 +69,7 @@ export default function BodyScanBodyMap({ navigation }) {
         <Pressable style={bodyParts.bodyHandLeft} onPress={()=>setEvalHands(evalHands * -1)} />
         <Pressable style={bodyParts.bodyHandRight} onPress={()=>setEvalHands(evalHands * -1)} />
       </View>
-      <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("BodyScanBodyMap")}>
+      <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("BodyScanReflection1")}>
         <Text style={styles.startText}>
           Submit
         </Text>
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderColor: "#000000",
     borderWidth: 2,
-    bottom: 5,
+    bottom: 8,
     position: "absolute",
   },
   startText:{
