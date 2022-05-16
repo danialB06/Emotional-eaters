@@ -1,6 +1,10 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-
+import React, { useState } from "react";
 export default function OppositeGameThirdPracticeScreen({ navigation }) {
+  const [option1, setOption1] = useState(-1);
+  const [option2, setOption2] = useState(-1);
+  const [option3, setOption3] = useState(-1);
+
   return (
     <View style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game Practice 3/3</Text>
@@ -8,15 +12,45 @@ export default function OppositeGameThirdPracticeScreen({ navigation }) {
         You’re sad and it makes you unwilling to hang out with your friends.
         What is the opposite action?
       </Text>
-      <View style={styles.options}>
+      <TouchableOpacity
+        style={[
+          styles.optionsBox,
+          option1 == 1 ? styles.optionsActive : styles.optionsNotActive,
+        ]}
+        onPress={() => [
+          setOption1(option1 * -1),
+          setOption2(-1),
+          setOption3(-1),
+        ]}
+      >
         <Text style={styles.optionsText}>Go to bed</Text>
-      </View>
-      <View style={styles.options}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[
+          styles.optionsBox,
+          option2 == 1 ? styles.optionsActive : styles.optionsNotActive,
+        ]}
+        onPress={() => [
+          setOption2(option2 * -1),
+          setOption1(-1),
+          setOption3(-1),
+        ]}
+      >
         <Text style={styles.optionsText}>Hang out with my friends anyway</Text>
-      </View>
-      <View style={styles.options}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[
+          styles.optionsBox,
+          option3 == 1 ? styles.optionsActive : styles.optionsNotActive,
+        ]}
+        onPress={() => [
+          setOption3(option3 * -1),
+          setOption1(-1),
+          setOption2(-1),
+        ]}
+      >
         <Text style={styles.optionsText}>Watch a movie on tv alone</Text>
-      </View>
+      </TouchableOpacity>
       <View>
         <TouchableOpacity
           style={styles.submitButton}
@@ -39,15 +73,20 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingBottom: 50,
   },
-  options: {
+  optionsBox: {
     alignItems: "center",
-    backgroundColor: "#F3F3F3",
     borderRadius: 15,
     borderColor: "#000000",
     borderWidth: 2,
     height: 100,
     justifyContent: "center",
     width: "60%",
+  },
+  optionsNotActive: {
+    backgroundColor: "#F3F3F3",
+  },
+  optionsActive: {
+    backgroundColor: "#BAC7E9",
   },
   optionsText: {
     fontSize: 21,

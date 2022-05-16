@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
+import { Keyboard } from "react-native";
 
 export default function OppositeGameFirstExerciseScreen({ navigation }) {
   return (
@@ -9,14 +10,14 @@ export default function OppositeGameFirstExerciseScreen({ navigation }) {
         We’re going to reflect on a situation of yours today.
       </Text>
       <Text style={styles.question}>What was the situation?</Text>
-
       <TextInput
         style={styles.textInput}
         placeholder="Type here.."
         keyboardType="default"
         multiline={true}
+        onSubmitEditing={Keyboard.dismiss}
+        returnKeyType="done"
       />
-
       <View>
         <TouchableOpacity
           style={styles.submitButton}

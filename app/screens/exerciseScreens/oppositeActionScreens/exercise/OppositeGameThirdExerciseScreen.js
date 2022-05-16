@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
+import { Keyboard } from "react-native";
 
 export default function OppositeGameThirdExerciseScreen({ navigation }) {
   return (
@@ -11,6 +12,8 @@ export default function OppositeGameThirdExerciseScreen({ navigation }) {
         placeholder="Type here.."
         keyboardType="default"
         multiline={true}
+        onSubmitEditing={Keyboard.dismiss}
+        returnKeyType="done"
       />
 
       <View>

@@ -1,21 +1,47 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 
 export default function OppositeGameFirstPracticeScreen({ navigation }) {
+  const [option1, setOption1] = useState(-1);
+  const [option2, setOption2] = useState(-1);
+  const [option3, setOption3] = useState(-1);
+
   return (
     <View style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game Practice 1/3</Text>
       <Text style={styles.title}>
         What behaviour is associated with happiness?
       </Text>
-      <View style={styles.options}>
+      <TouchableOpacity
+        style={option1 == 1 ? styles.optionsActive : styles.options}
+        onPress={() => [
+          setOption1(option1 * -1),
+          setOption2(-1),
+          setOption3(-1),
+        ]}
+      >
         <Text style={styles.optionsText}>Avoidance or running away</Text>
-      </View>
-      <View style={styles.options}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={option2 == 1 ? styles.optionsActive : styles.options}
+        onPress={() => [
+          setOption2(option2 * -1),
+          setOption1(-1),
+          setOption3(-1),
+        ]}
+      >
         <Text style={styles.optionsText}>Staying in bed</Text>
-      </View>
-      <View style={styles.options}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={option3 == 1 ? styles.optionsActive : styles.options}
+        onPress={() => [
+          setOption3(option3 * -1),
+          setOption1(-1),
+          setOption2(-1),
+        ]}
+      >
         <Text style={styles.optionsText}>Socializing</Text>
-      </View>
+      </TouchableOpacity>
       <View>
         <TouchableOpacity
           style={styles.submitButton}
@@ -41,6 +67,16 @@ const styles = StyleSheet.create({
   options: {
     alignItems: "center",
     backgroundColor: "#F3F3F3",
+    borderRadius: 15,
+    borderColor: "#000000",
+    borderWidth: 2,
+    height: 100,
+    justifyContent: "center",
+    width: "60%",
+  },
+  optionsActive: {
+    alignItems: "center",
+    backgroundColor: "#BAC7E9",
     borderRadius: 15,
     borderColor: "#000000",
     borderWidth: 2,

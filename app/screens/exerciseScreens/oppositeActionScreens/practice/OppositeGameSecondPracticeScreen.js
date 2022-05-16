@@ -1,24 +1,74 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 
 export default function OppositeGameSecondPracticeScreen({ navigation }) {
+  const [option1, setOption1] = useState(-1);
+  const [option2, setOption2] = useState(-1);
+  const [option3, setOption3] = useState(-1);
+  const [option4, setOption4] = useState(-1);
+
   return (
     <View style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game Practice 2/3</Text>
       <Text style={styles.title}>
         What emotion is associated with getting bored with your own hobbies?
       </Text>
-      <View style={styles.options}>
+      <TouchableOpacity
+        style={[
+          styles.optionsBox,
+          option1 == 1 ? styles.optionsSelected : styles.optionsNotSelected,
+        ]}
+        onPress={() => [
+          setOption1(option1 * -1),
+          setOption2(-1),
+          setOption3(-1),
+          setOption4(-1),
+        ]}
+      >
         <Text style={styles.optionsText}>Sadness</Text>
-      </View>
-      <View style={styles.options}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[
+          styles.optionsBox,
+          option2 == 1 ? styles.optionsSelected : styles.optionsNotSelected,
+        ]}
+        onPress={() => [
+          setOption2(option2 * -1),
+          setOption1(-1),
+          setOption3(-1),
+          setOption4(-1),
+        ]}
+      >
         <Text style={styles.optionsText}>Anger</Text>
-      </View>
-      <View style={styles.options}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[
+          styles.optionsBox,
+          option3 == 1 ? styles.optionsSelected : styles.optionsNotSelected,
+        ]}
+        onPress={() => [
+          setOption3(option3 * -1),
+          setOption1(-1),
+          setOption2(-1),
+          setOption4(-1),
+        ]}
+      >
         <Text style={styles.optionsText}>Happiness</Text>
-      </View>
-      <View style={styles.options}>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[
+          styles.optionsBox,
+          option4 == 1 ? styles.optionsSelected : styles.optionsNotSelected,
+        ]}
+        onPress={() => [
+          setOption4(option4 * -1),
+          setOption1(-1),
+          setOption2(-1),
+          setOption3(-1),
+        ]}
+      >
         <Text style={styles.optionsText}>Fear</Text>
-      </View>
+      </TouchableOpacity>
       <View>
         <TouchableOpacity
           style={styles.submitButton}
@@ -39,9 +89,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingBottom: 50,
   },
-  options: {
-    alignItems: "center",
+  optionsNotSelected: {
     backgroundColor: "#F3F3F3",
+  },
+  optionsSelected: {
+    backgroundColor: "#BAC7E9",
+  },
+  optionsBox: {
+    alignItems: "center",
     borderRadius: 15,
     borderColor: "#000000",
     borderWidth: 2,
@@ -49,6 +104,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "60%",
   },
+
   optionsText: {
     fontSize: 21,
     textAlign: "center",

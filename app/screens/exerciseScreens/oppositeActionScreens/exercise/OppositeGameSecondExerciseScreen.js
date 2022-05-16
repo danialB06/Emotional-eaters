@@ -1,6 +1,18 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
 
 export default function OppositeGameSecondExerciseScreen({ navigation }) {
+  const [option1, setOption1] = useState(-1);
+  const [option2, setOption2] = useState(-1);
+  const [option3, setOption3] = useState(-1);
+  const [option4, setOption4] = useState(-1);
+  const [option5, setOption5] = useState(-1);
+  const [option6, setOption6] = useState(-1);
+  const [option7, setOption7] = useState(-1);
+  const [option8, setOption8] = useState(-1);
+  const [option9, setOption9] = useState(-1);
+  const [option10, setOption10] = useState(-1);
+
   return (
     <View style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game 2/4</Text>
@@ -8,38 +20,98 @@ export default function OppositeGameSecondExerciseScreen({ navigation }) {
 
       <View style={styles.row}>
         <View style={styles.column}>
-          <View style={styles.options}>
+          <TouchableOpacity
+            style={[
+              styles.optionsBox,
+              option1 == 1 ? styles.optionsActive : styles.optionsNotActive,
+            ]}
+            onPress={() => setOption1(option1 * -1)}
+          >
             <Text style={styles.optionsText}>Fear</Text>
-          </View>
-          <View style={styles.options}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.optionsBox,
+              option2 == 1 ? styles.optionsActive : styles.optionsNotActive,
+            ]}
+            onPress={() => setOption2(option2 * -1)}
+          >
             <Text style={styles.optionsText}>Anger</Text>
-          </View>
-          <View style={styles.options}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.optionsBox,
+              option3 == 1 ? styles.optionsActive : styles.optionsNotActive,
+            ]}
+            onPress={() => setOption3(option3 * -1)}
+          >
             <Text style={styles.optionsText}>Shame</Text>
-          </View>
-          <View style={styles.options}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.optionsBox,
+              option4 == 1 ? styles.optionsActive : styles.optionsNotActive,
+            ]}
+            onPress={() => setOption4(option4 * -1)}
+          >
             <Text style={styles.optionsText}>Confusion</Text>
-          </View>
-          <View style={styles.options}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.optionsBox,
+              option5 == 1 ? styles.optionsActive : styles.optionsNotActive,
+            ]}
+            onPress={() => setOption5(option5 * -1)}
+          >
             <Text style={styles.optionsText}>Indifferent</Text>
-          </View>
+          </TouchableOpacity>
         </View>
         <View style={styles.column}>
-          <View style={styles.options}>
+          <TouchableOpacity
+            style={[
+              styles.optionsBox,
+              option6 == 1 ? styles.optionsActive : styles.optionsNotActive,
+            ]}
+            onPress={() => setOption6(option6 * -1)}
+          >
             <Text style={styles.optionsText}>Sadness</Text>
-          </View>
-          <View style={styles.options}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.optionsBox,
+              option7 == 1 ? styles.optionsActive : styles.optionsNotActive,
+            ]}
+            onPress={() => setOption7(option7 * -1)}
+          >
             <Text style={styles.optionsText}>Guilt</Text>
-          </View>
-          <View style={styles.options}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.optionsBox,
+              option8 == 1 ? styles.optionsActive : styles.optionsNotActive,
+            ]}
+            onPress={() => setOption8(option8 * -1)}
+          >
             <Text style={styles.optionsText}>Disgust</Text>
-          </View>
-          <View style={styles.options}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.optionsBox,
+              option9 == 1 ? styles.optionsActive : styles.optionsNotActive,
+            ]}
+            onPress={() => setOption9(option9 * -1)}
+          >
             <Text style={styles.optionsText}>Powerless</Text>
-          </View>
-          <View style={styles.options}>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.optionsBox,
+              option10 == 1 ? styles.optionsActive : styles.optionsNotActive,
+            ]}
+            onPress={() => setOption10(option10 * -1)}
+          >
             <Text style={styles.optionsText}>Love</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -70,15 +142,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 10,
   },
-  options: {
+  optionsBox: {
     alignItems: "center",
-    backgroundColor: "#F3F3F3",
     borderRadius: 20,
     borderColor: "#000000",
     borderWidth: 2,
     justifyContent: "center",
     height: "15%",
   },
+  optionsActive: { backgroundColor: "#BAC7E9" },
+  optionsNotActive: { backgroundColor: "#F3F3F3" },
   optionsText: {
     fontSize: 19,
     textAlign: "center",
