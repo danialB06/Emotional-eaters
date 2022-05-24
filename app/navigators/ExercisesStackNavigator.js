@@ -6,11 +6,20 @@ import ProfileScreen from "../screens/ProfileScreen";
 import ExercisesScreen from "../screens/exerciseScreens/ExercisesScreen";
 import BodyScanFirstScreen from "../screens/exerciseScreens/BodyScanFirstScreen";
 import BodyScanBodyMap from "../screens/exerciseScreens/BodyScanBodyMap";
+import BodyScanReflection1 from "../screens/exerciseScreens/BodyScanReflection1";
+import BodyScanReflection2 from "../screens/exerciseScreens/BodyScanReflection2";
+import BodyScanReflection3 from "../screens/exerciseScreens/BodyScanReflection3";
+import BodyScanFinished from "../screens/exerciseScreens/BodyScanFinished";
 import OppositeActionFirstScreen from "../screens/exerciseScreens/oppositeActionScreens/OppositeActionFirstScreen";
 import OppositeGameFirstPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameFirstPracticeScreen";
 import OppositeGameSecondPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameSecondPracticeScreen";
 import OppositeGameThirdPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameThirdPracticeScreen";
 import OppositeGameFinishedPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameFinishedPracticeScreen";
+import OppositeGameFinishedExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameFinishedExerciseScreen";
+import OppositeGameThirdExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameThirdExerciseScreen";
+import OppositeGameSecondExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameSecondExerciseScreen";
+import OppositeGameFirstExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameFirstExerciseScreen";
+import OppositeGameFourthExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameFourthExerciseScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +47,18 @@ const ExercisesStackNavigator = () => {
       />
       <Stack.Screen name="BodyScanBodyMap" component={BodyScanBodyMap} />
       <Stack.Screen
+        name="BodyScanReflection1"
+        component={BodyScanReflection1}/>
+      <Stack.Screen
+        name="BodyScanReflection2"
+        component={BodyScanReflection2}/>
+      <Stack.Screen
+        name="BodyScanReflection3"
+        component={BodyScanReflection3}/>
+      <Stack.Screen
+        name="BodyScanFinished"
+        component={BodyScanFinished}/>
+      <Stack.Screen
         name="OppositeActionFirstScreen"
         component={OppositeActionFirstScreen}
       />
@@ -58,6 +79,26 @@ const ExercisesStackNavigator = () => {
         component={OppositeGameFinishedPracticeScreen}
       />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Stack.Screen
+        name="OppositeGameFirstExerciseScreen"
+        component={OppositeGameFirstExerciseScreen}
+      />
+      <Stack.Screen
+        name="OppositeGameSecondExerciseScreen"
+        component={OppositeGameSecondExerciseScreen}
+      />
+      <Stack.Screen
+        name="OppositeGameThirdExerciseScreen"
+        component={OppositeGameThirdExerciseScreen}
+      />
+      <Stack.Screen
+        name="OppositeGameFourthExerciseScreen"
+        component={OppositeGameFourthExerciseScreen}
+      />
+      <Stack.Screen
+        name="OppositeGameFinishedExerciseScreen"
+        component={OppositeGameFinishedExerciseScreen}
+      />
     </Stack.Navigator>
   );
 };

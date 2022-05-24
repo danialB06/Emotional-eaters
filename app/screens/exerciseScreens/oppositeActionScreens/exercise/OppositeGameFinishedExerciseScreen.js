@@ -1,36 +1,24 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
-export default function OppositeGameFinishedPracticeScreen({ navigation }) {
+export default function OppositeGameFinishedExerciseScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
-        <Text style={styles.submitText}>
+        <Text style={styles.text}>
           <Text style={styles.boldText}>
-            Finished!{"\n"}
+            Great job!{"\n"}
             {"\n"}
           </Text>
-          You can recognize the emotions behind our behaviour now. {"\n"}
-          {"\n"}You also know how to what behaviour can counteract our emotions!
+          The exercise will be saved to your diary.
         </Text>
       </View>
-      <View style={styles.buttonsContainer}>
-        <TouchableOpacity
-          style={styles.submitButton}
-          onPress={() => navigation.popToTop()}
-        >
-          <Text style={styles.submitText}>Done</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.submitButton}>
-          <Text
-            style={styles.submitText}
-            onPress={() =>
-              navigation.navigate("OppositeGameFirstExerciseScreen")
-            }
-          >
-            Start Game
-          </Text>
-        </TouchableOpacity>
-      </View>
+
+      <TouchableOpacity
+        style={styles.submitButton}
+        onPress={() => navigation.popToTop()}
+      >
+        <Text style={styles.text}>Finish</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -40,16 +28,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  buttonsContainer: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    width: "80%",
-  },
   container: {
     flex: 1,
     backgroundColor: "#B9D5EB",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     paddingBottom: 50,
   },
   textContainer: {
@@ -59,7 +42,7 @@ const styles = StyleSheet.create({
     borderColor: "#000000",
     borderWidth: 2,
     marginTop: "20%",
-    height: "50%",
+    height: "40%",
     width: "80%",
     justifyContent: "center",
   },
@@ -81,7 +64,8 @@ const styles = StyleSheet.create({
     borderColor: "#000000",
     borderWidth: 2,
   },
-  submitText: {
+  text: {
     fontSize: 20,
+    padding: 10,
   },
 });

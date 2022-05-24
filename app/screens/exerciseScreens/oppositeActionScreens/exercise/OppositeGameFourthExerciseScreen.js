@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 
-export default function OppositeGameFirstPracticeScreen({ navigation }) {
+export default function OppositeGameFourthExerciseScreen({ navigation }) {
   const [option1, setOption1] = useState(-1);
   const [option2, setOption2] = useState(-1);
   const [option3, setOption3] = useState(-1);
@@ -9,44 +9,51 @@ export default function OppositeGameFirstPracticeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game Practice 1/3</Text>
-      <Text style={styles.title}>
-        What behaviour is associated with happiness?
-      </Text>
+      <Text style={styles.title}>What would the opposite action be?</Text>
       <TouchableOpacity
-        style={option1 == 1 ? styles.optionsActive : styles.options}
+        style={[
+          styles.optionsBox,
+          option1 == 1 ? styles.optionsActive : styles.optionsNotActive,
+        ]}
         onPress={() => [
           setOption1(option1 * -1),
           setOption2(-1),
           setOption3(-1),
         ]}
       >
-        <Text style={styles.optionsText}>Avoidance or running away</Text>
+        <Text style={styles.optionsText}>Try again</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={option2 == 1 ? styles.optionsActive : styles.options}
+        style={[
+          styles.optionsBox,
+          option2 == 1 ? styles.optionsActive : styles.optionsNotActive,
+        ]}
         onPress={() => [
           setOption2(option2 * -1),
           setOption1(-1),
           setOption3(-1),
         ]}
       >
-        <Text style={styles.optionsText}>Staying in bed</Text>
+        <Text style={styles.optionsText}>Try something else</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={option3 == 1 ? styles.optionsActive : styles.options}
+        style={[
+          styles.optionsBox,
+          option3 == 1 ? styles.optionsActive : styles.optionsNotActive,
+        ]}
         onPress={() => [
           setOption3(option3 * -1),
           setOption1(-1),
           setOption2(-1),
         ]}
       >
-        <Text style={styles.optionsText}>Socializing</Text>
+        <Text style={styles.optionsText}>Ask for help</Text>
       </TouchableOpacity>
       <View>
         <TouchableOpacity
           style={styles.submitButton}
           onPress={() =>
-            navigation.navigate("OppositeGameSecondPracticeScreen")
+            navigation.navigate("OppositeGameFinishedExerciseScreen")
           }
         >
           <Text style={styles.submitText}>Submit</Text>
@@ -64,9 +71,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingBottom: 50,
   },
-  options: {
+  optionsBox: {
     alignItems: "center",
-    backgroundColor: "#F3F3F3",
     borderRadius: 15,
     borderColor: "#000000",
     borderWidth: 2,
@@ -74,15 +80,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "60%",
   },
+  optionsNotActive: {
+    backgroundColor: "#F3F3F3",
+  },
   optionsActive: {
-    alignItems: "center",
     backgroundColor: "#BAC7E9",
-    borderRadius: 15,
-    borderColor: "#000000",
-    borderWidth: 2,
-    height: 100,
-    justifyContent: "center",
-    width: "60%",
   },
   optionsText: {
     fontSize: 21,
