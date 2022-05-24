@@ -1,6 +1,20 @@
+import { useEffect } from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
 
 export default function ExercisesScreen({ navigation }) {
+  // To add the profile Button
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          onPress={() => navigation.navigate("ProfileScreen")}
+          title="Profile"
+          color="black"
+        />
+      ),
+    });
+  });
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Exercises</Text>

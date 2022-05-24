@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "react-native";
 //navigator
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // screens
+import ProfileScreen from "../screens/ProfileScreen";
 import ExercisesScreen from "../screens/exerciseScreens/ExercisesScreen";
 import BodyScanFirstScreen from "../screens/exerciseScreens/BodyScanFirstScreen";
 import BodyScanBodyMap from "../screens/exerciseScreens/BodyScanBodyMap";
@@ -11,7 +11,6 @@ import OppositeGameFirstPracticeScreen from "../screens/exerciseScreens/opposite
 import OppositeGameSecondPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameSecondPracticeScreen";
 import OppositeGameThirdPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameThirdPracticeScreen";
 import OppositeGameFinishedPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameFinishedPracticeScreen";
-
 
 const Stack = createNativeStackNavigator();
 
@@ -23,24 +22,21 @@ const ExercisesStackNavigator = () => {
         headerStyle: {
           backgroundColor: "dodgerblue",
         },
-        headerRight: () => (
-          <Button
-            onPress={() => alert("This is a button!")}
-            title="Profile"
-            color="black"
-          />
-        ),
+        // headerRight: () => (
+        //   <Button
+        //     onPress={() => alert("This is a button!")}
+        //     title="Profile"
+        //     color="black"
+        //   />
+        // ),
       }}
     >
-      <Stack.Screen 
-        name="ExercisesScreen" 
-        component={ExercisesScreen} />
+      <Stack.Screen name="ExercisesScreen" component={ExercisesScreen} />
       <Stack.Screen
         name="BodyScanFirstScreen"
-        component={BodyScanFirstScreen}/>
-      <Stack.Screen
-        name="BodyScanBodyMap"
-        component={BodyScanBodyMap}/>
+        component={BodyScanFirstScreen}
+      />
+      <Stack.Screen name="BodyScanBodyMap" component={BodyScanBodyMap} />
       <Stack.Screen
         name="OppositeActionFirstScreen"
         component={OppositeActionFirstScreen}
@@ -61,6 +57,7 @@ const ExercisesStackNavigator = () => {
         name="OppositeGameFinishedPracticeScreen"
         component={OppositeGameFinishedPracticeScreen}
       />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
