@@ -4,6 +4,7 @@ import { Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // screens
 import ChatScreen from "../screens/chatScreens/ChatScreen";
+import { TouchableOpacity, Image } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
@@ -13,18 +14,26 @@ const ChatStackNavigator = () => {
       initialRouteName="ChatScreen"
       screenOptions={{
         headerStyle: {
-          backgroundColor: "dodgerblue",
+          backgroundColor: "#063559",
+        },
+        headerTitleStyle: {
+          color: "#C2C2C2",
         },
         headerRight: () => (
-          <Button
-            onPress={() => alert("This is a button!")}
-            title="Profile"
-            color="black"
-          />
+          <TouchableOpacity
+            onPress={() => {
+              alert("This is a button!");
+            }}
+          >
+            <Image
+              style={{ width: 40, height: 40 }}
+              source={require("../assets/profile.png")}
+            />
+          </TouchableOpacity>
         ),
       }}
     >
-        <Stack.Screen name="ChatScreen" component={ChatScreen} />
+      <Stack.Screen name="ChatScreen" component={ChatScreen} />
     </Stack.Navigator>
   );
 };
