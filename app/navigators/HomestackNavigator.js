@@ -46,6 +46,7 @@ const HomeStackNavigator = () => {
       <Stack.Screen name="NewGoalScreen" component={NewGoalScreen} />
       <Stack.Screen name="AlarmsScreen" component={AlarmsScreen} />
       <Stack.Screen name="GoalScreen" component={GoalScreen} />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
