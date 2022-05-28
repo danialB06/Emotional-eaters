@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "react-native";
 //navigator
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // screens
+import ProfileScreen from "../screens/ProfileScreen";
 import ExercisesScreen from "../screens/exerciseScreens/ExercisesScreen";
 import BodyScanFirstScreen from "../screens/exerciseScreens/BodyScanFirstScreen";
 import BodyScanBodyMap from "../screens/exerciseScreens/BodyScanBodyMap";
@@ -88,6 +88,7 @@ const ExercisesStackNavigator = () => {
         name="OppositeGameFinishedPracticeScreen"
         component={OppositeGameFinishedPracticeScreen}
       />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen
         name="OppositeGameFirstExerciseScreen"
         component={OppositeGameFirstExerciseScreen}

@@ -2,9 +2,17 @@ import React from "react";
 import { Button } from "react-native";
 //navigator
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  Item,
+  HeaderButton,
+  HeaderButtons,
+} from "react-navigation-header-buttons";
 // screens
 import ChatScreen from "../screens/chatScreens/ChatScreen";
+
 import { TouchableOpacity, Image } from "react-native";
+
+import ProfileScreen from "../screens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,21 +27,17 @@ const ChatStackNavigator = () => {
         headerTitleStyle: {
           color: "#C2C2C2",
         },
-        headerRight: () => (
-          <TouchableOpacity
-            onPress={() => {
-              alert("This is a button!");
-            }}
-          >
-            <Image
-              style={{ width: 40, height: 40 }}
-              source={require("../assets/profile.png")}
-            />
-          </TouchableOpacity>
-        ),
+        // headerRight: () => (
+        //   <Button
+        //     onPress={(props) => props.navigation.navigate("ProfileScreen")}
+        //     title="Profile"
+        //     color="black"
+        //   />
+        // ),
       }}
     >
       <Stack.Screen name="ChatScreen" component={ChatScreen} />
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };

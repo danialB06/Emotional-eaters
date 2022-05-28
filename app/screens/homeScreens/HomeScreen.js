@@ -1,7 +1,20 @@
 import { View, StyleSheet, Text, Button, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
+import { useEffect } from "react";
 
 export default function HomeScreen({ navigation }) {
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          onPress={() => navigation.navigate("ProfileScreen")}
+          title="Profile"
+          color="black"
+        />
+      ),
+    });
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.streakCircle}>

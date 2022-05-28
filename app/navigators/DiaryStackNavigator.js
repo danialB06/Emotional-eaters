@@ -4,7 +4,7 @@ import { Button } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // screens
 import DiaryScreen from "../screens/diaryScreens/DiaryScreen";
-import { TouchableOpacity, Image } from "react-native";
+import ProfileScreen from "../screens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,20 +19,16 @@ const DiaryStackNavigator = () => {
         headerTitleStyle: {
           color: "#C2C2C2",
         },
-        headerRight: () => (
-          <TouchableOpacity
-            onPress={() => {
-              alert("This is a button!");
-            }}
-          >
-            <Image
-              style={{ width: 40, height: 40 }}
-              source={require("../assets/profile.png")}
-            />
-          </TouchableOpacity>
-        ),
+        // headerRight: () => (
+        //   <Button
+        //     onPress={() => alert("This is a button!")}
+        //     title="Profile"
+        //     color="black"
+        //   />
+        // ),
       }}
     >
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen name="DiaryScreen" component={DiaryScreen} />
     </Stack.Navigator>
   );

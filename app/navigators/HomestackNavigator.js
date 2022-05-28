@@ -3,6 +3,7 @@ import { Button } from "react-native";
 //navigator
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // screens
+import ProfileScreen from "../screens/ProfileScreen";
 import HomeScreen from "../screens/homeScreens/HomeScreen";
 import NewGoalScreen from "../screens/homeScreens/goalsScreens/NewGoalScreen";
 import AlarmsScreen from "../screens/homeScreens/AlarmsScreen";
