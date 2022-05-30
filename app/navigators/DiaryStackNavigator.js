@@ -6,7 +6,6 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DiaryScreen from "../screens/diaryScreens/DiaryScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 
-
 const Stack = createNativeStackNavigator();
 
 const DiaryStackNavigator = () => {
@@ -15,7 +14,10 @@ const DiaryStackNavigator = () => {
       initialRouteName="DiaryScreen"
       screenOptions={{
         headerStyle: {
-          backgroundColor: "dodgerblue",
+          backgroundColor: "#063559",
+        },
+        headerTitleStyle: {
+          color: "#C2C2C2",
         },
         // headerRight: () => (
         //   <Button

@@ -20,6 +20,7 @@ import OppositeGameThirdExerciseScreen from "../screens/exerciseScreens/opposite
 import OppositeGameSecondExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameSecondExerciseScreen";
 import OppositeGameFirstExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameFirstExerciseScreen";
 import OppositeGameFourthExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameFourthExerciseScreen";
+import { TouchableOpacity, Image } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
@@ -29,15 +30,23 @@ const ExercisesStackNavigator = () => {
       initialRouteName="ExercisesScreen"
       screenOptions={{
         headerStyle: {
-          backgroundColor: "dodgerblue",
+          backgroundColor: "#063559",
         },
-        // headerRight: () => (
-        //   <Button
-        //     onPress={() => alert("This is a button!")}
-        //     title="Profile"
-        //     color="black"
-        //   />
-        // ),
+        headerTitleStyle: {
+          color: "#C2C2C2",
+        },
+        headerRight: () => (
+          <TouchableOpacity
+            onPress={() => {
+              alert("This is a button!");
+            }}
+          >
+            <Image
+              style={{ width: 40, height: 40 }}
+              source={require("../assets/profile.png")}
+            />
+          </TouchableOpacity>
+        ),
       }}
     >
       <Stack.Screen name="ExercisesScreen" component={ExercisesScreen} />
@@ -48,16 +57,17 @@ const ExercisesStackNavigator = () => {
       <Stack.Screen name="BodyScanBodyMap" component={BodyScanBodyMap} />
       <Stack.Screen
         name="BodyScanReflection1"
-        component={BodyScanReflection1}/>
+        component={BodyScanReflection1}
+      />
       <Stack.Screen
         name="BodyScanReflection2"
-        component={BodyScanReflection2}/>
+        component={BodyScanReflection2}
+      />
       <Stack.Screen
         name="BodyScanReflection3"
-        component={BodyScanReflection3}/>
-      <Stack.Screen
-        name="BodyScanFinished"
-        component={BodyScanFinished}/>
+        component={BodyScanReflection3}
+      />
+      <Stack.Screen name="BodyScanFinished" component={BodyScanFinished} />
       <Stack.Screen
         name="OppositeActionFirstScreen"
         component={OppositeActionFirstScreen}
