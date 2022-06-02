@@ -20,7 +20,14 @@ import OppositeGameThirdExerciseScreen from "../screens/exerciseScreens/opposite
 import OppositeGameSecondExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameSecondExerciseScreen";
 import OppositeGameFirstExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameFirstExerciseScreen";
 import OppositeGameFourthExerciseScreen from "../screens/exerciseScreens/oppositeActionScreens/exercise/OppositeGameFourthExerciseScreen";
+import PositiveReframingInstructionScreen from "../screens/exerciseScreens/positiveReframingScreens/PositiveReframingInstructionScreen";
 import { TouchableOpacity, Image } from "react-native";
+import PositiveReframingFirstScreen from "../screens/exerciseScreens/positiveReframingScreens/PositiveReframingFirstScreen";
+import PositiveReframingSecondScreen from "../screens/exerciseScreens/positiveReframingScreens/PositiveReframingSecondScreen";
+import PositiveReframingThirdScreen from "../screens/exerciseScreens/positiveReframingScreens/PositiveReframingThirdScreen";
+import PositiveReframingFourthScreen from "../screens/exerciseScreens/positiveReframingScreens/PositiveReframingFourthScreen";
+import PositiveReframingFifthScreen from "../screens/exerciseScreens/positiveReframingScreens/PositiveReframingFifthScreen";
+import PositiveReframingFinishedScreen from "../screens/exerciseScreens/positiveReframingScreens/PositiveReframingFinishedScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -108,6 +115,35 @@ const ExercisesStackNavigator = () => {
       <Stack.Screen
         name="OppositeGameFinishedExerciseScreen"
         component={OppositeGameFinishedExerciseScreen}
+      />
+
+      <Stack.Screen
+        name="PositiveReframingInstructionScreen"
+        component={PositiveReframingInstructionScreen}
+      />
+      <Stack.Screen
+        name="PositiveReframingFirstScreen"
+        component={PositiveReframingFirstScreen}
+      />
+      <Stack.Screen
+        name="PositiveReframingSecondScreen"
+        component={PositiveReframingSecondScreen}
+      />
+      <Stack.Screen
+        name="PositiveReframingThirdScreen"
+        component={PositiveReframingThirdScreen}
+      />
+      <Stack.Screen
+        name="PositiveReframingFourthScreen"
+        component={PositiveReframingFourthScreen}
+      />
+      <Stack.Screen
+        name="PositiveReframingFifthScreen"
+        component={PositiveReframingFifthScreen}
+      />
+      <Stack.Screen
+        name="PositiveReframingFinishedScreen"
+        component={PositiveReframingFinishedScreen}
       />
     </Stack.Navigator>
   );

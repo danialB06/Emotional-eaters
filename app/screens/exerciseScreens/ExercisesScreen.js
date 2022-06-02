@@ -34,7 +34,13 @@ export default function ExercisesScreen({ navigation }) {
           />
         </View>
         <View style={styles.exerciseButton}>
-          <Button color={"black"} title="Positive Reframing" />
+          <Button
+            color={"black"}
+            title="Positive Reframing"
+            onPress={() =>
+              navigation.navigate("PositiveReframingInstructionScreen")
+            }
+          />
         </View>
       </View>
     </View>
