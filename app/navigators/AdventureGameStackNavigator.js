@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // screens
 import StartGameScreen from "../screens/gameScreens/StartGameScreen";
 import MapGameScreen from "../screens/gameScreens/MapGameScreen";
+import AvatarCustomizeScreen from "../screens/gameScreens/AvatarCustomizeScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +29,7 @@ const AdventureGameStackNavigator = () => {
     >
         <Stack.Screen name="Adventure Game" component={StartGameScreen} />
         <Stack.Screen name="MapGameScreen" component={MapGameScreen} />
+        <Stack.Screen name="AvatarCustomizeScreen" component={AvatarCustomizeScreen} />
     </Stack.Navigator>
   );
 };

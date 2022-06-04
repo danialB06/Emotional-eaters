@@ -1,7 +1,8 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
-import { useState } from 'react';
-import AvatarData from './AvatarData';
+import { Component, useState } from 'react';
+import AvatarData, {AvatarDressed, AvatarParamFetch} from './AvatarData';
 import MonsterData from './MonsterData';
+import { ComponentTestABC } from './ComponentTest';
 
 //Game Elements
 export default function StartGameScreen({ navigation }) {
@@ -15,14 +16,15 @@ export default function StartGameScreen({ navigation }) {
         <Text style={styles.welcomeBack}>
           Welcome back!
         </Text>
-        <AvatarData/>
+        <AvatarParamFetch/>
+        <AvatarDressed/>
         <View style={{justifyContent: "center", alignItems: "center", flexDirection: "row", width: "60%", marginLeft: "20%"}}>
           <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("MapGameScreen")}>
             <Text style={styles.startText}>
               Resume
             </Text>
           </Pressable >
-          <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("MapGameScreen")}>
+          <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("AvatarCustomizeScreen")}>
             <Text style={styles.startText}>
               Customize
             </Text>

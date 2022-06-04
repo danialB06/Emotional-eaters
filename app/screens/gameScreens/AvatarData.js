@@ -1,7 +1,7 @@
 import { View, Image, StyleSheet, Text, Modal, Pressable } from "react-native";
 import {Component, useState} from 'react';
 
-const AvatarDataFetch = (props) => {
+const AvatarParamFetch = (props) => {
   //Use userID to fetch Avatar data
   //Code blablabla
 
@@ -82,18 +82,25 @@ const AvatarDataFetch = (props) => {
           <Text style={styles.avatarParamText}>{currentPlayerAvatar.avatarCharm} </Text>
         </View>
       </View>
-      <View style={styles.avatarImg}>
-        <Image source={require("../../assets/AdventureGame/avatarBody.png")}/>
-      </View>
     </View>
   )
 }
+
+const AvatarDressed = () => {
+      return( 
+        <View style={styles.avatarImg}>
+          <Image source={require("../../assets/AdventureGame/avatarBody.png")}/>
+        </View>
+      );
+  }
+
+export { AvatarDressed, AvatarParamFetch};
 
 export default class AvatarData extends Component{
   render(){
     return( 
       <View>
-        <AvatarDataFetch/>
+        <Text> I'm not really exporting anything by default, buddy :/</Text>
       </View>
     );
   }
@@ -151,6 +158,7 @@ const styles = StyleSheet.create({
   },
   avatarImg:{
     width: "80%", 
+    marginLeft: "10%",
     alignItems:"center", 
     justifyContent:"center"
   },
