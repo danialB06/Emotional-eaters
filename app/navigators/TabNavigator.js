@@ -10,6 +10,7 @@ import HomeStackNavigator from "./HomestackNavigator";
 import DiaryStackNavigator from "./DiaryStackNavigator";
 import ExercisesStackNavigator from "./ExercisesStackNavigator";
 import ChatStackNavigator from "./ChatStackNavigator";
+import AdventureGameStackNavigator from "./AdventureGameStackNavigator";
 
 const Tab = createBottomTabNavigator();
 
@@ -57,6 +58,19 @@ const TabNavigator = () => {
           tabBarIcon: ({ size, color }) => (
             <Foundation
               name={"clipboard-notes"}
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="AdventureGameStackNavigator"
+        component={AdventureGameStackNavigator}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Foundation
+              name={"star"}
               color={color}
               size={size}
             />
