@@ -36,7 +36,7 @@ const AvatarParamFetch = (props) => {
             {modalText}
           </Text>
           <Pressable onPress={() => setStatModalShow(!statModalShow)} style={styles.modalCloseButton}>
-            <Text style={{textAlign: "center", color: "#272A40"}}>Close</Text>
+            <Text style={{textAlign: "center", color: "#CDE0C9"}}>Close</Text>
           </Pressable>
         </View>
       </Modal>
@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     width: 100,
     textAlign: "center",
-    backgroundColor: "#F3F3F3",
-    color: "#272A40",
+    backgroundColor: "#2C6975",
+    color: "#CDE0C9",
   },
   modalText:{
     textAlign: "center", 

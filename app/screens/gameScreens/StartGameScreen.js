@@ -51,18 +51,17 @@ export default function StartGameScreen({ navigation }) {
 const styles = StyleSheet.create({
   startButton:{
     alignContent: "center",
-    backgroundColor: "#F3F3F3",
+    backgroundColor: "#2C6975",
     padding: 15,
     width: 140,
     borderRadius: 100,
-    borderColor: "#000000",
-    borderWidth: 2,
     margin: 10,
 
   },
   startText:{
     fontSize: 20,
     textAlign: "center",
+    color: "#CDE0C9",
   },
   welcomeBack:{
     fontSize: 40,
