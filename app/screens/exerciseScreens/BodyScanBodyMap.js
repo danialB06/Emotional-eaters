@@ -1,6 +1,5 @@
 import { View, Image, StyleSheet, Text, Pressable } from "react-native";
 import { useState } from 'react';
-//import LinearGradient from 'react-native-linear-gradient';
 import {LinearGradient} from 'expo-linear-gradient';
 
 export default function BodyScanBodyMap({ navigation }) {
@@ -18,7 +17,52 @@ export default function BodyScanBodyMap({ navigation }) {
   const [evalUpperArms, setEvalUpperArms] = useState(0);
   const [evalLowerArms, setEvalLowerArms] = useState(0);
   const [evalHands, setEvalHands] = useState(0);
-  
+
+  function ImgHandler(bodypartEval){
+    let processedBodyPart;
+    switch (bodyPartEval){
+      case "Forehead":
+        evalForehead == 2 ? setEvalForehead(0) : setEvalForehead(evalForehead++);
+      break;
+      case "Eyes":
+        evalEyes;
+      break;
+      case "Jaw":
+        processedBodyPart = evalJaw;
+      break;
+      case "Shoulders":
+        processedBodyPart = evalShoulders;
+      break;
+      case "Upper arms":
+        processedBodyPart = evalUpperArms;
+      break;
+      case "Lowerarms":
+        processedBodyPart = evalLowerArms;
+      break;
+      case "Hands":
+        processedBodyPart = evalHands;
+      break;
+      case "Chest":
+        processedBodyPart = evalChest;
+      break;
+      case "Gut":
+        processedBodyPart = evalGut;
+      break;
+      case "Crotch":
+        processedBodyPart = evalCrotch;
+      break;
+      case "Upper legs":
+        processedBodyPart = evalUpperLegs;
+      break;
+      case "Lower legs":
+        processedBodyPart = evalLowerLegs;
+      break;
+      case "Feet":
+        processedBodyPart = evalFeet;
+      break;
+    }
+  }
+
 
 
   var foreheadImg = evalForehead == 1 ? require("../../assets/bodyscan/headForehead.png") : require("../../assets/bodyscan/headForeheadB.png");
@@ -37,10 +81,9 @@ export default function BodyScanBodyMap({ navigation }) {
 
   return(
       <View style={styles.container}>
-        <LinearGradient style={styles.gradientBG}colors = {['#FFFFFF', '#CDE0C9']}/>
-          <Text style={styles.exerExpl}>
-            <Text style={styles.greenText}>Green</Text> = pleasant. <Text style={styles.redText}>Red</Text> = unpleasant.
-          </Text>
+        <Text style={styles.exerExpl}>
+          <Text style={styles.greenText}>Green</Text> = pleasant. <Text style={styles.redText}>Red</Text> = unpleasant.
+        </Text>
         <View style={styles.bodyMapContainer}>
           <Image style={styles.bodyImage} source={foreheadImg}/>
           <Image style={styles.bodyImage} source={eyesImg}/>

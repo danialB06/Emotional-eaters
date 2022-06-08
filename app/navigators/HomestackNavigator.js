@@ -7,6 +7,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import HomeScreen from "../screens/homeScreens/HomeScreen";
 import NewGoalScreen from "../screens/homeScreens/goalsScreens/NewGoalScreen";
 import AlarmsScreen from "../screens/homeScreens/AlarmsScreen";
+import NewAlarmScreen from "../screens/homeScreens/NewAlarmScreen";
 import AllGoalsScreen from "../screens/homeScreens/goalsScreens/AllGoalsScreen";
 import GoalScreen from "../screens/homeScreens/goalsScreens/GoalScreen";
 import { TouchableOpacity, Image } from "react-native";
@@ -45,6 +46,7 @@ const HomeStackNavigator = () => {
       <Stack.Screen name="AllGoalsScreen" component={AllGoalsScreen} />
       <Stack.Screen name="NewGoalScreen" component={NewGoalScreen} />
       <Stack.Screen name="AlarmsScreen" component={AlarmsScreen} />
+      <Stack.Screen name="NewAlarmScreen" component={NewAlarmScreen} />
       <Stack.Screen name="GoalScreen" component={GoalScreen} />
       <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
     </Stack.Navigator>
