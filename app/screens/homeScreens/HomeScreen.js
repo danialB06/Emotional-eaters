@@ -26,7 +26,7 @@ export default function HomeScreen({ navigation }) {
       </View>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate("AllGoalsScreen")}
+        onPress={() => navigation.navigate("AlarmsScreen")}
       >
         <View style={styles.goalsButton}>
           <Image
