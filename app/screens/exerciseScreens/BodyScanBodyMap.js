@@ -1,6 +1,5 @@
 import { View, Image, StyleSheet, Text, Pressable } from "react-native";
 import { useState } from 'react';
-import { Switch } from 'react-native-switch';
 
 export default function BodyScanBodyMap({ navigation }) {
   //Bodypart evaluation scores
@@ -37,7 +36,6 @@ export default function BodyScanBodyMap({ navigation }) {
       <Text style={styles.exerExpl}>
         <Text style={styles.greenText}>Green</Text> = pleasant. <Text style={styles.redText}>Red</Text> = unpleasant.
       </Text>
-      <Switch/>
       <View style={styles.bodyMapContainer}>
         <Image style={styles.bodyImage} source={foreheadImg}/>
         <Image style={styles.bodyImage} source={eyesImg}/>

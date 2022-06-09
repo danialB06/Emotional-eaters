@@ -14,7 +14,6 @@ export default function BodyScanReflection2({ navigation }) {
 
   useEffect(()=> {
     console.log("useeffects")
-
   })
 
   //Active buttons
