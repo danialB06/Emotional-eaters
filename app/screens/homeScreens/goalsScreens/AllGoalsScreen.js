@@ -2,16 +2,21 @@ import { View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
 import GoalButton from "../components/GoalButton";
+import React from "react";
 
 export default function AllGoalsScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.navigate("NewGoalScreen")}>
+      <TouchableOpacity
+        style={styles.imageContainer}
+        onPress={() => navigation.navigate("NewGoalScreen")}
+      >
         <Image
           style={styles.addImage}
           source={require("../../../assets/homescreen/goalsscreen/add.png")}
         />
       </TouchableOpacity>
+
       <ScrollView style={styles.goals}>
         <GoalButton
           name="Do exercises daily"
@@ -67,4 +72,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#B8D5EC",
   },
   goals: {},
+  imageContainer: {
+    width: 70,
+    alignSelf: "flex-end",
+  },
 });
