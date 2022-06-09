@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // screens
 import DiaryScreen from "../screens/diaryScreens/DiaryScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import ExerciseResultsScreen from "../screens/diaryScreens/ExerciseResultsScreen";
+import NewEntryScreen from "../screens/diaryScreens/NewEntryScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,17 +21,28 @@ const DiaryStackNavigator = () => {
         headerTitleStyle: {
           color: "#C2C2C2",
         },
-        // headerRight: () => (
-        //   <Button
-        //     onPress={() => alert("This is a button!")}
-        //     title="Profile"
-        //     color="black"
-        //   />
-        // ),
       }}
     >
-      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
-      <Stack.Screen name="DiaryScreen" component={DiaryScreen} />
+      <Stack.Screen
+        options={{ title: "Profile" }}
+        name="ProfileScreen"
+        component={ProfileScreen}
+      />
+      <Stack.Screen
+        options={{ title: "" }}
+        name="DiaryScreen"
+        component={DiaryScreen}
+      />
+      <Stack.Screen
+        options={{ title: "" }}
+        name="ExerciseResultsScreen"
+        component={ExerciseResultsScreen}
+      />
+      <Stack.Screen
+        options={{ title: "New Diary Entry" }}
+        name="NewEntryScreen"
+        component={NewEntryScreen}
+      />
     </Stack.Navigator>
   );
 };
