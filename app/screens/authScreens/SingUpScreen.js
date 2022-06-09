@@ -4,6 +4,7 @@ import * as SecureStore from "expo-secure-store";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { TouchableOpacity } from "react-native";
 import { useLogin, fetchUser } from "../../context/LoginProvider"
+import { auth } from "../../api/Firebase";
 
 export default function SignUpScreen({ navigation }) {
   const { setIsLoggedIn } = useLogin();
@@ -13,40 +14,48 @@ export default function SignUpScreen({ navigation }) {
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
   const [showDatePicker, setShowDatePciker] = useState(false);
 
-
   //saves the encrypted key value pair in keychain/keystore system
-  async function saveS(key, value){
+  async function saveS(key, value) {
     await SecureStore.setItemAsync(key, value);
   }
+
   //for the date picker
   const onChangeDate = (event, selectedDate) => {
-    if(!selectedDate){
+    if (!selectedDate) {
       setDateOfBirth(new Date());
       setShowDatePciker(false);
-    }else{
-    const currentDate = selectedDate;
-    setShowDatePciker(false);
-    setDateOfBirth(currentDate);
+    } else {
+      const currentDate = selectedDate;
+      setShowDatePciker(false);
+      setDateOfBirth(currentDate);
     }
   };
 
-  const onCancelDate = () =>{
+  const onCancelDate = () => {
     setDateOfBirth(new Date());
     setShowDatePciker(false);
-  }
+  };
 
   const handleDatePcikerPress = () => {
     setShowDatePciker(true);
   };
 
-
   function handleSignUp() {
     const dateOfBrithInStringFormat = dateOfBirth.toLocaleDateString();
-      saveS("username", username);
-      saveS("password", password);
-      saveS("email", email);
-      saveS("dateOfBirth", dateOfBrithInStringFormat);
-      setIsLoggedIn(true); 
+    saveS("username", username);
+    saveS("password", password);
+    saveS("email", email);
+    saveS("dateOfBirth", dateOfBrithInStringFormat);
+    setIsLoggedIn(true);
+    handleSignUpOnline();
+  }
+
+  async function handleSignUpOnline() {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredentials) => {
+        userCredentials.user;
+      });
   }
 
   return (
@@ -89,7 +98,6 @@ export default function SignUpScreen({ navigation }) {
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
