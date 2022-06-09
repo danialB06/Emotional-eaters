@@ -1,6 +1,6 @@
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Button, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 export default function HomeScreen({ navigation }) {
   useEffect(() => {
@@ -22,7 +22,6 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.streakText}>Exercise Streak</Text>
         <View style={styles.streakNumberContainer}>
           <Image source={require("../../assets/homescreen/streakFire.png")} />
-
           <Text style={styles.streakNumber}>1</Text>
         </View>
       </View>
@@ -38,6 +37,18 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.goalsText}>Goals</Text>
         </View>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button2}
+        onPress={() => navigation.navigate("AlarmsScreen")}
+      >
+        <View style={styles.alarmButton}>
+          {/* <Image
+            style={styles.alarmImage}
+            source={require("../../assets/homescreen/alarm.png")}
+          /> */}
+          <Text style={styles.alarmText}>Alarms</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -45,6 +56,10 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   button: {
     marginTop: 100,
+    width: "50%",
+  },
+  button2: {
+    marginTop: 50,
     width: "50%",
   },
   container: {
@@ -76,6 +91,25 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     textAlign: "center",
     padding: 10,
+  },
+  alarmButton: {
+    backgroundColor: "#6A869B",
+    flexDirection: "row",
+    borderRadius: 50,
+    alignContent: "center",
+    justifyContent: "center",
+  },
+  alarmText: {
+    color: "white",
+    fontSize: 24,
+    fontWeight: "600",
+    textAlign: "center",
+    padding: 10,
+  },
+  alarmImage: {
+    marginTop: 10,
+    width: 24,
+    height: 25,
   },
   streakText: {
     color: "#063559",
