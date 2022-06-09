@@ -3,7 +3,7 @@ import LoginProvider from "./app/context/LoginProvider";
 //Navigation 
 import Router from "./app/navigators/Router";
 import { NavigationContainer } from "@react-navigation/native";
-//import { db } from './database/Config';
+import { db } from './app/database/Config';
 
 export default function App() {
   return (
