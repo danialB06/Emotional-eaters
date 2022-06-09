@@ -1,16 +1,18 @@
 import { useEffect } from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
+import { View, StyleSheet, Text, Button, Image } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 export default function ExercisesScreen({ navigation }) {
   // To add the profile Button
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Button
-          onPress={() => navigation.navigate("ProfileScreen")}
-          title="Profile"
-          color="black"
-        />
+        <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")}>
+          <Image
+            style={{ width: 40, height: 40 }}
+            source={require("../../assets/profile.png")}
+          />
+        </TouchableOpacity>
       ),
     });
   });

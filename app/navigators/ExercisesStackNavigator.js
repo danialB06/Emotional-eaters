@@ -42,106 +42,131 @@ const ExercisesStackNavigator = () => {
         headerTitleStyle: {
           color: "#C2C2C2",
         },
-        headerRight: () => (
-          <TouchableOpacity
-            onPress={() => {
-              alert("This is a button!");
-            }}
-          >
-            <Image
-              style={{ width: 40, height: 40 }}
-              source={require("../assets/profile.png")}
-            />
-          </TouchableOpacity>
-        ),
       }}
     >
-      <Stack.Screen name="ExercisesScreen" component={ExercisesScreen} />
       <Stack.Screen
+        options={{ title: "" }}
+        name="ExercisesScreen"
+        component={ExercisesScreen}
+      />
+      <Stack.Screen
+        options={{ title: "" }}
         name="BodyScanFirstScreen"
         component={BodyScanFirstScreen}
       />
-      <Stack.Screen name="BodyScanBodyMap" component={BodyScanBodyMap} />
       <Stack.Screen
+        options={{ title: "" }}
+        name="BodyScanBodyMap"
+        component={BodyScanBodyMap}
+      />
+      <Stack.Screen
+        options={{ title: "" }}
         name="BodyScanReflection1"
         component={BodyScanReflection1}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="BodyScanReflection2"
         component={BodyScanReflection2}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="BodyScanReflection3"
         component={BodyScanReflection3}
       />
-      <Stack.Screen name="BodyScanFinished" component={BodyScanFinished} />
       <Stack.Screen
+        options={{ title: "" }}
+        name="BodyScanFinished"
+        component={BodyScanFinished}
+      />
+      <Stack.Screen
+        options={{ title: "" }}
         name="OppositeActionFirstScreen"
         component={OppositeActionFirstScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="OppositeGameFirstPracticeScreen"
         component={OppositeGameFirstPracticeScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="OppositeGameSecondPracticeScreen"
         component={OppositeGameSecondPracticeScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="OppositeGameThirdPracticeScreen"
         component={OppositeGameThirdPracticeScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="OppositeGameFinishedPracticeScreen"
         component={OppositeGameFinishedPracticeScreen}
       />
-      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
       <Stack.Screen
+        options={{ title: "Profile" }}
+        name="ProfileScreen"
+        component={ProfileScreen}
+      />
+      <Stack.Screen
+        options={{ title: "" }}
         name="OppositeGameFirstExerciseScreen"
         component={OppositeGameFirstExerciseScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="OppositeGameSecondExerciseScreen"
         component={OppositeGameSecondExerciseScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="OppositeGameThirdExerciseScreen"
         component={OppositeGameThirdExerciseScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="OppositeGameFourthExerciseScreen"
         component={OppositeGameFourthExerciseScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="OppositeGameFinishedExerciseScreen"
         component={OppositeGameFinishedExerciseScreen}
       />
 
       <Stack.Screen
+        options={{ title: "" }}
         name="PositiveReframingInstructionScreen"
         component={PositiveReframingInstructionScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="PositiveReframingFirstScreen"
         component={PositiveReframingFirstScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="PositiveReframingSecondScreen"
         component={PositiveReframingSecondScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="PositiveReframingThirdScreen"
         component={PositiveReframingThirdScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="PositiveReframingFourthScreen"
         component={PositiveReframingFourthScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="PositiveReframingFifthScreen"
         component={PositiveReframingFifthScreen}
       />
       <Stack.Screen
+        options={{ title: "" }}
         name="PositiveReframingFinishedScreen"
         component={PositiveReframingFinishedScreen}
       />

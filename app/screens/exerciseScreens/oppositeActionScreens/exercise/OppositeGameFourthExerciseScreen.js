@@ -8,7 +8,7 @@ export default function OppositeGameFourthExerciseScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.stepCounter}>Opposite Game Practice 1/3</Text>
+      <Text style={styles.stepCounter}>Opposite Game 4/4</Text>
       <Text style={styles.title}>What would the opposite action be?</Text>
       <TouchableOpacity
         style={[

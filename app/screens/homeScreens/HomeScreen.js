@@ -1,16 +1,17 @@
-import { View, StyleSheet, Text, Button, Image } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 export default function HomeScreen({ navigation }) {
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Button
-          onPress={() => navigation.navigate("ProfileScreen")}
-          title="Profile"
-          color="black"
-        />
+        <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")}>
+          <Image
+            style={{ width: 40, height: 40 }}
+            source={require("../../assets/profile.png")}
+          />
+        </TouchableOpacity>
       ),
     });
   });
@@ -21,6 +22,7 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.streakText}>Exercise Streak</Text>
         <View style={styles.streakNumberContainer}>
           <Image source={require("../../assets/homescreen/streakFire.png")} />
+
           <Text style={styles.streakNumber}>1</Text>
         </View>
       </View>

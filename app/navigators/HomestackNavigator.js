@@ -27,26 +27,38 @@ const HomeStackNavigator = () => {
         headerTintColor: {
           color: "#C2C2C2",
         },
-        headerRight: () => (
-          <TouchableOpacity
-            onPress={() => {
-              alert("This is a button!");
-            }}
-          >
-            <Image
-              style={{ width: 40, height: 40 }}
-              source={require("../assets/profile.png")}
-            />
-          </TouchableOpacity>
-        ),
       }}
     >
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
-      <Stack.Screen name="AllGoalsScreen" component={AllGoalsScreen} />
-      <Stack.Screen name="NewGoalScreen" component={NewGoalScreen} />
-      <Stack.Screen name="AlarmsScreen" component={AlarmsScreen} />
-      <Stack.Screen name="GoalScreen" component={GoalScreen} />
-      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Stack.Screen
+        options={{ title: "" }}
+        name="HomeScreen"
+        component={HomeScreen}
+      />
+      <Stack.Screen
+        options={{ title: "Goals" }}
+        name="AllGoalsScreen"
+        component={AllGoalsScreen}
+      />
+      <Stack.Screen
+        options={{ title: "New Goal" }}
+        name="NewGoalScreen"
+        component={NewGoalScreen}
+      />
+      <Stack.Screen
+        options={{ title: "Alarm" }}
+        name="AlarmsScreen"
+        component={AlarmsScreen}
+      />
+      <Stack.Screen
+        options={{ title: "Goal" }}
+        name="GoalScreen"
+        component={GoalScreen}
+      />
+      <Stack.Screen
+        options={{ title: "Profile" }}
+        name="ProfileScreen"
+        component={ProfileScreen}
+      />
     </Stack.Navigator>
   );
 };

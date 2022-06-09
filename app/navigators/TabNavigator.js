@@ -38,7 +38,7 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Exervies"
+        name="Exercises"
         component={ExercisesStackNavigator}
         options={{
           tabBarIcon: ({ size, color }) => (
@@ -55,11 +55,7 @@ const TabNavigator = () => {
         component={DiaryStackNavigator}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Foundation
-              name={"clipboard-notes"}
-              color={color}
-              size={size}
-            />
+            <Foundation name={"clipboard-notes"} color={color} size={size} />
           ),
         }}
       />
