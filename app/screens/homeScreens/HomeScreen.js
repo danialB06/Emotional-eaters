@@ -3,6 +3,7 @@ import { TouchableOpacity } from "react-native";
 import { useEffect } from "react";
 
 export default function HomeScreen({ navigation }) {
+  //use this to make profilescreen funtionable in other screens
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (

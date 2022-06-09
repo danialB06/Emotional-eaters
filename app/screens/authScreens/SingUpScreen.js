@@ -3,7 +3,7 @@ import { useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { TouchableOpacity } from "react-native";
-import { useLogin, fetchUser } from "../../context/LoginProvider"
+import { useLogin, fetchUser } from "../../context/LoginProvider";
 import { auth } from "../../api/Firebase";
 
 export default function SignUpScreen({ navigation }) {
@@ -13,12 +13,10 @@ export default function SignUpScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState(new Date());
   const [showDatePicker, setShowDatePciker] = useState(false);
-
   //saves the encrypted key value pair in keychain/keystore system
   async function saveS(key, value) {
     await SecureStore.setItemAsync(key, value);
   }
-
   //for the date picker
   const onChangeDate = (event, selectedDate) => {
     if (!selectedDate) {
@@ -30,32 +28,38 @@ export default function SignUpScreen({ navigation }) {
       setDateOfBirth(currentDate);
     }
   };
-
   const onCancelDate = () => {
     setDateOfBirth(new Date());
     setShowDatePciker(false);
   };
-
   const handleDatePcikerPress = () => {
     setShowDatePciker(true);
   };
 
   function handleSignUp() {
+    if(!username){
+      alert("username is empty");
+    }else{
+
+    
     const dateOfBrithInStringFormat = dateOfBirth.toLocaleDateString();
     saveS("username", username);
     saveS("password", password);
     saveS("email", email);
     saveS("dateOfBirth", dateOfBrithInStringFormat);
-    setIsLoggedIn(true);
     handleSignUpOnline();
+    }
   }
 
   async function handleSignUpOnline() {
+    console.log(email);
     auth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(email.trim(), password)
       .then((userCredentials) => {
         userCredentials.user;
-      });
+        setIsLoggedIn("true");
+      })
+      .catch((error) => alert(error.message));
   }
 
   return (
@@ -98,6 +102,7 @@ export default function SignUpScreen({ navigation }) {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

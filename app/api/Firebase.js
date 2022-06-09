@@ -2,6 +2,7 @@ import * as firebase from "firebase";
 
 // Your web app's Firebase configuration
 
+
 let app;
 if(firebase.apps.length === 0){
     app = firebase.initializeApp(firebaseConfig);
