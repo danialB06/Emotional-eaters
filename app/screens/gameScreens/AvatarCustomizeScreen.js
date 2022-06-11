@@ -28,6 +28,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
           <Modal animationType="slide" transparent={false} visible={feetModalShow} onRequestClose={()=>{setFeetModalShow(!feetModalShow)}}>
                 <View style={styles.modal}>
                   <ScrollView>
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Sneakers</Text>
+                    </View>
                     <ScrollView horizontal = {true}> 
                       <Pressable 
                           style={[styles.selectButton, equippedFeet == "sneakersBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -72,6 +75,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
                       </Pressable>
                     </ScrollView>
 
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Leather boots</Text>
+                    </View>
                     <ScrollView horizontal = {true}> 
                       <Pressable 
                             style={[styles.selectButton, equippedFeet == "fantasyBootsBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -124,6 +130,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
 
                     </ScrollView>
 
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Combat Footwear</Text>
+                    </View>
                     <ScrollView horizontal = {true}> 
                       <Pressable 
                             style={[styles.selectButton, equippedFeet == "cbootsBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -171,6 +180,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
           <Modal animationType="slide" transparent={false} visible={bottomsModalShow} onRequestClose={()=>{setBottomsModalShow(!bottomsModalShow)}}>
                 <View style={styles.modal}>
                   <ScrollView>
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Jeans</Text>
+                    </View>
                     <ScrollView horizontal = {true}> 
                         <Pressable 
                             style={[styles.selectButton, equippedBottoms == "jeansBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -222,6 +234,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
                         </Pressable>  
                     </ScrollView>
 
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Shorts and Vest</Text>
+                    </View>
                     <ScrollView horizontal = {true}> 
                         <Pressable 
                             style={[styles.selectButton, equippedBottoms == "shortsBlue" ? styles.optionActive : styles.optionInactive,]}
@@ -266,6 +281,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
                         </Pressable>                 
                     </ScrollView>
 
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Baggy Ninja Pants</Text>
+                    </View>
                     <ScrollView horizontal = {true}> 
                         <Pressable 
                             style={[styles.selectButton, equippedBottoms == "altoBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -321,6 +339,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
 
               <Modal animationType="slide" transparent={false} visible={topModalShow} onRequestClose={()=>{setTopModalShow(!topModalShow)}}>
                 <View style={styles.modal}>
+                  <View style={styles.clothingLabel}>
+                    <Text style={styles.clothingName}>Breastplate</Text>
+                  </View>
                   <ScrollView>
                     <ScrollView horizontal = {true}> 
                         <Pressable 
@@ -366,6 +387,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
                         </Pressable>
                     </ScrollView>
 
+                  <View style={styles.clothingLabel}>
+                    <Text style={styles.clothingName}>Martial Arts Top</Text>
+                  </View>
                     <ScrollView horizontal = {true}>
                       <Pressable 
                         style={[styles.selectButton, equippedTop == "martialBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -403,6 +427,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
                       </Pressable>  
                     </ScrollView>
 
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Decorated Top</Text>
+                    </View>
                     <ScrollView horizontal = {true}>
                         <Pressable 
                             style={[styles.selectButton, equippedTop == "tanktopBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -454,6 +481,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
                         </Pressable>
                     </ScrollView>
 
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Easy going Vest</Text>
+                    </View>
                     <ScrollView horizontal = {true}>
                       <Pressable 
                           style={[styles.selectButton, equippedTop == "vestBlue" ? styles.optionActive : styles.optionInactive,]}
@@ -515,6 +545,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
             <Modal animationType="slide" transparent={false} visible={hairModalShow} onRequestClose={()=>{setHairModalShow(!hairModalShow)}}>
                 <View style={styles.modal}>
                   <ScrollView>
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Ponytail</Text>
+                    </View>
                     <ScrollView horizontal = {true}> 
                         <Pressable 
                             style={[styles.selectButton, equippedHair == "ponytailBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -565,6 +598,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
                             <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailViolet.png")}/>
                         </Pressable>
                     </ScrollView>
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Shoulder Length</Text>
+                    </View>
                     <ScrollView horizontal = {true}>
                         <Pressable 
                             style={[styles.selectButton, equippedHair == "shoulderLengthBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -609,6 +645,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
                         </Pressable>
                     </ScrollView>
 
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Short Unkempt</Text>
+                    </View>
                     <ScrollView horizontal = {true}>
                         <Pressable 
                             style={[styles.selectButton, equippedHair == "shortBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -653,6 +692,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
                         </Pressable>
                     </ScrollView>
 
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Spiky</Text>
+                    </View>
                     <ScrollView horizontal = {true}>
                         <Pressable 
                             style={[styles.selectButton, equippedHair == "spikyBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -697,6 +739,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
                         </Pressable>
                     </ScrollView>
 
+                    <View style={styles.clothingLabel}>
+                      <Text style={styles.clothingName}>Sloppy Braid</Text>
+                    </View>
                     <ScrollView horizontal = {true}>
                         <Pressable 
                             style={[styles.selectButton, equippedHair == "braidBlack" ? styles.optionActive : styles.optionInactive,]}
@@ -857,4 +902,16 @@ const styles = StyleSheet.create({
       marginTop: -190,
       marginLeft: 20,
     },
+    clothingName:{
+      color: "#CDE0C9",
+      fontSize: 24,
+      paddingTop: 10,
+      marginLeft: "10%",
+    },
+    clothingLabel:{
+      borderBottomWidth: 2,
+      borderColor: "#CDE0C9",
+      paddingBottom: 5,
+      marginBottom: 10,
+    }
 });
