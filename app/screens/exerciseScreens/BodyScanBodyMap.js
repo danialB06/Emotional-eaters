@@ -1,6 +1,8 @@
 import { View, Image, StyleSheet, Text, Pressable } from "react-native";
 import { useState } from 'react';
 import {LinearGradient} from 'expo-linear-gradient';
+import { deleteDoc, doc, getDoc, setDoc } from "@firebase/firestore";
+import { db } from '../../database/Config';
 
 export default function BodyScanBodyMap({ navigation }) {
   //Bodypart evaluation scores
@@ -75,6 +77,67 @@ export default function BodyScanBodyMap({ navigation }) {
     }
   }
 
+  //Database
+  const CreateBodyScan = () => {
+    const myDoc = doc(db, "Bodyscans", "MyDocument");
+    const docData = {
+      "Forehead": evalForehead,
+      "Eyes": evalEyes,
+      "Jaw": evalJaw,
+      "Shoulders": evalShoulders,
+      "Chest": evalChest,
+      "Gut": evalGut,
+      "Crotch": evalCrotch,
+      "UpperLegs": evalUpperLegs,
+      "LowerLegs": evalLowerLegs,
+      "Feet": evalFeet,
+      "UpperArms": evalUpperArms,
+      "LowerArms": evalLowerArms,
+      "Hands": evalHands
+    }
+
+    setDoc(myDoc, docData)
+    .then(()=> { alert("Succes")})
+    .catch((error)=>{
+      alert("error")
+    });
+  }
+
+  const Update = () => {
+    const myDoc = doc(db, "MyCollection", "MyDocument");
+    setDoc(myDoc, {"Pet": "Arvin"}, {merge:true})
+    .then(()=>{
+      alert("Updated")
+    })
+    .catch((error)=>{
+      alert(error.message)
+    })
+  }
+
+  
+  const Delete = () => {
+    const myDoc = doc(db, "MyCollection", "MyDocument");
+    deleteDoc(myDoc)
+    .then(()=> {
+      alert("deleted")
+    })
+    .catch((error)=> {
+      alert(error.message)
+    })
+  }
+
+  const [dbData, setDbData] = useState(null)
+  const Read = () => {
+    const myDoc = doc(db, "MyCollection", "MyDocument");
+
+    getDoc(myDoc)
+    .then((snapshot)=>{
+      setDbData(snapshot.data())
+    })
+    .catch((error)=> {
+      alert(error.message);
+    })
+  }
   var foreheadImg = [require("../../assets/bodyscan/headForeheadC.png"), require("../../assets/bodyscan/headForehead.png"),  require("../../assets/bodyscan/headForeheadB.png")];
   var eyesImg = [require("../../assets/bodyscan/headEyesC.png"), require("../../assets/bodyscan/headEyes.png"), require("../../assets/bodyscan/headEyesB.png")];
   var jawImg = [require("../../assets/bodyscan/headJawC.png"), require("../../assets/bodyscan/headJaw.png"), require("../../assets/bodyscan/headJawB.png")]
@@ -91,6 +154,10 @@ export default function BodyScanBodyMap({ navigation }) {
 
   return(
       <View style={styles.container}>
+        {
+          dbData != null &&
+          <Text>db read {dbData.name}, {dbData.Pet} </Text>
+        }
         <Text style={styles.exerExpl}>
           <Text style={styles.greenText}>Green</Text> = pleasant. <Text style={styles.redText}>Red</Text> = unpleasant.
         </Text>
@@ -127,7 +194,7 @@ export default function BodyScanBodyMap({ navigation }) {
           <Pressable style={bodyParts.bodyHandLeft} onPress={()=>ImgHandler("Hands")}/>
           <Pressable style={bodyParts.bodyHandRight} onPress={()=>ImgHandler("Hands")}/>
         </View>
-        <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("BodyScanReflection1")}>
+        <Pressable  style={styles.startButton} onPress={CreateBodyScan}>
           <Text style={styles.startText}>
             Submit
           </Text>
