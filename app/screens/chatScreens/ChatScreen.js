@@ -1,18 +1,18 @@
-import { View, StyleSheet, Text, Button} from "react-native";
+import { View, StyleSheet, Text, Button, Image } from "react-native";
 import { useEffect } from "react";
-
+import { TouchableOpacity } from "react-native";
 
 export default function ChatScreen({ navigation }) {
-  
   // To add the profile Button
   useEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <Button
-          onPress={() => navigation.navigate("ProfileScreen")}
-          title="Profile"
-          color="black"
-        />
+        <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")}>
+          <Image
+            style={{ width: 40, height: 40 }}
+            source={require("../../assets/profile.png")}
+          />
+        </TouchableOpacity>
       ),
     });
   });

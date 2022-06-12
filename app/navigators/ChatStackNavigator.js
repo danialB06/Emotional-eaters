@@ -36,8 +36,16 @@ const ChatStackNavigator = () => {
         // ),
       }}
     >
-      <Stack.Screen name="ChatScreen" component={ChatScreen} />
-      <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+      <Stack.Screen
+        options={{ title: "Chats" }}
+        name="ChatScreen"
+        component={ChatScreen}
+      />
+      <Stack.Screen
+        options={{ title: "Profile" }}
+        name="ProfileScreen"
+        component={ProfileScreen}
+      />
     </Stack.Navigator>
   );
 };
