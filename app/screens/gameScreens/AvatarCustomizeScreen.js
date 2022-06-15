@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, Pressable, Image, Modal, ScrollView } from "react-native";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function AvatarCustomizeScreen({ navigation }) {
     const [hairModalShow, setHairModalShow] = useState(false);
@@ -7,8 +8,75 @@ export default function AvatarCustomizeScreen({ navigation }) {
     const [bottomsModalShow, setBottomsModalShow] = useState(false);
     const [feetModalShow, setFeetModalShow] = useState(false);
 
+    const [savedCustom, setSavedCustom ] = useState(false);
+    const [fetchedCustom, setFetchedCustom] = useState(false);
+
     const [hairShow, setHairShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
-    const [equippedHair, SetEquippedHair] = useState("this");
+    
+  const hairOptions = [
+    {
+      name: "Ponytail",
+      colors: [
+        "Nope",
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBlack.png"),
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBlond.png"),
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBlue.png"),
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBrown.png"),
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailGold.png"),
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailGreen.png"),
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailViolet.png")
+      ]
+    },
+    {
+      name: "Shoulder length",
+      colors: [
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBlack.png"),
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBlond.png"),
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBlue.png"),
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBrown.png"),
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthGreen.png"),
+        require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthPurple.png"),
+      ]
+    },
+  ];
+    
+  console.log("still working" + hairOptions);
+  console.log("This line" + hairOptions[0].colors[0]);
+  const [hairStyle, setHairStyle] = useState(null);
+  const [hairColor, setHairColor] = useState(null);
+
+  //Back up shit
+  const [equippedHair, SetEquippedHair] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
+
+  const hairItems = hairOptions.map((hairStyle, stylekey)=> {
+    return ( 
+      <View key={stylekey}>
+        <View style={styles.clothingLabel}>             
+          <Text style={styles.clothingName}>{hairStyle.name}</Text>
+        </View>
+        <ScrollView horizontal = {true}> 
+        {hairStyle.colors.map((haircolor, colorkey)=> {
+          return(
+            <View key={colorkey}>
+              <Pressable 
+                onPress={()=> [setHairStyle(hairStyle.name), setHairColor(colorkey), console.log("Line 62 " + JSON.stringify(hairStyle))]}
+                style={[styles.selectButton, equippedFeet == "sneakersBlack" ? styles.optionActive : styles.optionInactive,]} 
+              >
+                <Image source={haircolor} style={{top: -10}}/>              
+              </Pressable>
+            </View>
+          )
+        })}
+        </ScrollView>
+      </View>
+    )
+  }
+
+  );
+
+
+  
+   
 
     const [topShow, setTopShow] = useState(false);
     const [equippedTop, setEquippedTop] = useState(false);
@@ -19,10 +87,31 @@ export default function AvatarCustomizeScreen({ navigation }) {
     const [feetShow, setFeetShow] = useState("this");
     const [equippedFeet, setEquippedFeet] = useState("this");
 
-    const [faceShow1, setFaceShow1] = useState("this");
-    const [faceShow2, setFaceShow2] = useState("this");
+    const [faceShow, setFaceShow] = useState("this");
     const [accShow, setAccShow] = useState("this");
 
+    //Local Storage -- Customization
+    const setCustomizationLoc = async () =>{
+      const customToSave = {
+        hair: equippedHair,
+        top: equippedTop,
+        bottom: equippedTop,
+        feet: equippedFeet,
+      }
+
+      await AsyncStorage.setItem('@AvatarCustomization', JSON.stringify(customToSave));
+      setSavedCustom(customToSave);
+    }
+
+    const getCustomizationLoc = async () =>{
+      const equippedItems = await AsyncStorage.getItem('@AvatarCustomization');
+      setFetchedCustom(JSON.parse(equippedItems));
+    }
+    
+  //UseEffect fires off everytime 'savedCustom' state has been overwritten
+   useEffect(()=>{getCustomizationLoc},[savedCustom]);
+
+    //Firebase -- Customization
     return(
         <View>
           <Modal animationType="slide" transparent={false} visible={feetModalShow} onRequestClose={()=>{setFeetModalShow(!feetModalShow)}}>
@@ -545,249 +634,9 @@ export default function AvatarCustomizeScreen({ navigation }) {
             <Modal animationType="slide" transparent={false} visible={hairModalShow} onRequestClose={()=>{setHairModalShow(!hairModalShow)}}>
                 <View style={styles.modal}>
                   <ScrollView>
-                    <View style={styles.clothingLabel}>
-                      <Text style={styles.clothingName}>Ponytail</Text>
-                    </View>
-                    <ScrollView horizontal = {true}> 
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "ponytailBlack" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("ponytailBlack"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBlack.png"))]}
-                        >
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBlack.png")}/>   
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "ponytailBlond" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("ponytailBlond"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBlond.png"))]}
-                        >    
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBlond.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "ponytailBlue" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("ponytailBlue"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBlue.png"))]}
-                        >    
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBlue.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "ponytailBrown" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("ponytailBrown"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBrown.png"))]}
-                        >    
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailBrown.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "ponytailGold" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("ponytailGold"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailGold.png"))]}
-                        >    
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailGold.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "ponytailGreen" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("ponytailGreen"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailGreen.png"))]}
-                        >    
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailGreen.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "ponytailViolet" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("ponytailViolet"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailViolet.png"))]}
-                        >  
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/ponytail/ponytailViolet.png")}/>
-                        </Pressable>
-                    </ScrollView>
-                    <View style={styles.clothingLabel}>
-                      <Text style={styles.clothingName}>Shoulder Length</Text>
-                    </View>
-                    <ScrollView horizontal = {true}>
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shoulderLengthBlack" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shoulderLengthBlack"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBlack.png"))]}
-                        >  
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBlack.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shoulderLengthBlond" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shoulderLengthBlond"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBlond.png"))]}
-                        >      
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBlond.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shoulderLengthBlue" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shoulderLengthBlue"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBlue.png"))]}
-                        >         
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBlue.png")}/>
-                        </Pressable> 
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shoulderLengthBrown" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shoulderLengthBrown"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBrown.png"))]}
-                        >     
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthBrown.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shoulderLengthGreen" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shoulderLengthGreen"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthGreen.png"))]}
-                        >   
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthGreen.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shoulderLengthPurple" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shoulderLengthPurple"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthPurple.png"))]}
-                        >   
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/shoulderlength/shoulderLengthPurple.png")}/>
-                        </Pressable>
-                    </ScrollView>
-
-                    <View style={styles.clothingLabel}>
-                      <Text style={styles.clothingName}>Short Unkempt</Text>
-                    </View>
-                    <ScrollView horizontal = {true}>
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shortBlack" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shortBlack"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortBlack.png"))]}
-                        >  
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortBlack.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shortGold" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shortGold"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortGold.png"))]}
-                        >      
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortGold.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shortBlue" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shortBlue"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortBlue.png"))]}
-                        >         
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortBlue.png")}/>
-                        </Pressable> 
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shortBrown" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shortBrown"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortBrown.png"))]}
-                        >     
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortBrown.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shortGreen" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shortGreen"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortGreen.png"))]}
-                        >   
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortGreen.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "shortPink" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("shortPink"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortPink.png"))]}
-                        >   
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/short/shortPink.png")}/>
-                        </Pressable>
-                    </ScrollView>
-
-                    <View style={styles.clothingLabel}>
-                      <Text style={styles.clothingName}>Spiky</Text>
-                    </View>
-                    <ScrollView horizontal = {true}>
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "spikyBlack" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("spikyBlack"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyBlack.png"))]}
-                        >  
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyBlack.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "spikyBlond" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("spikyBlond"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyBlond.png"))]}
-                        >      
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyBlond.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "spikyBlue" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("spikyBlue"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyBlue.png"))]}
-                        >         
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyBlue.png")}/>
-                        </Pressable> 
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "spikyBrown" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("spikyBrown"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyBrown.png"))]}
-                        >     
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyBrown.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "spikyGreen" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("spikyGreen"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyGreen.png"))]}
-                        >   
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyGreen.png")}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "spikyViolet" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("spikyViolet"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyViolet.png"))]}
-                        >   
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/spiky/spikyViolet.png")}/>
-                        </Pressable>
-                    </ScrollView>
-
-                    <View style={styles.clothingLabel}>
-                      <Text style={styles.clothingName}>Sloppy Braid</Text>
-                    </View>
-                    <ScrollView horizontal = {true}>
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "braidBlack" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("braidBlack"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidBlack.png"))]}
-                        >  
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidBlack.png")} style={{marginTop: -20, marginLeft: 30}}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "braidBlond" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("braidBlond"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidBlond.png"))]}
-                        >      
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidBlond.png")} style={{marginTop: -20, marginLeft: 30}}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "braidBlue" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("braidBlue"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidBlue.png"))]}
-                        >         
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidBlue.png")} style={{marginTop: -20, marginLeft: 30}}/>
-                        </Pressable> 
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "braidBrown" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("braidBrown"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidBrown.png"))]}
-                        >     
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidBrown.png")} style={{marginTop: -20, marginLeft: 30}}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "braidGreen" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("braidGreen"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidGreen.png"))]}
-                        >   
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidGreen.png")} style={{marginTop: -20, marginLeft: 30}}/>
-                        </Pressable>
-
-                        <Pressable 
-                            style={[styles.selectButton, equippedHair == "braidPink" ? styles.optionActive : styles.optionInactive,]}
-                            onPress={()=> [SetEquippedHair("braidPink"), setHairShow(require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidPink.png"))]}
-                        >   
-                            <Image source={require("../../assets/AdventureGame/AvatarCustomization/Hair/braid/braidPink.png")} style={{marginTop: -20, marginLeft: 30}}/>
-                        </Pressable>
-                    </ScrollView>
-
+                    {hairItems}
                     <Pressable style={styles.clothingButton} onPress={()=> setHairModalShow(false)}>
-                        <Text style={styles.clothingButtonText}>Back</Text>
+                      <Text style={styles.clothingButtonText}>Back</Text>
                     </Pressable>
                   </ScrollView>
                 </View>
@@ -811,7 +660,6 @@ export default function AvatarCustomizeScreen({ navigation }) {
                     <Text style={styles.clothingButtonText}>Feet</Text>
                 </Pressable>
             </View>
-
             <View style={styles.avatarImg}>
                 <Image source={require("../../assets/AdventureGame/avatarBody.png")}/>
                 <Image source={bottomsShow} style={styles.topPosition}/>
@@ -822,10 +670,10 @@ export default function AvatarCustomizeScreen({ navigation }) {
             
             <View style={styles.rowButtons}>
                 <Pressable style={styles.clothingButton} onPress={()=> navigation.navigate("Adventure Game")}>
-                        <Text style={styles.clothingButtonText}>Quit</Text>
+                        <Text style={styles.clothingButtonText}>Back</Text>
                 </Pressable>
-                <Pressable style={styles.clothingButton} onPress={()=> navigation.navigate("Adventure Game")}>
-                        <Text style={styles.clothingButtonText}>Save Outfit</Text>
+                <Pressable style={styles.clothingButton} onPress={setCustomizationLoc}>
+                        <Text style={styles.clothingButtonText}>Save and Exit</Text>
                 </Pressable>
             </View>
         </View>
