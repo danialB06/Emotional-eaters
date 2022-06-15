@@ -7,10 +7,8 @@ export default function AvatarCustomizeScreen({ navigation }) {
   const [topModalShow, setTopModalShow] = useState(false);
   const [bottomsModalShow, setBottomsModalShow] = useState(false);
   const [feetModalShow, setFeetModalShow] = useState(false);
-
-  const [savedCustom, setSavedCustom ] = useState(false);
-  const [fetchedCustom, setFetchedCustom] = useState(false);
-    
+  
+  //This can probably be stored in a JSON file
   const hairOptions = [
     {
       style: "Ponytail",
@@ -418,7 +416,7 @@ export default function AvatarCustomizeScreen({ navigation }) {
 
   //Hair Mapper
   const [equippedHair, SetEquippedHair] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
-  const [chosenHair, setChosenHair] = useState(null);
+  const [chosenHair, setChosenHair] = useState("");
   const [hairShow, setHairShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
   const hairItems = hairOptions.map((hairStyle, stylekey)=> {
     return ( 
@@ -445,8 +443,8 @@ export default function AvatarCustomizeScreen({ navigation }) {
   });
 
   //Top Mapper
-  const [chosenTop, setChosenTop] = useState(null);
-  const [topShow, setTopShow] = useState(false);
+  const [chosenTop, setChosenTop] = useState("");
+  const [topShow, setTopShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
   const topItems = topOptions.map((topStyle, stylekey)=> {
     return ( 
       <View key={stylekey}>
@@ -472,8 +470,8 @@ export default function AvatarCustomizeScreen({ navigation }) {
   });
 
   //Bottom Mapper
-  const [chosenBottom, setChosenBottom] = useState(null);
-  const [bottomsShow, setBottomShow] = useState("this");
+  const [bottomsShow, setBottomShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
+  const [chosenBottom, setChosenBottom] = useState("");
   const bottomItems = bottomOptions.map((bottomStyle, stylekey)=> {
     return ( 
       <View key={stylekey}>
@@ -485,8 +483,8 @@ export default function AvatarCustomizeScreen({ navigation }) {
           return(
             <View key={colorkey}>
               <Pressable 
-                onPress={()=> [setChosenTop(bottomcolor.name), setBottomShow(bottomcolor.image)]}
-                style={[styles.selectButton, chosenTop == bottomcolor.name ? styles.optionActive : styles.optionInactive,]} 
+                onPress={()=> [setChosenBottom(bottomcolor.name), setBottomShow(bottomcolor.image)]}
+                style={[styles.selectButton, chosenBottom == bottomcolor.name ? styles.optionActive : styles.optionInactive,]} 
               >
                 <Image source={bottomcolor.image} style={styles.bottomOption}/>              
               </Pressable>
@@ -500,7 +498,7 @@ export default function AvatarCustomizeScreen({ navigation }) {
 
   //Feet Mapper
   const [chosenFeet, setChosenFeet] = useState(null);
-  const [feetShow, setFeetShow] = useState("this");
+  const [feetShow, setFeetShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
   const feetItems = feetOptions.map((feetStyle, stylekey)=> {
     return ( 
       <View key={stylekey}>
@@ -524,128 +522,139 @@ export default function AvatarCustomizeScreen({ navigation }) {
       </View>
     )
   });
-
-
-
-  
-   
-
     
-    const [equippedTop, setEquippedTop] = useState(false);
+  const [faceShow, setFaceShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
+  const [accShow, setAccShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
 
+  const [equippedTop, setEquippedTop] = useState(false);
+  const [equippedBottoms, setEquippedBottoms] = useState("this");
+  const [equippedFeet, setEquippedFeet] = useState("this");
 
-    const [equippedBottoms, setEquippedBottoms] = useState("this");
+  //Local Storage -- Customization
+  const [savedCustom, setSavedCustom ] = useState(false);
+  const [fetchedCustom, setFetchedCustom] = useState(false);
 
-
-    const [equippedFeet, setEquippedFeet] = useState("this");
-
-    const [faceShow, setFaceShow] = useState("this");
-    const [accShow, setAccShow] = useState("this");
-
-    //Local Storage -- Customization
-    const setCustomizationLoc = async () =>{
-      const customToSave = {
-        hair: equippedHair,
-        top: equippedTop,
-        bottom: equippedTop,
-        feet: equippedFeet,
-      }
-
-      await AsyncStorage.setItem('@AvatarCustomization', JSON.stringify(customToSave));
-      setSavedCustom(customToSave);
+  const setCustomizationLoc = async () =>{
+    const customToSave = {
+      hair: equippedHair,
+      top: equippedTop,
+      bottom: equippedBottoms,
+      feet: equippedFeet,
     }
 
-    const getCustomizationLoc = async () =>{
-      const equippedItems = await AsyncStorage.getItem('@AvatarCustomization');
-      setFetchedCustom(JSON.parse(equippedItems));
-    }
+    await AsyncStorage.setItem('@AvatarCustomization', JSON.stringify(customToSave));
+    setSavedCustom(customToSave);
+  }
+
+  const getCustomizationLoc = async () =>{
+    const equippedItems = await AsyncStorage.getItem('@AvatarCustomization');
+    setFetchedCustom(JSON.parse(equippedItems));
+  }
     
   //UseEffect fires off everytime 'savedCustom' state has been overwritten
    useEffect(()=>{getCustomizationLoc},[savedCustom]);
 
-    //Firebase -- Customization
-    return(
-        <View>
-          <Modal animationType="slide" transparent={false} visible={feetModalShow} onRequestClose={()=>{setFeetModalShow(!feetModalShow)}}>
-                <View style={styles.modal}>
-                  <ScrollView>
-                    {feetItems}    
-                    <Pressable style={styles.clothingButton} onPress={()=> setFeetModalShow(false)}>
-                        <Text style={styles.clothingButtonText}>Back</Text>
-                    </Pressable>
-                  </ScrollView>
-                </View>
-            </Modal>
+  //Firebase -- Customization
+  // const setCustomizationFirebase = () => {
+  //   const firebaseLoc = doc(db, "AvatarCustomSet", SESSIONID);
 
-          <Modal animationType="slide" transparent={false} visible={bottomsModalShow} onRequestClose={()=>{setBottomsModalShow(!bottomsModalShow)}}>
-                <View style={styles.modal}>
-                  <ScrollView>
-                    {bottomItems}
-                    <Pressable style={styles.clothingButton} onPress={()=> setBottomsModalShow(false)}>
-                        <Text style={styles.clothingButtonText}>Back</Text>
-                    </Pressable>
-                  </ScrollView>
-                </View>
-            </Modal>
+  //   const chosenItems= {
+  //     "HairName": chosenHair,
+  //     "HairImage": hairShow,
+  //     "TopName": chosenTop,
+  //     "TopImage": topShow,
+  //     "BottomName": chosenBottom,
+  //     "BottomImage": bottomsShow,
+  //     "FeetName": chosenFeet,
+  //     "FeetImage": feetShow, 
+  //   }
 
-              <Modal animationType="slide" transparent={false} visible={topModalShow} onRequestClose={()=>{setTopModalShow(!topModalShow)}}>
-                <View style={styles.modal}>
-                  <ScrollView>
-                    {topItems}
-                    <Pressable style={styles.clothingButton} onPress={()=> setTopModalShow(false)}>
-                        <Text style={styles.clothingButtonText}>Back</Text>
-                    </Pressable>
-                  </ScrollView>
-                </View>
-            </Modal>
+  //   setDoc(firebaseLoc, chosenItems);
+  // }
 
-            <Modal animationType="slide" transparent={false} visible={hairModalShow} onRequestClose={()=>{setHairModalShow(!hairModalShow)}}>
-                <View style={styles.modal}>
-                  <ScrollView>
-                    {hairItems}
-                    <Pressable style={styles.clothingButton} onPress={()=> setHairModalShow(false)}>
+  return(
+      <View>
+        <Modal animationType="slide" transparent={false} visible={feetModalShow} onRequestClose={()=>{setFeetModalShow(!feetModalShow)}}>
+              <View style={styles.modal}>
+                <ScrollView>
+                  {feetItems}    
+                  <Pressable style={styles.clothingButton} onPress={()=> setFeetModalShow(false)}>
                       <Text style={styles.clothingButtonText}>Back</Text>
-                    </Pressable>
-                  </ScrollView>
-                </View>
-            </Modal>
+                  </Pressable>
+                </ScrollView>
+              </View>
+          </Modal>
 
-            <View style={styles.rowClothing}>
-                <Pressable style={styles.clothingButton} onPress={()=> [setHairModalShow(true)]}>
-                    <Image source={require("../../assets/AdventureGame/AvatarCustomization/ui/hairIcon.png")}/>
-                    <Text style={styles.clothingButtonText}>Hair</Text>
-                </Pressable>
-                <Pressable style={styles.clothingButton} onPress={()=> setTopModalShow(true)}>
-                    <Image source={require("../../assets/AdventureGame/AvatarCustomization/ui/topIcon.png")}/>
-                    <Text style={styles.clothingButtonText}>Tops</Text>
-                </Pressable>
-                <Pressable style={styles.clothingButton} onPress={()=> setBottomsModalShow(true)}>
-                    <Image source={require("../../assets/AdventureGame/AvatarCustomization/ui/bottomIcon.png")}/>
-                    <Text style={styles.clothingButtonText}>Bottoms</Text>
-                </Pressable>
-                <Pressable style={styles.clothingButton} onPress={()=> setFeetModalShow(true)}>
-                    <Image source={require("../../assets/AdventureGame/AvatarCustomization/ui/feetIcon.png")}/>
-                    <Text style={styles.clothingButtonText}>Feet</Text>
-                </Pressable>
-            </View>
-            <View style={styles.avatarImg}>
-                <Image source={require("../../assets/AdventureGame/avatarBody.png")}/>
-                <Image source={bottomsShow} style={styles.topPosition}/>
-                <Image source={feetShow} style={styles.topPosition}/>
-                <Image source={topShow} style={styles.topPosition}/>
-                <Image source={hairShow} style={styles.hairPosition}/>
-            </View>
-            
-            <View style={styles.rowButtons}>
-                <Pressable style={styles.clothingButton} onPress={()=> navigation.navigate("Adventure Game")}>
-                        <Text style={styles.clothingButtonText}>Back</Text>
-                </Pressable>
-                <Pressable style={styles.clothingButton} onPress={setCustomizationLoc}>
-                        <Text style={styles.clothingButtonText}>Save and Exit</Text>
-                </Pressable>
-            </View>
-        </View>
-    )
+        <Modal animationType="slide" transparent={false} visible={bottomsModalShow} onRequestClose={()=>{setBottomsModalShow(!bottomsModalShow)}}>
+              <View style={styles.modal}>
+                <ScrollView>
+                  {bottomItems}
+                  <Pressable style={styles.clothingButton} onPress={()=> setBottomsModalShow(false)}>
+                      <Text style={styles.clothingButtonText}>Back</Text>
+                  </Pressable>
+                </ScrollView>
+              </View>
+          </Modal>
+
+            <Modal animationType="slide" transparent={false} visible={topModalShow} onRequestClose={()=>{setTopModalShow(!topModalShow)}}>
+              <View style={styles.modal}>
+                <ScrollView>
+                  {topItems}
+                  <Pressable style={styles.clothingButton} onPress={()=> setTopModalShow(false)}>
+                      <Text style={styles.clothingButtonText}>Back</Text>
+                  </Pressable>
+                </ScrollView>
+              </View>
+          </Modal>
+
+          <Modal animationType="slide" transparent={false} visible={hairModalShow} onRequestClose={()=>{setHairModalShow(!hairModalShow)}}>
+              <View style={styles.modal}>
+                <ScrollView>
+                  {hairItems}
+                  <Pressable style={styles.clothingButton} onPress={()=> setHairModalShow(false)}>
+                    <Text style={styles.clothingButtonText}>Back</Text>
+                  </Pressable>
+                </ScrollView>
+              </View>
+          </Modal>
+
+          <View style={styles.rowClothing}>
+              <Pressable style={styles.clothingButton} onPress={()=> [setHairModalShow(true)]}>
+                  <Image source={require("../../assets/AdventureGame/AvatarCustomization/ui/hairIcon.png")}/>
+                  <Text style={styles.clothingButtonText}>Hair</Text>
+              </Pressable>
+              <Pressable style={styles.clothingButton} onPress={()=> setTopModalShow(true)}>
+                  <Image source={require("../../assets/AdventureGame/AvatarCustomization/ui/topIcon.png")}/>
+                  <Text style={styles.clothingButtonText}>Tops</Text>
+              </Pressable>
+              <Pressable style={styles.clothingButton} onPress={()=> setBottomsModalShow(true)}>
+                  <Image source={require("../../assets/AdventureGame/AvatarCustomization/ui/bottomIcon.png")}/>
+                  <Text style={styles.clothingButtonText}>Bottoms</Text>
+              </Pressable>
+              <Pressable style={styles.clothingButton} onPress={()=> setFeetModalShow(true)}>
+                  <Image source={require("../../assets/AdventureGame/AvatarCustomization/ui/feetIcon.png")}/>
+                  <Text style={styles.clothingButtonText}>Feet</Text>
+              </Pressable>
+          </View>
+
+          <View style={styles.avatarImg}>
+              <Image source={require("../../assets/AdventureGame/avatarBody.png")}/>
+              <Image source={bottomsShow} style={styles.topPosition}/>
+              <Image source={feetShow} style={styles.topPosition}/>
+              <Image source={topShow} style={styles.topPosition}/>
+              <Image source={hairShow} style={styles.hairPosition}/>
+          </View>
+          
+          <View style={styles.rowButtons}>
+              <Pressable style={styles.clothingButton} onPress={()=> navigation.navigate("Adventure Game")}>
+                      <Text style={styles.clothingButtonText}>Back</Text>
+              </Pressable>
+              <Pressable style={styles.clothingButton} onPress={setCustomizationLoc}>
+                      <Text style={styles.clothingButtonText}>Save and Exit</Text>
+              </Pressable>
+          </View>
+      </View>
+  )
 }
 
 const styles = StyleSheet.create({

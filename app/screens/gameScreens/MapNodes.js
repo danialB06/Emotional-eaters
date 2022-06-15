@@ -27,15 +27,15 @@ const mapNodeData = new Array(
 );
 
 const monsterNodeData = new Array(
-    // HP, ATK, Gold
-    [], //0
-    ["Tartoise", 10, 4, 20], 
-    [], 
-    [14, 2, 30], 
-    [20, 1, 15], 
-    [18, 3, 24], 
-    [],
-    [30, 4, 50], 
+  // HP, ATK, Gold
+  [], //0
+  ["Tartoise", 10, 4, 20], 
+  [], 
+  [14, 2, 30], 
+  [20, 1, 15], 
+  [18, 3, 24], 
+  [],
+  [30, 4, 50], 
 );
 
 const DrawActors = (props) => {
@@ -60,7 +60,6 @@ const DrawActors = (props) => {
   const [monsterNDHP, setMonsterNDHP] = useState(0);
   const [monsterNDGold, setMonsterNDGold] = useState(0);
 
-    
   //Node Scenes Modal
    const [battleModalShow, setbattleModalShow] = useState(false);
 
@@ -112,6 +111,9 @@ const DrawActors = (props) => {
   )
 }
 
+const BattleScene = (props) => {
+
+}
 const styles = StyleSheet.create({
   mapText:{
     fontSize: 20,
