@@ -1,9 +1,27 @@
 import { View, StyleSheet, Text, Button, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
-import { Keyboard } from "react-native";
+import { Keyboard, Alert } from "react-native";
+import { db } from "../../../database/Config";
+import React, { useState, useEffect } from "react";
 
 export default function NewGoalScreen({ navigation }) {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const saveAnswer = () => {
+    let goal = {
+      title: "",
+      description: "",
+    };
+    goal.title = title;
+    goal.description = description;
+
+    db.collection("goals").add(goal);
+    Alert.alert("Goal saved!");
+    navigation.popToTop();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.goalTitleContainer}>
@@ -12,6 +30,7 @@ export default function NewGoalScreen({ navigation }) {
           placeholder="Title"
           keyboardType="default"
           returnKeyType="done"
+          onChangeText={(newText) => setTitle(newText)}
         />
       </View>
       <View style={styles.goalTextContainer}>
@@ -22,6 +41,7 @@ export default function NewGoalScreen({ navigation }) {
           returnKeyType="done"
           multiline={true}
           onSubmitEditing={Keyboard.dismiss}
+          onChangeText={(newText) => setDescription(newText)}
         />
       </View>
       <View style={styles.buttonContainer}>
@@ -30,11 +50,7 @@ export default function NewGoalScreen({ navigation }) {
           color="#063559"
           onPress={() => navigation.navigate("AllGoalsScreen")}
         />
-        <Button
-          title="Save"
-          color="#063559"
-          onPress={() => navigation.navigate("AllGoalsScreen")}
-        />
+        <Button title="Save" color="#063559" onPress={saveAnswer} />
       </View>
     </View>
   );

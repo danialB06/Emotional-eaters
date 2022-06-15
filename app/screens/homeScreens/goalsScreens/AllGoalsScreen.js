@@ -1,8 +1,10 @@
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Text } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
 import GoalButton from "../components/GoalButton";
 import React from "react";
+import { db } from "../../../database/Config";
+import { useEffect, useState } from "react";
 
 export default function AllGoalsScreen({ navigation }) {
   return (
@@ -16,48 +18,57 @@ export default function AllGoalsScreen({ navigation }) {
           source={require("../../../assets/homescreen/goalsscreen/add.png")}
         />
       </TouchableOpacity>
-
-      <ScrollView style={styles.goals}>
-        <GoalButton
-          name="Do exercises daily"
-          onPress={() => {
-            navigation.navigate("GoalScreen", {
-              title: "Do exercises daily",
-              description: "blah blah",
-            });
-          }}
-        />
-        <GoalButton
-          name="Follow eating schedule"
-          onPress={() => {
-            navigation.navigate("GoalScreen", {
-              title: "Follow eating schedule",
-              description: "blah blah",
-            });
-          }}
-        />
-        <GoalButton
-          name="Relieve stress with sport"
-          onPress={() => {
-            navigation.navigate("GoalScreen", {
-              title: "Relieve stress with sport",
-              description: "blah blah",
-            });
-          }}
-        />
-        <GoalButton
-          name="Become healthy"
-          onPress={() => {
-            navigation.navigate("GoalScreen", {
-              title: "Become healthy",
-              description: "blah blah",
-            });
-          }}
-        />
-      </ScrollView>
+      <Goals navigation={navigation} />
     </View>
   );
 }
+
+const Goals = ({ navigation }) => {
+  const [loading, setLoading] = useState(true);
+  const [goals, setGoals] = useState([]);
+
+  useEffect(() => {
+    const getGoalsFromFirebase = [];
+    const goals = db
+      .collection("goals")
+      .orderBy("title", "asc")
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          getGoalsFromFirebase.push({ ...doc.data(), key: doc.id });
+        });
+        setGoals(getGoalsFromFirebase);
+        setLoading(false);
+      });
+
+    return () => goals();
+  }, []);
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+  return (
+    <ScrollView style={styles.goals}>
+      {goals.length > 0 ? (
+        goals.map((goal) => (
+          <GoalButton
+            key={goal.key}
+            name={goal.title}
+            onPress={() => {
+              navigation.navigate("GoalScreen", {
+                navigation: navigation,
+                title: goal.title,
+                description: goal.description,
+                myKey: goal.key,
+              });
+            }}
+          />
+        ))
+      ) : (
+        <Text>No Goals</Text>
+      )}
+    </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
   addImage: {

@@ -1,8 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore } from "firebase/firestore";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -11,10 +14,18 @@ const firebaseConfig = {
   projectId: "emotionaleatersdevelopmentdb",
   storageBucket: "emotionaleatersdevelopmentdb.appspot.com",
   messagingSenderId: "675345892959",
-  appId: "1:675345892959:web:966ea5bd48e7b5da3d7dea"
+  appId: "1:675345892959:web:966ea5bd48e7b5da3d7dea",
 };
 
-// Initialize Firebase
-export const app = initializeApp(firebaseConfig);
+let app;
 
-export const db = getFirestore(app);
+if (firebase.apps.length === 0) {
+  app = firebase.initializeApp(firebaseConfig);
+} else {
+  app = firebase.app();
+}
+
+const db = app.firestore();
+const auth = firebase.auth();
+
+export { db, auth };

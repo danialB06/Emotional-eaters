@@ -1,9 +1,13 @@
 import { View, StyleSheet, Text, Button, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 
-export default function DiaryEntryButton({ name, date, onPress }) {
+export default function DiaryEntryButton({ myKey, name, date, onPress }) {
   return (
-    <TouchableOpacity style={styles.goalContainer} onPress={onPress}>
+    <TouchableOpacity
+      key={myKey}
+      style={styles.goalContainer}
+      onPress={onPress}
+    >
       <Text style={styles.title}>{name}</Text>
       <Text style={styles.date}>{date}</Text>
     </TouchableOpacity>
