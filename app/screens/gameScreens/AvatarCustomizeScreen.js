@@ -2,6 +2,9 @@ import { View, StyleSheet, Text, Pressable, Image, Modal, ScrollView } from "rea
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { deleteDoc, doc, getDoc, setDoc, Timestamp } from 'firebase/firestore';
+import { db } from '../../api/Firebase';
+
 export default function AvatarCustomizeScreen({ navigation }) {
   const [hairModalShow, setHairModalShow] = useState(false);
   const [topModalShow, setTopModalShow] = useState(false);
@@ -416,7 +419,7 @@ export default function AvatarCustomizeScreen({ navigation }) {
 
   //Hair Mapper
   const [equippedHair, SetEquippedHair] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
-  const [chosenHair, setChosenHair] = useState("");
+  const [chosenHair, setChosenHair] = useState("none");
   const [hairShow, setHairShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
   const hairItems = hairOptions.map((hairStyle, stylekey)=> {
     return ( 
@@ -443,7 +446,7 @@ export default function AvatarCustomizeScreen({ navigation }) {
   });
 
   //Top Mapper
-  const [chosenTop, setChosenTop] = useState("");
+  const [chosenTop, setChosenTop] = useState("none");
   const [topShow, setTopShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
   const topItems = topOptions.map((topStyle, stylekey)=> {
     return ( 
@@ -471,7 +474,7 @@ export default function AvatarCustomizeScreen({ navigation }) {
 
   //Bottom Mapper
   const [bottomsShow, setBottomShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
-  const [chosenBottom, setChosenBottom] = useState("");
+  const [chosenBottom, setChosenBottom] = useState("none");
   const bottomItems = bottomOptions.map((bottomStyle, stylekey)=> {
     return ( 
       <View key={stylekey}>
@@ -497,7 +500,7 @@ export default function AvatarCustomizeScreen({ navigation }) {
   });
 
   //Feet Mapper
-  const [chosenFeet, setChosenFeet] = useState(null);
+  const [chosenFeet, setChosenFeet] = useState("none");
   const [feetShow, setFeetShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
   const feetItems = feetOptions.map((feetStyle, stylekey)=> {
     return ( 
@@ -551,26 +554,30 @@ export default function AvatarCustomizeScreen({ navigation }) {
     setFetchedCustom(JSON.parse(equippedItems));
   }
     
-  //UseEffect fires off everytime 'savedCustom' state has been overwritten
+  //UseEffect fires off everytime 'savedCustom' state has been overwritten. Not sure if this works.
    useEffect(()=>{getCustomizationLoc},[savedCustom]);
 
   //Firebase -- Customization
-  // const setCustomizationFirebase = () => {
-  //   const firebaseLoc = doc(db, "AvatarCustomSet", SESSIONID);
+  const createCustomizationFirebase = () => {
 
-  //   const chosenItems= {
-  //     "HairName": chosenHair,
-  //     "HairImage": hairShow,
-  //     "TopName": chosenTop,
-  //     "TopImage": topShow,
-  //     "BottomName": chosenBottom,
-  //     "BottomImage": bottomsShow,
-  //     "FeetName": chosenFeet,
-  //     "FeetImage": feetShow, 
-  //   }
+    console.log("Line 563" + JSON.stringify(db));
+    const myDoc = doc(db, "AvatarCustomSet", "this should be some userID");
 
-  //   setDoc(firebaseLoc, chosenItems);
-  // }
+    const docData = {
+      "HairName": chosenHair,
+      "TopName": chosenTop,
+      "BottomName": chosenBottom,
+      "FeetName": chosenFeet,
+    }
+
+    setDoc(myDoc, docData)
+    .then(()=>{
+      alert("Customization saved!");
+    })
+    .catch((error)=> {
+      alert(error.message);
+    })
+  }
 
   return(
       <View>
@@ -649,7 +656,7 @@ export default function AvatarCustomizeScreen({ navigation }) {
               <Pressable style={styles.clothingButton} onPress={()=> navigation.navigate("Adventure Game")}>
                       <Text style={styles.clothingButtonText}>Back</Text>
               </Pressable>
-              <Pressable style={styles.clothingButton} onPress={setCustomizationLoc}>
+              <Pressable style={styles.clothingButton} onPress={createCustomizationFirebase}>
                       <Text style={styles.clothingButtonText}>Save and Exit</Text>
               </Pressable>
           </View>
