@@ -1,5 +1,14 @@
 import { View, Image, StyleSheet, Text, Modal, Pressable } from "react-native";
-import {Component, useState} from 'react';
+import {Component, useState, useEffect} from 'react';
+
+import { doc, getDoc, setDoc, onSnapshot, collection } from 'firebase/firestore';
+import { db } from '../../api/Firebase';
+
+//Import custom sets
+import { hairOptions } from "./customOptions datasets/HairOptions";
+import { bottomOptions } from "./customOptions datasets/BottomOptions";
+import { feetOptions } from "./customOptions datasets/FeetOptions";
+import { topOptions } from "./customOptions datasets/TopOptions";
 
 const AvatarParamFetch = (props) => {
   //Use userID to fetch Avatar data
@@ -87,12 +96,58 @@ const AvatarParamFetch = (props) => {
 }
 
 const AvatarDressed = () => {
-      return( 
-        <View style={styles.avatarImg}>
-          <Image source={require("../../assets/AdventureGame/avatarBody.png")}/>
-        </View>
-      );
+
+  const [ avatarCustomSet, setAvatarCustomSet ] = useState(null);
+  
+  const getFirebaseCustomSet = doc(db, "AvatarCustomSet", "this should be some userID");
+  const ReadCustomSet = () => {
+    getDoc(getFirebaseCustomSet)
+    .then((snapshot)=>{
+      if(snapshot.exists){
+        setAvatarCustomSet(snapshot.data())
+      }
+    })
+    .catch((error)=> {
+      alert(error.message)
+    })
   }
+
+  useEffect(()=> {
+    ////THIS SLOWS THE APP DOWN SIGNIFICANTLY, LIKE RUNNING THE LATEST DOOM GAME ON WINDOWS ME
+    // onSnapshot(collection(db, "AvatarCustomSet"), ()=> {
+    //   ReadCustomSet()
+    // });
+    ReadCustomSet()
+  });
+
+  //Hair Mapper
+  const hairItem = hairOptions.map((hairStyle, stylekey)=> {
+    return ( 
+      <View key={stylekey}>
+        {hairStyle.options.map((haircolor, colorkey)=> {
+          return(
+            <View key={colorkey}>
+              {
+                avatarCustomSet != null && avatarCustomSet.HairName == haircolor.name &&
+                <Image source={haircolor.image} style={styles.hairPosition}/>
+              }
+            </View>
+          )
+        })}
+      </View>
+    )
+  });
+
+  return( 
+    <View style={styles.avatarImg}>
+      {avatarCustomSet != null && 
+        <Text>{avatarCustomSet.HairName}</Text>
+      }
+      <Image source={require("../../assets/AdventureGame/avatarBody.png")}/>
+      {hairItem}
+    </View>
+  );
+}
 
 export { AvatarDressed, AvatarParamFetch};
 
@@ -162,4 +217,9 @@ const styles = StyleSheet.create({
     alignItems:"center", 
     justifyContent:"center"
   },
+  hairPosition:{
+    position: "absolute",
+    marginTop: -312,
+    marginLeft: -95,
+},
 });

@@ -2,7 +2,6 @@ import { View, StyleSheet, Text, Pressable } from "react-native";
 import { Component, useState } from 'react';
 import AvatarData, {AvatarDressed, AvatarParamFetch} from './AvatarData';
 import MonsterData from './MonsterData';
-import { ComponentTestABC } from './ComponentTest';
 
 //Game Elements
 export default function StartGameScreen({ navigation }) {
