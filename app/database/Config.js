@@ -9,12 +9,12 @@ import "firebase/compat/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDeWHeWYvywlPPupg6Ki4q9FSqYDr9c14k",
-  authDomain: "emotionaleatersdevelopmentdb.firebaseapp.com",
-  projectId: "emotionaleatersdevelopmentdb",
-  storageBucket: "emotionaleatersdevelopmentdb.appspot.com",
-  messagingSenderId: "675345892959",
-  appId: "1:675345892959:web:966ea5bd48e7b5da3d7dea",
+  apiKey: "AIzaSyDKjvmVH_3IuJhUW2XHOcmNVMQti7hToPE",
+  authDomain: "emotional-eaters.firebaseapp.com",
+  projectId: "emotional-eaters",
+  storageBucket: "emotional-eaters.appspot.com",
+  messagingSenderId: "953761521525",
+  appId: "1:953761521525:web:64e7679c5ec7d1ec9b3d3c",
 };
 
 let app;

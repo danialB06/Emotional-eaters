@@ -67,7 +67,7 @@ const Entries = ({ navigation }) => {
               navigation.navigate("ExerciseResultsScreen", {
                 title: entry.title,
                 date: entry.date,
-                id: entry.exercise,
+                id: entry.exerciseId,
                 myKey: entry.key,
                 description: entry.description,
               });

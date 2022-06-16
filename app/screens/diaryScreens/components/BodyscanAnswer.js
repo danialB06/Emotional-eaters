@@ -98,12 +98,14 @@ const BodyMap = ({ id }) => {
 
   useEffect(() => {
     const getAnswersFromFirebase = [];
-    const answers = db.collection("Bodyscans").onSnapshot((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        getAnswersFromFirebase.push({ ...doc.data(), key: doc.id });
+    const answers = db
+      .collection("bodyScanMaps")
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          getAnswersFromFirebase.push({ ...doc.data(), key: doc.id });
+        });
+        setAllAnswers(getAnswersFromFirebase);
       });
-      setAllAnswers(getAnswersFromFirebase);
-    });
 
     setLoading(false);
     return () => answers();
