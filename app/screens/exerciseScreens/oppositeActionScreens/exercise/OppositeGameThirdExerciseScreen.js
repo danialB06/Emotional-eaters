@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { Keyboard } from "react-native";
 
-export default function OppositeGameThirdExerciseScreen({ navigation }) {
+export default function OppositeGameThirdExerciseScreen({
+  navigation,
+  question1,
+  emotions,
+}) {
+  const [question, setQuestion] = useState("");
+
   return (
     <View style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game 3/4</Text>
@@ -14,13 +21,18 @@ export default function OppositeGameThirdExerciseScreen({ navigation }) {
         multiline={true}
         onSubmitEditing={Keyboard.dismiss}
         returnKeyType="done"
+        onChangeText={(newText) => setQuestion(newText)}
       />
 
       <View>
         <TouchableOpacity
           style={styles.submitButton}
           onPress={() =>
-            navigation.navigate("OppositeGameFourthExerciseScreen")
+            navigation.navigate("OppositeGameFourthExerciseScreen", {
+              question1: question1,
+              emotions: emotions,
+              question2: question,
+            })
           }
         >
           <Text style={styles.submitText}>Submit</Text>
