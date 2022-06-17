@@ -1,7 +1,11 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 
-export default function OppositeGameSecondExerciseScreen({ navigation }) {
+export default function OppositeGameSecondExerciseScreen({
+  navigation,
+  question1,
+}) {
+  const question = useState(question1);
   const [option1, setOption1] = useState(-1);
   const [option2, setOption2] = useState(-1);
   const [option3, setOption3] = useState(-1);
@@ -12,6 +16,38 @@ export default function OppositeGameSecondExerciseScreen({ navigation }) {
   const [option8, setOption8] = useState(-1);
   const [option9, setOption9] = useState(-1);
   const [option10, setOption10] = useState(-1);
+  const [emotions, setEmotions] = useState([]);
+
+  function Emotions() {
+    const emotionList = [];
+
+    if (option1 === 1) emotionList.push("Fear");
+
+    if (option2 === 1) emotionList.push("Anger");
+
+    if (option3 === 1) emotionList.push("Shame");
+
+    if (option4 === 1) emotionList.push("Confusion");
+
+    if (option5 === 1) emotionList.push("Indifferent");
+
+    if (option6 === 1) emotionList.push("Sadness");
+
+    if (option7 === 1) emotionList.push("Guilt");
+
+    if (option8 === 1) emotionList.push("Disgust");
+
+    if (option9 === 1) emotionList.push("Powerless");
+
+    if (option10 === 1) emotionList.push("Love");
+
+    console.log(question1);
+    navigation.navigate("OppositeGameThirdExerciseScreen", {
+      question1: question1,
+      emotions: emotionList,
+    });
+    return emotionList;
+  }
 
   return (
     <View style={styles.container}>
@@ -116,10 +152,7 @@ export default function OppositeGameSecondExerciseScreen({ navigation }) {
       </View>
 
       <View>
-        <TouchableOpacity
-          style={styles.submitButton}
-          onPress={() => navigation.navigate("OppositeGameThirdExerciseScreen")}
-        >
+        <TouchableOpacity style={styles.submitButton} onPress={Emotions}>
           <Text style={styles.submitText}>Submit</Text>
         </TouchableOpacity>
       </View>

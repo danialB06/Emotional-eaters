@@ -1,9 +1,10 @@
 import { View, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Text } from "react-native";
 import DiaryEntryButton from "./components/DiaryEntryButton";
+import { db } from "../../api/Firebase";
 
 export default function DiaryScreen({ navigation }) {
   useEffect(() => {
@@ -22,73 +23,63 @@ export default function DiaryScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Diary</Text>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={styles.imageContainer}
-          // onPress={() => navigation.navigate("NewGoalScreen")}
-        >
-          <Image
-            style={styles.filterImage}
-            source={require("../../assets/diaryscreen/filter.png")}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.imageContainer}
-          onPress={() => navigation.navigate("NewEntryScreen")}
-        >
-          <Image
-            style={styles.addImage}
-            source={require("../../assets/homescreen/goalsscreen/add.png")}
-          />
-        </TouchableOpacity>
-      </View>
-      <ScrollView style={styles.entries}>
-        <DiaryEntryButton
-          name="Body Scan"
-          date="13-04-2022"
-          onPress={() => {
-            navigation.navigate("ExerciseResultsScreen", {
-              title: "Body Scan",
-              date: "13-04-2022",
-              description:
-                "Today I had a weird feeling in my stomach and my legs and my right arm felt tired a lot. I did also experience headache. Besides that all other body parts felt okay.",
-            });
-          }}
-        />
-        <DiaryEntryButton
-          name="Positive Reframing"
-          date="13-04-2022"
-          onPress={() => {
-            navigation.navigate("ExerciseResultsScreen", {
-              title: "Positive Reframing",
-              date: "13-04-2022",
-            });
-          }}
-        />
-        <DiaryEntryButton
-          name="Opposite Action"
-          date="12-04-2022"
-          onPress={() => {
-            navigation.navigate("ExerciseResultsScreen", {
-              title: "Opposite Action",
-              date: "12-04-2022",
-            });
-          }}
-        />
-        <DiaryEntryButton
-          name="Body Scan"
-          date="09-04-2022"
-          onPress={() => {
-            navigation.navigate("ExerciseResultsScreen", {
-              title: "Body Scan",
-              date: "09-04-2022",
-            });
-          }}
-        />
-      </ScrollView>
+      <Entries navigation={navigation} />
     </View>
   );
 }
+
+const Entries = ({ navigation }) => {
+  const [loading, setLoading] = useState(true);
+  const [entries, setEntries] = useState([]);
+
+  useEffect(() => {
+    const getEntriesFromFirebase = [];
+    const sub = db
+      .collection("diary")
+      .orderBy("date", "desc")
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          getEntriesFromFirebase.push({ ...doc.data(), key: doc.id });
+        });
+        setEntries(getEntriesFromFirebase);
+        setLoading(false);
+      });
+
+    return () => sub();
+  }, []);
+
+  if (loading) {
+    return (
+      <Text style={{ margin: 20, alignSelf: "center", height: "80%" }}>
+        Loading...
+      </Text>
+    );
+  }
+  return (
+    <ScrollView style={styles.entries}>
+      {entries.length > 0 ? (
+        entries.map((entry) => (
+          <DiaryEntryButton
+            key={entry.key}
+            name={entry.title}
+            date={entry.date}
+            onPress={() => {
+              navigation.navigate("ExerciseResultsScreen", {
+                title: entry.title,
+                date: entry.date,
+                id: entry.exerciseId,
+                myKey: entry.key,
+                description: entry.description,
+              });
+            }}
+          />
+        ))
+      ) : (
+        <Text>No Entries</Text>
+      )}
+    </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
   addImage: {

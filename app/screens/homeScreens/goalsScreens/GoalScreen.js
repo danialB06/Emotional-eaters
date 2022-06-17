@@ -1,15 +1,50 @@
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, Alert } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { Keyboard } from "react-native";
+import { doc, getDoc, deleteDoc, setDoc } from "firebase/firestore";
+import { useState } from "react";
+import { db } from "../../../api/Firebase";
+import { LogBox } from "react-native";
+LogBox.ignoreLogs([
+  "Non-serializable values were found in the navigation state",
+]);
 
-export default function GoalScreen({ route }) {
+export default function GoalScreen({ navigation, route }) {
   const { title } = route.params;
   const { description } = route.params;
+  const { myKey } = route.params;
+  const [newTitle, setNewTitle] = useState("");
+  const [newDescription, setNewDescription] = useState("");
+
+  const UpdateGoal = () => {
+    let newGoal = {
+      title: title,
+      description: description,
+    };
+
+    if (newTitle != "") {
+      newGoal.title = newTitle;
+    }
+    if (newDescription != "") {
+      newGoal.description = newDescription;
+    }
+
+    const goal = doc(db, "goals", myKey);
+
+    setDoc(goal, newGoal, { merge: true });
+  };
+  const DeleteGoal = () => {
+    const goal = doc(db, "goals", myKey);
+
+    deleteDoc(goal);
+    Alert.alert("Goal was deleted");
+    navigation.popToTop();
+  };
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity style={styles.imageContainer} onPress={DeleteGoal}>
         <Image
           style={styles.deleteButton}
           source={require("../../../assets/homescreen/goalsscreen/delete.png")}
@@ -20,6 +55,8 @@ export default function GoalScreen({ route }) {
           style={styles.goalTitle}
           keyboardType="default"
           returnKeyType="done"
+          onChangeText={(text) => setNewTitle(text)}
+          onSubmitEditing={UpdateGoal}
         >
           {title}
         </TextInput>
@@ -30,7 +67,8 @@ export default function GoalScreen({ route }) {
           keyboardType="default"
           returnKeyType="done"
           multiline={true}
-          onSubmitEditing={Keyboard.dismiss}
+          onSubmitEditing={UpdateGoal && Keyboard.dismiss}
+          onChangeText={(text) => setNewDescription(text)}
         >
           {description}
         </TextInput>
@@ -79,10 +117,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: "flex-start",
     backgroundColor: "white",
+    textAlign: "justify",
   },
   goalText: {
     paddingTop: 15,
     marginLeft: 20,
     fontSize: 18,
+  },
+  imageContainer: {
+    width: 70,
+    alignSelf: "flex-end",
   },
 });

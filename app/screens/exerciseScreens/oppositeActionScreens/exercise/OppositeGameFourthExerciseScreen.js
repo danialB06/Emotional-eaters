@@ -1,10 +1,38 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import { db } from "../../../../api/Firebase";
 
-export default function OppositeGameFourthExerciseScreen({ navigation }) {
+export default function OppositeGameFourthExerciseScreen({
+  navigation,
+  question1,
+  question2,
+  emotions,
+}) {
   const [option1, setOption1] = useState(-1);
   const [option2, setOption2] = useState(-1);
   const [option3, setOption3] = useState(-1);
+  const [question, setQuestion] = useState("");
+
+  const SaveExercise = () => {
+    let result = {
+      question1: question1,
+      question2: question2,
+      emotions: emotions,
+      question3: "",
+      exercise: "Opposite Action",
+    };
+    result.question3 = question;
+    console.log(emotions);
+    console.log(question1);
+    console.log(question2);
+    console.log(result.exercise);
+    console.log(result.question3);
+
+    //does not work because the data is undefined
+    //db.collection("oppositeAction").add(result);
+
+    navigation.navigate("OppositeGameFinishedExerciseScreen");
+  };
 
   return (
     <View style={styles.container}>
@@ -19,6 +47,7 @@ export default function OppositeGameFourthExerciseScreen({ navigation }) {
           setOption1(option1 * -1),
           setOption2(-1),
           setOption3(-1),
+          setQuestion("Try again"),
         ]}
       >
         <Text style={styles.optionsText}>Try again</Text>
@@ -32,6 +61,7 @@ export default function OppositeGameFourthExerciseScreen({ navigation }) {
           setOption2(option2 * -1),
           setOption1(-1),
           setOption3(-1),
+          setQuestion("Try something else"),
         ]}
       >
         <Text style={styles.optionsText}>Try something else</Text>
@@ -45,17 +75,13 @@ export default function OppositeGameFourthExerciseScreen({ navigation }) {
           setOption3(option3 * -1),
           setOption1(-1),
           setOption2(-1),
+          setQuestion("Ask for help"),
         ]}
       >
         <Text style={styles.optionsText}>Ask for help</Text>
       </TouchableOpacity>
       <View>
-        <TouchableOpacity
-          style={styles.submitButton}
-          onPress={() =>
-            navigation.navigate("OppositeGameFinishedExerciseScreen")
-          }
-        >
+        <TouchableOpacity style={styles.submitButton} onPress={SaveExercise}>
           <Text style={styles.submitText}>Submit</Text>
         </TouchableOpacity>
       </View>

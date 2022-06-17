@@ -1,9 +1,13 @@
 import { View, StyleSheet, Text, Button, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 
-export default function GoalButton({ name, onPress }) {
+export default function GoalButton({ myKey, name, onPress }) {
   return (
-    <TouchableOpacity style={styles.goalContainer} onPress={onPress}>
+    <TouchableOpacity
+      key={myKey}
+      style={styles.goalContainer}
+      onPress={onPress}
+    >
       <Text style={styles.goalText}>{name}</Text>
     </TouchableOpacity>
   );
