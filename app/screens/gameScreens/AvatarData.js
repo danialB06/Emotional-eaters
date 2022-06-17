@@ -118,9 +118,9 @@ const AvatarDressed = () => {
     //   ReadCustomSet()
     // });
     ReadCustomSet()
-  });
+  }, [avatarCustomSet]);
 
-  //Hair Mapper
+  //Generate images
   const hairItem = hairOptions.map((hairStyle, stylekey)=> {
     return ( 
       <View key={stylekey}>
@@ -129,7 +129,7 @@ const AvatarDressed = () => {
             <View key={colorkey}>
               {
                 avatarCustomSet != null && avatarCustomSet.HairName == haircolor.name &&
-                <Image source={haircolor.image} style={styles.hairPosition}/>
+                <Image source={haircolor.image} style={[styles.genPosition, styles.hairPosition]}/>
               }
             </View>
           )
@@ -138,13 +138,63 @@ const AvatarDressed = () => {
     )
   });
 
+  const topItem = topOptions.map((hairStyle, stylekey)=> {
+    return ( 
+      <View key={stylekey}>
+        {hairStyle.options.map((haircolor, colorkey)=> {
+          return(
+            <View key={colorkey}>
+              {
+                avatarCustomSet != null && avatarCustomSet.TopName == haircolor.name &&
+                <Image source={haircolor.image} style={[styles.genPosition, styles.topPosition]}/>
+              }
+            </View>
+          )
+        })}
+      </View>
+    )
+  });
+
+  const bottomItem = bottomOptions.map((hairStyle, stylekey)=> {
+    return ( 
+      <View key={stylekey}>
+        {hairStyle.options.map((haircolor, colorkey)=> {
+          return(
+            <View key={colorkey}>
+              {
+                avatarCustomSet != null && avatarCustomSet.BottomName == haircolor.name &&
+                <Image source={haircolor.image} style={[styles.genPosition, styles.topPosition]}/>
+              }
+            </View>
+          )
+        })}
+      </View>
+    )
+  });
+
+  const feetItem = feetOptions.map((hairStyle, stylekey)=> {
+    return ( 
+      <View key={stylekey}>
+        {hairStyle.options.map((haircolor, colorkey)=> {
+          return(
+            <View key={colorkey}>
+              {
+                avatarCustomSet != null && avatarCustomSet.FeetName == haircolor.name &&
+                <Image source={haircolor.image} style={[styles.genPosition, styles.topPosition]}/>
+              }
+            </View>
+          )
+        })}
+      </View>
+    )
+  });
   return( 
     <View style={styles.avatarImg}>
-      {avatarCustomSet != null && 
-        <Text>{avatarCustomSet.HairName}</Text>
-      }
       <Image source={require("../../assets/AdventureGame/avatarBody.png")}/>
-      {hairItem}
+      { hairItem  }
+      { bottomItem }
+      { feetItem }
+      { topItem }
     </View>
   );
 }
@@ -169,19 +219,19 @@ const styles = StyleSheet.create({
   },
   avatarParamColumn:{
     width: "80%", 
-    borderColor: "#000000",
-    borderWidth: 2, 
+    backgroundColor: "#2C6975",
     padding: 15,
     borderRadius: 50,
     margin: "auto",
   },
   avatarParamRow:{
     flexDirection: "row",
-    backgroundColor: "#F3F3F3",
+    backgroundColor: "#2C6975",
   },
   avatarParamText:{
     textAlignVertical: "center",
     fontSize: 35,
+    color: "#E0ECDE",
   },
   avatarStatIcon:{
     width: 60,
@@ -212,14 +262,20 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   avatarImg:{
-    width: "80%", 
-    marginLeft: "10%",
     alignItems:"center", 
     justifyContent:"center"
   },
   hairPosition:{
     position: "absolute",
     marginTop: -312,
-    marginLeft: -95,
-},
+    marginLeft: -93
+  },
+  topPosition:{
+    position: "absolute",
+    marginTop: -312,
+    marginLeft: -104,
+  },
+  genPosition:{
+    marginLeft: -104,
+  }
 });
