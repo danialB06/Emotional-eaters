@@ -1,19 +1,22 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
+import LinearGradient from 'react-native-linear-gradient';
 
 export default function BodyScanFirstScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.pageTitle}>Bodyscan</Text>
-      <Text style={styles.exerExpl}>
-        This exercise aims to make you more aware of what you feel in your body. It also makes you think about the role emotions can play in this. The great thing is that our body can tell us a lot about the emotions we experience. 
-        {"\n"}{"\n"}
-        Press the button to start exercise.
-      </Text>
-      <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("BodyScanBodyMap")}>
-        <Text style={styles.startText}>
-          Start
+
+        <Text style={styles.pageTitle}>Bodyscan</Text>
+        <Text style={styles.exerExpl}>
+          Emotions can affect how our bodies feel and with the help of this exercise our bodies can tell us what emotions we experience. 
+          {"\n"}{"\n"}
+          Press the button below to start exercise.
         </Text>
-      </Pressable >
+        <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("BodyScanBodyMap")}>
+          <Text style={styles.startText}>
+            Start
+          </Text>
+        </Pressable >
+
     </View>
   );
 }
@@ -42,16 +45,15 @@ const styles = StyleSheet.create({
   },
   startButton:{
     alignItems: "center",
-    backgroundColor: "#F3F3F3",
+    backgroundColor: "#2C6975",
     padding: 20,
     width: 150,
     borderRadius: 100,
-    borderColor: "#000000",
-    borderWidth: 2,
     bottom: "5%",
     position: "absolute",
   },
   startText:{
     fontSize: 20,
+    color: "white"
   }
 });
