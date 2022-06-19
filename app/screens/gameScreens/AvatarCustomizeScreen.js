@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text, Pressable, Image, Modal, ScrollView } from "react-native";
 import { useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //Import custom sets
 import { hairOptions } from "./customOptionsDatasets/HairOptions.js";
@@ -137,29 +137,29 @@ export default function AvatarCustomizeScreen({ navigation }) {
   const [savedCustom, setSavedCustom ] = useState(false);
   const [fetchedCustom, setFetchedCustom] = useState(false);
 
-  const setCustomizationLoc = async () =>{
-    const customToSave = {
-      hair: equippedHair,
-      top: equippedTop,
-      bottom: equippedBottoms,
-      feet: equippedFeet,
-    }
+  // const setCustomizationLoc = async () =>{
+  //   const customToSave = {
+  //     hair: equippedHair,
+  //     top: equippedTop,
+  //     bottom: equippedBottoms,
+  //     feet: equippedFeet,
+  //   }
 
-    await AsyncStorage.setItem('@AvatarCustomization', JSON.stringify(customToSave));
-    setSavedCustom(customToSave);
-  }
+  //   await AsyncStorage.setItem('@AvatarCustomization', JSON.stringify(customToSave));
+  //   setSavedCustom(customToSave);
+  // }
 
-  const getCustomizationLoc = async () =>{
-    const equippedItems = await AsyncStorage.getItem('@AvatarCustomization');
-    setFetchedCustom(JSON.parse(equippedItems));
-  }
+  // const getCustomizationLoc = async () =>{
+  //   const equippedItems = await AsyncStorage.getItem('@AvatarCustomization');
+  //   setFetchedCustom(JSON.parse(equippedItems));
+  // }
     
   //UseEffect fires off everytime 'savedCustom' state has been overwritten. Not sure if this works.
-   useEffect(()=>{getCustomizationLoc},[savedCustom]);
+   //useEffect(()=>{getCustomizationLoc},[savedCustom]);
 
   //Firebase -- Customization
   const createCustomizationFirebase = () => {
-
+    
     const myDoc = doc(db, "AvatarCustomSet", "this should be some userID");
 
     const docData = {
