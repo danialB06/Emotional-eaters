@@ -1,112 +1,131 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function BodyScanReflection3({ navigation }) {
   
-  const [answered, setAnswered] = useState(0);
-  const [answer1, setAnswer1] = useState(1); 
-  const [answer2, setAnswer2] = useState(1);
-  const [answer3, setAnswer3] = useState(1);
-
-  var answer1colour = answer1 == 1 ? "#F3F3F3": "#BAC7E9";
-  var answer2colour = answer2 == 1 ? "#F3F3F3": "#BAC7E9";
-  var answer3colour = answer3 == 1 ? "#F3F3F3": "#BAC7E9";
-
-  //Active buttons
-  var answer1prop = {backgroundColor: answer1colour, borderWidth: 2, borderRadius: 30, padding: 10, width: "30%", margin: 10, textAlign: "center"}
-  var answer2prop = {backgroundColor: answer2colour, borderWidth: 2, borderRadius: 30, padding: 10, width: "30%", margin: 10, textAlign: "center"}
-  var answer3prop = {backgroundColor: answer3colour, borderWidth: 2, borderRadius: 30, padding: 10, width: "30%", margin: 10, textAlign: "center"}
+  const [answer, setAnswer] = useState(""); 
   
   return (
-    <View style={styles.container}>
-      <Text style={styles.pageTitle}>
-        What emotion did you feel?
-      </Text>
-
-      <View style={{flexDirection: "row"}}>
-        <Pressable style={styles.answerBox}>
-          <Text style={{fontSize: 20, textAlign: "center"}}>
-            Fear
-          </Text>
-        </Pressable>
-
-        <Pressable style={styles.answerBox}>
-          <Text style={{fontSize: 20, textAlign: "center"}}>
-            Sadness
-          </Text>
-        </Pressable>
-      </View>
-
-      <View style={{flexDirection: "row"}}>
-        <Pressable style={styles.answerBox}>
-          <Text style={{fontSize: 20, textAlign: "center"}}>
-            Anger
-          </Text>
-        </Pressable>
-
-        <Pressable style={styles.answerBox}>
-          <Text style={{fontSize: 20, textAlign: "center"}}>
-            Guilt
-          </Text>
-        </Pressable>
-      </View>
-
-      <View style={{flexDirection: "row"}}>
-        <Pressable style={styles.answerBox}>
-          <Text style={{fontSize: 20, textAlign: "center"}}>
-            Shame
-          </Text>
-        </Pressable>
-
-        <Pressable style={styles.answerBox}>
-          <Text style={{fontSize: 20, textAlign: "center"}}>
-            Disgust
-          </Text>
-        </Pressable>
-      </View>
-
-      <View style={{flexDirection: "row"}}>
-        <Pressable style={styles.answerBox}>
-          <Text style={{fontSize: 20, textAlign: "center"}}>
-            Confusion
-          </Text>
-        </Pressable>
-
-        <Pressable style={styles.answerBox}>
-          <Text style={{fontSize: 20, textAlign: "center"}}>
-            Powerlesss
-          </Text>
-        </Pressable>
-      </View>
-
-      <View style={{flexDirection: "row"}}>
-        <Pressable style={styles.answerBox}>
-          <Text style={{fontSize: 20, textAlign: "center"}}>
-            Indifferent
-          </Text>
-        </Pressable>
-
-        <Pressable style={styles.answerBox}>
-          <Text style={{fontSize: 20, textAlign: "center"}}>
-            Love
-          </Text>
-        </Pressable>
-      </View>
-
-
-      <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("BodyScanFinished")}>
-        <Text style={styles.startText}>
-            Next
+    <LinearGradient
+    colors={["#FFFFFF", "#CDE0C9"]}
+    style={styles.gradientBG}
+    >
+      <View style={styles.container}>
+        <Text style={styles.pageTitle}>
+          What emotion {"\n"}did you feel?
         </Text>
-      </Pressable >
-    </View>
+
+        <View style={{flexDirection: "row"}}>
+          <Pressable 
+            style={answer == "Fear" ? styles.answerBoxActive : styles.answerBox}
+            onPress={()=>{setAnswer("Fear")}}
+          >  
+            <Text style={answer == "Fear" ? styles.answerBoxActiveTxt : styles.answerBoxTxt}>
+              Fear
+            </Text>
+          </Pressable>
+
+          <Pressable 
+            style={answer == "Sadness" ? styles.answerBoxActive : styles.answerBox}
+            onPress={()=>{setAnswer("Sadness")}}
+          >  
+            <Text style={answer == "Sadness" ? styles.answerBoxActiveTxt : styles.answerBoxTxt}>
+            Sadness
+            </Text>
+          </Pressable>
+        </View>
+
+        <View style={{flexDirection: "row"}}>
+          <Pressable 
+              style={answer == "Anger" ? styles.answerBoxActive : styles.answerBox}
+              onPress={()=>{setAnswer("Anger")}}
+            >  
+            <Text style={answer == "Anger" ? styles.answerBoxActiveTxt : styles.answerBoxTxt}>
+            Anger
+            </Text>
+          </Pressable>
+          <Pressable 
+              style={answer == "Guilt" ? styles.answerBoxActive : styles.answerBox}
+              onPress={()=>{setAnswer("Guilt")}}
+            >  
+            <Text style={answer == "Guilt" ? styles.answerBoxActiveTxt : styles.answerBoxTxt}>
+            Guilt
+            </Text>
+          </Pressable>
+        </View>
+
+        <View style={{flexDirection: "row"}}>
+          <Pressable 
+            style={answer == "Shame" ? styles.answerBoxActive : styles.answerBox}
+            onPress={()=>{setAnswer("Shame")}}
+          >  
+            <Text style={answer == "Shame" ? styles.answerBoxActiveTxt : styles.answerBoxTxt}>
+              Shame
+            </Text>
+          </Pressable>
+          <Pressable 
+            style={answer == "Disgust" ? styles.answerBoxActive : styles.answerBox}
+            onPress={()=>{setAnswer("Disgust")}}
+          >  
+            <Text style={answer == "Disgust" ? styles.answerBoxActiveTxt : styles.answerBoxTxt}>
+              Disgust
+            </Text>
+          </Pressable>
+        </View>
+
+        <View style={{flexDirection: "row"}}>
+          <Pressable 
+            style={answer == "Confusion" ? styles.answerBoxActive : styles.answerBox}
+            onPress={()=>{setAnswer("Confusion")}}
+          >  
+            <Text style={answer == "Confusion" ? styles.answerBoxActiveTxt : styles.answerBoxTxt}>
+              Confusion
+            </Text>
+          </Pressable>
+          <Pressable 
+            style={answer == "Powerless" ? styles.answerBoxActive : styles.answerBox}
+            onPress={()=>{setAnswer("Powerless")}}
+          >  
+            <Text style={answer == "Powerless" ? styles.answerBoxActiveTxt : styles.answerBoxTxt}>
+              Powerless
+            </Text>
+          </Pressable>
+        </View>
+
+        <View style={{flexDirection: "row"}}>
+          <Pressable 
+            style={answer == "Indifferent" ? styles.answerBoxActive : styles.answerBox}
+            onPress={()=>{setAnswer("Indifferent")}}
+          >  
+            <Text style={answer == "Indifferent" ? styles.answerBoxActiveTxt : styles.answerBoxTxt}>
+              Indifferent
+            </Text>
+          </Pressable>
+
+          <Pressable 
+            style={answer == "Love" ? styles.answerBoxActive : styles.answerBox}
+            onPress={()=>{setAnswer("Love")}}
+          >  
+            <Text style={answer == "Love" ? styles.answerBoxActiveTxt : styles.answerBoxTxt}>
+              Love
+            </Text>
+          </Pressable>
+        </View>
+
+        <Pressable  style={styles.startButton} onPress={()=> navigation.navigate("BodyScanFinished")}>
+          <Text style={styles.startText}>
+              Next
+          </Text>
+        </Pressable >
+      </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#B9D5EB",
     alignItems: "center",
   },
   answerPair:{
@@ -145,18 +164,42 @@ const styles = StyleSheet.create({
     fontSize: 20,
     backgroundColor: "#F3F3F3",
   },
+  answerBoxActive:{
+    backgroundColor: "#2c6975",
+    borderRadius: 30,
+    padding: 10,
+    marginRight: "2%",
+    marginLeft: "2%",
+    marginTop: "4%",
+    marginBottom: "4%",
+    width: "40%",
+    justifyContent: "center",
+  },
+  answerBoxActiveTxt:{
+    fontSize: 20, 
+    textAlign: "center",
+    color: "white",
+  },
+  answerBoxTxt:{
+    fontSize: 20, 
+    textAlign: "center",
+    color: "black",
+  },
   startButton:{
     alignItems: "center",
-    backgroundColor: "#F3F3F3",
-    padding: 20,
+    backgroundColor: "#6b869a",
+    padding: 15,
     width: 150,
     borderRadius: 100,
-    borderColor: "#000000",
-    borderWidth: 2,
-    bottom: "8%",
+    bottom: "10%",
     position: "absolute",
   },
   startText:{
     fontSize: 20,
-  }
+    color: "white",
+  },
+  gradientBG:{
+    height: "100%",
+    width: "100%",
+  },
 });

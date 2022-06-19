@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { View, StyleSheet, Text, Button, Image } from "react-native";
+import { View, StyleSheet, Text, Button, Image, Pressable } from "react-native";
 import { TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function ExercisesScreen({ navigation }) {
   // To add the profile Button
@@ -18,34 +19,25 @@ export default function ExercisesScreen({ navigation }) {
   });
 
   return (
+    <LinearGradient
+      colors={["#FFFFFF", "#CDE0C9"]}
+      style={styles.gradientBG}
+    >
     <View style={styles.container}>
       <Text style={styles.title}>Exercises</Text>
       <View style={styles.buttonsContainer}>
-        <View style={styles.exerciseButton}>
-          <Button
-            color={"black"}
-            title="Body Scan"
-            onPress={() => navigation.navigate("BodyScanFirstScreen")}
-          />
-        </View>
-        <View style={styles.exerciseButton}>
-          <Button
-            color={"black"}
-            title="Opposite Action"
-            onPress={() => navigation.navigate("OppositeActionFirstScreen")}
-          />
-        </View>
-        <View style={styles.exerciseButton}>
-          <Button
-            color={"black"}
-            title="Positive Reframing"
-            onPress={() =>
-              navigation.navigate("PositiveReframingInstructionScreen")
-            }
-          />
-        </View>
+        <Pressable style={styles.exerciseButton} onPress={() => navigation.navigate("BodyScanFirstScreen")}>
+          <Text style={styles.exercButtonText}>Body Scan</Text>
+        </Pressable>
+        <Pressable style={styles.exerciseButton} onPress={() => navigation.navigate("OppositeActionFirstScreen")}>
+          <Text style={styles.exercButtonText}>Opposite Action</Text>
+        </Pressable>
+        <Pressable style={styles.exerciseButton} onPress={() => navigation.navigate("PositiveReframingInstructionScreen")}>
+          <Text style={styles.exercButtonText}>Positive Reframing</Text>
+        </Pressable>
       </View>
     </View>
+    </LinearGradient>
   );
 }
 
@@ -57,7 +49,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#B8D5EC",
     alignItems: "center",
     justifyContent: "flex-start",
     paddingTop: 50,
@@ -71,9 +62,18 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: "#000000",
     borderWidth: 2,
+    alignItems:"center",
+  },
+  exercButtonText:{
+    fontSize: 20,
+    fontWeight: "bold",
   },
   title: {
     fontWeight: "bold",
     fontSize: 30,
+  },
+  gradientBG:{
+    height: "100%",
+    width: "100%",
   },
 });

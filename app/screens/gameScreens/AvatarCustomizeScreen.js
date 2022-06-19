@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //Import custom sets
-import { hairOptions } from "./customOptions datasets/HairOptions";
-import { bottomOptions } from "./customOptions datasets/BottomOptions";
-import { feetOptions } from "./customOptions datasets/FeetOptions";
-import { topOptions } from "./customOptions datasets/TopOptions";
+import { hairOptions } from "./customOptionsDatasets/HairOptions.js";
+import { bottomOptions } from "./customOptionsDatasets/BottomOptions.js";
+import { feetOptions } from "./customOptionsDatasets/FeetOptions.js";
+import { topOptions } from "./customOptionsDatasets/TopOptions.js";
 
 
 import { doc, getDoc, setDoc } from 'firebase/firestore';

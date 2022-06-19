@@ -1,10 +1,13 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
-import LinearGradient from 'react-native-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function BodyScanFirstScreen({ navigation }) {
   return (
-    <View style={styles.container}>
-
+    <LinearGradient
+      colors={["#FFFFFF", "#CDE0C9"]}
+      style={styles.gradientBG}
+    >
+      <View style={styles.container}>
         <Text style={styles.pageTitle}>Bodyscan</Text>
         <Text style={styles.exerExpl}>
           Emotions can affect how our bodies feel and with the help of this exercise our bodies can tell us what emotions we experience. 
@@ -16,20 +19,21 @@ export default function BodyScanFirstScreen({ navigation }) {
             Start
           </Text>
         </Pressable >
-
-    </View>
+      </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#B9D5EB",
     alignItems: "center",
   },
   pageTitle:{
     fontSize: 40,
     paddingTop: "10%",
+    fontWeight: "bold",
+    fontStyle: "italic",
   },
   exerExpl:{
     padding: 40,
@@ -45,9 +49,9 @@ const styles = StyleSheet.create({
   },
   startButton:{
     alignItems: "center",
-    backgroundColor: "#2C6975",
+    backgroundColor: "#6b869a",
     padding: 20,
-    width: 150,
+    width: 140,
     borderRadius: 100,
     bottom: "5%",
     position: "absolute",
@@ -55,5 +59,9 @@ const styles = StyleSheet.create({
   startText:{
     fontSize: 20,
     color: "white"
-  }
+  },
+  gradientBG:{
+    height: "100%",
+    width: "100%",
+  },
 });

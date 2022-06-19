@@ -1,6 +1,6 @@
 import { View, Image, StyleSheet, Text, Pressable } from "react-native";
 import { useState } from 'react';
-import {LinearGradient} from 'expo-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function BodyScanBodyMap({ navigation }) {
   //Bodypart evaluation scores
@@ -90,6 +90,10 @@ export default function BodyScanBodyMap({ navigation }) {
   var handsImg = [require("../../../assets/bodyscan/armsHandsC.png"),  require("../../../assets/bodyscan/armsHands.png"),  require("../../../assets/bodyscan/armsHandsB.png")]
 
   return(
+    <LinearGradient
+    colors={["#FFFFFF", "#CDE0C9"]}
+    style={styles.gradientBG}
+    >
       <View style={styles.container}>
         <Text style={styles.exerExpl}>
           <Text style={styles.greenText}>Green</Text> = pleasant. <Text style={styles.redText}>Red</Text> = unpleasant.
@@ -133,6 +137,7 @@ export default function BodyScanBodyMap({ navigation }) {
           </Text>
         </Pressable >
       </View> 
+    </LinearGradient>
   );
 }
 
@@ -145,7 +150,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#B9D5EB",
     alignItems: "center",
   },
   bodyMapContainer:{
@@ -186,13 +190,17 @@ const styles = StyleSheet.create({
     padding: 15,
     width: 140,
     borderRadius: 100,
-    bottom: 8,
+    bottom: 4,
     position: "absolute",
   },
   startText:{
     fontSize: 20,
     color: "#E0ECDE",
-  }
+  },
+  gradientBG:{
+    height: "100%",
+    width: "100%",
+  },
 });
 
 const bodyParts = StyleSheet.create({

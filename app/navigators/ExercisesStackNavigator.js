@@ -37,7 +37,7 @@ const ExercisesStackNavigator = () => {
       initialRouteName="ExercisesScreen"
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#063559",
+          backgroundColor: "#2f9676",
         },
         headerTitleStyle: {
           color: "#C2C2C2",

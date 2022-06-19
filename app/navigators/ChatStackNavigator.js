@@ -22,7 +22,7 @@ const ChatStackNavigator = () => {
       initialRouteName="ChatScreen"
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#063559",
+          backgroundColor: "#2f9676",
         },
         headerTitleStyle: {
           color: "#C2C2C2",

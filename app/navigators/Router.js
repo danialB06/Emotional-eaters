@@ -32,7 +32,7 @@ const AuthStack = () => {
           color: "#C2C2C2",
         },
         headerTintColor: {
-          color: "#C2C2C2",
+          color: "#2f9676",
         },
       }}
       >
