@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Button, TextInput } from "react-native";
+import { View, StyleSheet, Text, Button,Image, TextInput } from "react-native";
 import { useState } from "react";
 import * as SecureStore from "expo-secure-store";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -64,7 +64,9 @@ export default function SignUpScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text>SignUpScreen </Text>
+            <Image source={require('./../../assets/logo.png')}
+      style={styles.image} />
+      <Text>Create an account </Text>
       <TextInput
         placeholder="Username"
         style={styles.input}
@@ -88,7 +90,15 @@ export default function SignUpScreen({ navigation }) {
           </Text>
         </TouchableOpacity>
       </View>
-      <Button title={"Login"} onPress={async () => handleSignUp()} />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => getValueFor()}
+      >
+        <View style={styles.button}>
+          <Text style={styles.buttonsText}>Sign up</Text>
+        </View>
+      </TouchableOpacity>
+     
       {showDatePicker && (
         <DateTimePicker
           testID="dateTimePicker"
@@ -106,7 +116,7 @@ export default function SignUpScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#CDE0C9",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -123,4 +133,24 @@ const styles = StyleSheet.create({
     width: 230,
     fontSize: 16,
   },
+  button: {
+    backgroundColor: "#2C6975",
+    flexDirection: "row",
+    borderRadius: 50,
+    alignContent: "center",
+    justifyContent: "center",
+    width: 200
+  },
+  buttonsText: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "600",
+    textAlign: "center",
+    padding: 10,
+  },
+  image: {
+    width: 250,
+    height: 250,
+    marginBottom: 30,
+  }
 });

@@ -23,9 +23,21 @@ const AppStack = () => {
 
 const AuthStack = () => {
     return (
-      <Stack.Navigator>
-        <Stack.Screen name="SignInScreen" component={SignInScreen} />
-        <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
+      <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#2C9675",
+        },
+        headerTitleStyle: {
+          color: "#C2C2C2",
+        },
+        headerTintColor: {
+          color: "#C2C2C2",
+        },
+      }}
+      >
+        <Stack.Screen name="Sign in" component={SignInScreen} />
+        <Stack.Screen name="Sign up" component={SignUpScreen} />
       </Stack.Navigator>
     );
 };
