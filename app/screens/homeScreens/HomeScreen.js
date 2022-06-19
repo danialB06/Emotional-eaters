@@ -1,6 +1,10 @@
 import { View, StyleSheet, Text, Button, Image } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { useEffect } from "react";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import LinearGradient from "react-native-linear-gradient";
 
 export default function HomeScreen({ navigation }) {
   //use this to make profilescreen funtionable in other screens
@@ -8,6 +12,7 @@ export default function HomeScreen({ navigation }) {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity onPress={() => navigation.navigate("ProfileScreen")}>
+          {/* <FontAwesome name="user" size={40} color="white" /> */}
           <Image
             style={{ width: 40, height: 40 }}
             source={require("../../assets/profile.png")}
@@ -22,7 +27,8 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.streakCircle}>
         <Text style={styles.streakText}>Exercise Streak</Text>
         <View style={styles.streakNumberContainer}>
-          <Image source={require("../../assets/homescreen/streakFire.png")} />
+          <FontAwesome5 name="fire" size={51} color="#063559" />
+          {/* <Image source={require("../../assets/homescreen/streakFire.png")} /> */}
           <Text style={styles.streakNumber}>1</Text>
         </View>
       </View>
@@ -31,10 +37,13 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("AllGoalsScreen")}
       >
         <View style={styles.goalsButton}>
-          <Image
+          <View style={styles.flagImage}>
+            <Ionicons name="flag-sharp" size={24} color="white" />
+          </View>
+          {/* <Image
             style={styles.flagImage}
             source={require("../../assets/homescreen/flag.png")}
-          />
+          /> */}
           <Text style={styles.goalsText}>Goals</Text>
         </View>
       </TouchableOpacity>
@@ -43,6 +52,9 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate("AlarmsScreen")}
       >
         <View style={styles.alarmButton}>
+          <View style={styles.flagImage}>
+            <Ionicons name="md-alarm-sharp" size={24} color="white" />
+          </View>
           {/* <Image
             style={styles.alarmImage}
             source={require("../../assets/homescreen/alarm.png")}

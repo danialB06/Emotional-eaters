@@ -5,6 +5,7 @@ import GoalButton from "../components/GoalButton";
 import React from "react";
 import { db } from "../../../api/Firebase";
 import { useEffect, useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function AllGoalsScreen({ navigation }) {
   return (
@@ -13,10 +14,13 @@ export default function AllGoalsScreen({ navigation }) {
         style={styles.imageContainer}
         onPress={() => navigation.navigate("NewGoalScreen")}
       >
-        <Image
+        <View style={styles.addImage}>
+          <Ionicons name="add-circle" size={35} color="#063559" />
+        </View>
+        {/* <Image
           style={styles.addImage}
           source={require("../../../assets/homescreen/goalsscreen/add.png")}
-        />
+        /> */}
       </TouchableOpacity>
       <Goals navigation={navigation} />
     </View>

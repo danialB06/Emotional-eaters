@@ -30,7 +30,7 @@ export default function ExerciseResultsScreen({ navigation, route }) {
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.date}>{date}</Text>
         </View>
-        <TouchableOpacity onPress={DeleteResult}>
+        <TouchableOpacity /*onPress={DeleteResult}*/>
           <Image
             style={styles.deleteButton}
             source={require("../../assets/homescreen/goalsscreen/delete.png")}

@@ -7,6 +7,7 @@ import DiaryScreen from "../screens/diaryScreens/DiaryScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ExerciseResultsScreen from "../screens/diaryScreens/ExerciseResultsScreen";
 import NewEntryScreen from "../screens/diaryScreens/NewEntryScreen";
+import { HeaderButton } from "react-navigation-header-buttons";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,9 @@ const DiaryStackNavigator = () => {
         },
         headerTitleStyle: {
           color: "#C2C2C2",
+        },
+        headerTintColor: {
+          color: "white",
         },
       }}
     >

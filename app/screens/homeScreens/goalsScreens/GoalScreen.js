@@ -44,7 +44,7 @@ export default function GoalScreen({ navigation, route }) {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.imageContainer} onPress={DeleteGoal}>
+      <TouchableOpacity style={styles.imageContainer} /*onPress={DeleteGoal}*/>
         <Image
           style={styles.deleteButton}
           source={require("../../../assets/homescreen/goalsscreen/delete.png")}
@@ -67,7 +67,7 @@ export default function GoalScreen({ navigation, route }) {
           keyboardType="default"
           returnKeyType="done"
           multiline={true}
-          onSubmitEditing={UpdateGoal && Keyboard.dismiss}
+          onSubmitEditing={/*UpdateGoal &&*/ Keyboard.dismiss}
           onChangeText={(text) => setNewDescription(text)}
         >
           {description}
@@ -121,8 +121,10 @@ const styles = StyleSheet.create({
   },
   goalText: {
     paddingTop: 15,
+    marginRight: 20,
     marginLeft: 20,
-    fontSize: 18,
+    fontSize: 15,
+    textAlign: "justify",
   },
   imageContainer: {
     width: 70,
