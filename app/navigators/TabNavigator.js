@@ -10,6 +10,7 @@ import { Text, View } from "react-native";
 import HomeStackNavigator from "./HomestackNavigator";
 import DiaryStackNavigator from "./DiaryStackNavigator";
 import ExercisesStackNavigator from "./ExercisesStackNavigator";
+import StartGameScreen from './../screens/gameScreens/StartGameScreen';
 import ChatStackNavigator from "./ChatStackNavigator";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -99,6 +100,20 @@ const TabNavigator = () => {
             <Text style={{ color: focused ? "#063559" : "#2f9676", fontSize: 12, fontWeight:"bold" }}>
               Dairy
             </Text>
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Adventuria"
+        component={StartGameScreen}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Foundation
+              name={"star"}
+              color={color}
+              size={size}
+            />
           ),
         }}
       />

@@ -5,10 +5,10 @@ import { doc, getDoc, setDoc, onSnapshot, collection } from 'firebase/firestore'
 import { db } from '../../api/Firebase';
 
 //Import custom sets
-import { hairOptions } from "./customOptions datasets/HairOptions";
-import { bottomOptions } from "./customOptions datasets/BottomOptions";
-import { feetOptions } from "./customOptions datasets/FeetOptions";
-import { topOptions } from "./customOptions datasets/TopOptions";
+import { hairOptions } from "./customOptionsDatasets/HairOptions.js";
+import { bottomOptions } from "./customOptionsDatasets/BottomOptions.js";
+import { feetOptions } from './customOptionsDatasets/FeetOptions.js';
+import { topOptions } from './customOptionsDatasets/TopOptions.js';
 
 const AvatarParamFetch = (props) => {
   //Use userID to fetch Avatar data

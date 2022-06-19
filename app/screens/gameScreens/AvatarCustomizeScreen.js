@@ -5,9 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 //Import custom sets
 import { hairOptions } from "./customOptionsDatasets/HairOptions.js";
 import { bottomOptions } from "./customOptionsDatasets/BottomOptions.js";
-import { feetOptions } from "./customOptionsDatasets/FeetOptions.js";
-import { topOptions } from "./customOptionsDatasets/TopOptions.js";
-
+import { feetOptions } from './customOptionsDatasets/FeetOptions.js';
+import { topOptions } from './customOptionsDatasets/TopOptions.js';
 
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../api/Firebase';
