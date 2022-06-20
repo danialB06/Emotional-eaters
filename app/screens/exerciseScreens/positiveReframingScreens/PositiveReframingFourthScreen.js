@@ -1,10 +1,11 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { Keyboard } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function PositiveReframingFourthScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.stepCounter}>Positive Reframing 4/5</Text>
       <Text style={styles.title}>
         Now try to look at the situation from a positive angle
@@ -39,7 +40,7 @@ export default function PositiveReframingFourthScreen({ navigation }) {
           <Text style={styles.submitText}>Next</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 

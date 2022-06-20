@@ -1,10 +1,11 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { Keyboard } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function PositiveReframingSecondScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.stepCounter}>Positive Reframing 2/5</Text>
       <Text style={styles.title}>Describe what you were thinking</Text>
       <Text style={styles.question}>What thoughts went through your head?</Text>
@@ -24,7 +25,7 @@ export default function PositiveReframingSecondScreen({ navigation }) {
           <Text style={styles.submitText}>Next</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 

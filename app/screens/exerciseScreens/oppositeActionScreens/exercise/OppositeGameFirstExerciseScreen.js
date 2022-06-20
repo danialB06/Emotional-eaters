@@ -2,11 +2,12 @@ import { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { Keyboard } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function OppositeGameFirstExerciseScreen({ navigation }) {
   const [question1, setQuestion1] = useState("");
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game 1/4</Text>
       <Text style={styles.title}>
         We’re going to reflect on a situation of yours today.
@@ -36,7 +37,7 @@ export default function OppositeGameFirstExerciseScreen({ navigation }) {
           <Text style={styles.submitText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 

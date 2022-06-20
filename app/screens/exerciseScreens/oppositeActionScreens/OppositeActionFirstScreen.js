@@ -1,8 +1,9 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function OppositeActionFirstScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.title}>Opposite Game</Text>
 
       <View style={styles.instructions}>
@@ -39,7 +40,7 @@ export default function OppositeActionFirstScreen({ navigation }) {
           <Text style={styles.submitText}>Start</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 

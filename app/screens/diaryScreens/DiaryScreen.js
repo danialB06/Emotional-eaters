@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Text } from "react-native";
 import DiaryEntryButton from "./components/DiaryEntryButton";
 import { db } from "../../api/Firebase";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function DiaryScreen({ navigation }) {
   useEffect(() => {
@@ -21,10 +22,10 @@ export default function DiaryScreen({ navigation }) {
   });
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.title}>Diary</Text>
       <Entries navigation={navigation} />
-    </View>
+    </LinearGradient>
   );
 }
 

@@ -1,12 +1,14 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import { LinearGradient } from "expo-linear-gradient";
+
 export default function OppositeGameThirdPracticeScreen({ navigation }) {
   const [option1, setOption1] = useState(-1);
   const [option2, setOption2] = useState(-1);
   const [option3, setOption3] = useState(-1);
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game Practice 3/3</Text>
       <Text style={styles.title}>
         You’re sad and it makes you unwilling to hang out with your friends.
@@ -61,7 +63,7 @@ export default function OppositeGameThirdPracticeScreen({ navigation }) {
           <Text style={styles.submitText}>Finish</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F3F3F3",
   },
   optionsActive: {
-    backgroundColor: "#BAC7E9",
+    backgroundColor: "#2c6975",
   },
   optionsText: {
     fontSize: 21,

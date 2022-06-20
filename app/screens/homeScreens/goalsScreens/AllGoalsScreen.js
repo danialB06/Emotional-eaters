@@ -6,10 +6,11 @@ import React from "react";
 import { db } from "../../../api/Firebase";
 import { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function AllGoalsScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <TouchableOpacity
         style={styles.imageContainer}
         onPress={() => navigation.navigate("NewGoalScreen")}
@@ -23,7 +24,7 @@ export default function AllGoalsScreen({ navigation }) {
         /> */}
       </TouchableOpacity>
       <Goals navigation={navigation} />
-    </View>
+    </LinearGradient>
   );
 }
 

@@ -4,6 +4,7 @@ import * as SecureStore from "expo-secure-store";
 import { useLogin, fetchUser } from "../context/LoginProvider";
 import { Image } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function ProfileScreen({ navigation }) {
   const [username, setUsername] = useState("");
@@ -43,7 +44,7 @@ export default function ProfileScreen({ navigation }) {
   });
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <View style={styles.circle}>
         <FontAwesome
           name="user"
@@ -69,7 +70,7 @@ export default function ProfileScreen({ navigation }) {
       <View style={{ padding: 80 }}>
         <Button onPress={() => signout()} title="Sign Out" />
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 

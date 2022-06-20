@@ -1,6 +1,7 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { db } from "../../../../api/Firebase";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function OppositeGameFourthExerciseScreen({
   navigation,
@@ -35,7 +36,7 @@ export default function OppositeGameFourthExerciseScreen({
   };
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game 4/4</Text>
       <Text style={styles.title}>What would the opposite action be?</Text>
       <TouchableOpacity
@@ -85,7 +86,7 @@ export default function OppositeGameFourthExerciseScreen({
           <Text style={styles.submitText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -110,7 +111,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F3F3F3",
   },
   optionsActive: {
-    backgroundColor: "#BAC7E9",
+    backgroundColor: "#2c6975",
   },
   optionsText: {
     fontSize: 21,
