@@ -1,6 +1,5 @@
 import { View, StyleSheet, Text, Button, Image } from "react-native";
 import { TextInput } from "react-native";
-import { Picker } from '@react-native-picker/picker';
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { LinearGradient } from "expo-linear-gradient";
@@ -16,18 +15,13 @@ export default function NewAlarmScreen({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.title}>New Alarm</Text>
 
-    <View>
-      <Picker style={styles.pickers}
-      selectedValue={selectedMonth}
-      onValueChange={(itemValue, itemIndex) =>
-        setSelectedMonth(itemValue)
-      }>
-      <Picker.Item label="Select Exercise" value="selectExercise" />
-      <Picker.Item label="Body Scan" value="bodyScan" />
-      <Picker.Item label="Opposite Action" value="oppositeAction" />
-      <Picker.Item label="Positive Reframing" value="positiveReframing" />
-
-      </Picker>
+    <View style={styles.TitleContainer}>
+      <TextInput
+        style={styles.alarmTitle}
+        placeholder="Exercise"
+        keyboardType="default"
+        returnKeyType="done"
+      />
     </View>
     <View style={styles.TitleContainer}>
       <TextInput
@@ -58,7 +52,7 @@ export default function NewAlarmScreen({ navigation }) {
         />
         <Button
         color="##CDE0C9"
-        title="                       "
+        title="         "
         />
         <Button
         title="  Save  "
