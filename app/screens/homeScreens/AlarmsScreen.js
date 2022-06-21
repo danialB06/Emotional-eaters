@@ -11,7 +11,7 @@ export default function AlarmsScreen({ navigation }) {
     <View style = { styles.container } >
         <Text style = { styles.title } > Notifications </Text>
         <Pressable onPress = { () => navigation.navigate('NewAlarmScreen.js') } >
-        <Image style = { styles.addImage } source = { require('../../../assets/homescreen/goalsscreen/add.png') }/>
+        <Image style = { styles.addImage } source = { require('./../../assets/homescreen/goalsscreen/add.png') }/>
         </Pressable>
 
         <View style = { styles.TitleContainer } >
