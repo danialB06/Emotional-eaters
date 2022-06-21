@@ -2,12 +2,10 @@ import * as React from 'react';
 import { Text, View, StyleSheet, ListItem, Switch, useState } from 'react-native';
 import { Image, Button } from 'react-native';
 import { Pressable } from 'react-native';
-import { LinearGradient } from "expo-linear-gradient";
 
 
 export default function AlarmsScreen({ navigation }) {
     return ( 
-    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
     <View style = { styles.container } >
         <Text style = { styles.title } > Notifications </Text>
         <Pressable onPress = { () => navigation.navigate('NewAlarmScreen.js') } >
@@ -38,7 +36,7 @@ export default function AlarmsScreen({ navigation }) {
         ios_backgroundColor = "#3e3e3e" />
         </View>
     </View>
-    </LinearGradient>
+
     );
 }
 
