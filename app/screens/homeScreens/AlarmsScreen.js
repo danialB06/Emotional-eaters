@@ -14,7 +14,7 @@ export default function AlarmsScreen({ navigation }) {
 
         <View style = { styles.TitleContainer } >
         <Text style = { styles.alarmTitle } > Body Scan </Text>
-        <Text style = { styles.alarmTime } > 08: 00 AM </Text>
+        <Text style = { styles.alarmTime } > 08:00 AM </Text>
         <Switch style = { styles.addswitch }
         trackColor = { { false: "#767577", true: "#2C6975" } }
         ios_backgroundColor = "#3e3e3e" />
@@ -22,7 +22,7 @@ export default function AlarmsScreen({ navigation }) {
 
         <View style = { styles.TitleContainer2 }>
         <Text style = { styles.alarmTitle } > Opposite Action </Text>
-        <Text style = { styles.alarmTime } > 17: 30 PM </Text>
+        <Text style = { styles.alarmTime } > 17:30 PM </Text>
         <Switch style = { styles.addswitch }
         trackColor = { { false: "#767577", true: "#2C6975" } }
         ios_backgroundColor = "#3e3e3e" />
@@ -30,7 +30,7 @@ export default function AlarmsScreen({ navigation }) {
 
         <View style = { styles.TitleContainer2 }>
         <Text style = { styles.alarmTitle } > Possitive Reframing </Text>
-        <Text style = { styles.alarmTime } > 22: 00 PM </Text>
+        <Text style = { styles.alarmTime } > 22:00 PM </Text>
         <Switch style = { styles.addswitch }
         trackColor = { { false: "#767577", true: "#2C6975" } }
         ios_backgroundColor = "#3e3e3e" />
