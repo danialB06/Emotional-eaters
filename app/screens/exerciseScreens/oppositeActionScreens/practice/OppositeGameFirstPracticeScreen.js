@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function OppositeGameFirstPracticeScreen({ navigation }) {
   const [option1, setOption1] = useState(-1);
@@ -7,7 +8,7 @@ export default function OppositeGameFirstPracticeScreen({ navigation }) {
   const [option3, setOption3] = useState(-1);
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game Practice 1/3</Text>
       <Text style={styles.title}>
         What behaviour is associated with happiness?
@@ -52,7 +53,7 @@ export default function OppositeGameFirstPracticeScreen({ navigation }) {
           <Text style={styles.submitText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
   },
   optionsActive: {
     alignItems: "center",
-    backgroundColor: "#BAC7E9",
+    backgroundColor: "#2c6975",
     borderRadius: 15,
     borderColor: "#000000",
     borderWidth: 2,

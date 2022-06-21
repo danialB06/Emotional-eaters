@@ -2,6 +2,7 @@ import { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { Keyboard } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function OppositeGameThirdExerciseScreen({
   navigation,
@@ -11,7 +12,7 @@ export default function OppositeGameThirdExerciseScreen({
   const [question, setQuestion] = useState("");
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game 3/4</Text>
       <Text style={styles.title}>What behaviour did you exhibit?</Text>
       <TextInput
@@ -38,7 +39,7 @@ export default function OppositeGameThirdExerciseScreen({
           <Text style={styles.submitText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 

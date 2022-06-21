@@ -1,7 +1,12 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function BodyScanReflection1({ navigation }) {
   return (
+    <LinearGradient
+      colors={["#FFFFFF", "#CDE0C9"]}
+      style={styles.gradientBG}
+    >
     <View style={styles.container}>
       <Text style={styles.exerExpl}>
         <Text style={{fontWeight: 'bold'}}>Instruction for challenge 2</Text>
@@ -16,13 +21,13 @@ export default function BodyScanReflection1({ navigation }) {
         </Text>
       </Pressable >
     </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#B9D5EB",
     alignItems: "center",
   },
   exerExpl:{
@@ -39,16 +44,19 @@ const styles = StyleSheet.create({
   },
   startButton:{
     alignItems: "center",
-    backgroundColor: "#F3F3F3",
+    backgroundColor: "#6b869a",
     padding: 20,
     width: 150,
     borderRadius: 100,
-    borderColor: "#000000",
-    borderWidth: 2,
     bottom: "10%",
     position: "absolute",
   },
   startText:{
     fontSize: 20,
-  }
+    color: "white",
+  },
+  gradientBG:{
+    height: "100%",
+    width: "100%",
+  },
 });

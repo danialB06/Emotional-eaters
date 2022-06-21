@@ -5,11 +5,12 @@ import {
   MaterialCommunityIcons,
   Foundation,
 } from "@expo/vector-icons";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 //navigaotr
 import HomeStackNavigator from "./HomestackNavigator";
 import DiaryStackNavigator from "./DiaryStackNavigator";
 import ExercisesStackNavigator from "./ExercisesStackNavigator";
+import AdventureGameStackNavigator from "./AdventureGameStackNavigator";
 import ChatStackNavigator from "./ChatStackNavigator";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -22,6 +23,14 @@ const TabNavigator = () => {
       screenOptions={{
         headerShown: false,
         gestureEnabled: true,
+        tabBarStyle:{
+          height: 60,
+        },
+        tabBarItemStyle:{
+          backgroundColor: "#cde0ca",
+          borderTopWidth: 3,
+          borderColor: "#2f9676",
+        }
       }}
     >
       <Tab.Screen
@@ -31,12 +40,12 @@ const TabNavigator = () => {
           tabBarIcon: ({ focused, size, color }) => (
             <Ionicons
               name={"home"}
-              color={focused ? "#063559" : color}
-              size={size}
+              color={focused ? "#063559" : "#2f9676"}
+              size={35}
             />
           ),
           tabBarLabel: ({ focused, color, size }) => (
-            <Text style={{ color: focused ? "#063559" : color, fontSize: 11 }}>
+            <Text style={{ color: focused ? "#063559" : "#2f9676", fontSize: 12, fontWeight:"bold" }}>
               Home
             </Text>
           ),
@@ -65,12 +74,12 @@ const TabNavigator = () => {
           tabBarIcon: ({ focused, size, color }) => (
             <MaterialCommunityIcons
               name={"heart-multiple"}
-              color={focused ? "#063559" : color}
-              size={size}
+              color={focused ? "#063559" : "#2f9676"}
+              size={35}
             />
           ),
           tabBarLabel: ({ focused, color, size }) => (
-            <Text style={{ color: focused ? "#063559" : color, fontSize: 11 }}>
+            <Text style={{ color: focused ? "#063559" : "#2f9676", fontSize: 12, fontWeight:"bold" }}>
               Exercise
             </Text>
           ),
@@ -83,13 +92,32 @@ const TabNavigator = () => {
           tabBarIcon: ({ focused, size, color }) => (
             <Foundation
               name={"clipboard-notes"}
-              color={focused ? "#063559" : color}
-              size={size}
+              color={focused ? "#063559" : "#2f9676"}
+              size={35}
             />
           ),
           tabBarLabel: ({ focused, color, size }) => (
-            <Text style={{ color: focused ? "#063559" : color, fontSize: 11 }}>
-              Dairy
+            <Text style={{ color: focused ? "#063559" : "#2f9676", fontSize: 12, fontWeight:"bold" }}>
+              Diary
+            </Text>
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Adventuria"
+        component={AdventureGameStackNavigator}
+        options={{
+          tabBarIcon: ({ focused, size, color }) => (
+            <Foundation
+              name={"star"}
+              color={focused ? "#063559" : "#2f9676"}
+              size={35}
+            />
+          ),
+          tabBarLabel: ({ focused, color, size }) => (
+            <Text style={{ color: focused ? "#063559" : "#2f9676", fontSize: 12, fontWeight:"bold" }}>
+              Adventuria
             </Text>
           ),
         }}

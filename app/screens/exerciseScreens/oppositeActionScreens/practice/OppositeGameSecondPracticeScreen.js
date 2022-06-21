@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function OppositeGameSecondPracticeScreen({ navigation }) {
   const [option1, setOption1] = useState(-1);
@@ -8,7 +9,7 @@ export default function OppositeGameSecondPracticeScreen({ navigation }) {
   const [option4, setOption4] = useState(-1);
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.stepCounter}>Opposite Game Practice 2/3</Text>
       <Text style={styles.title}>
         What emotion is associated with getting bored with your own hobbies?
@@ -77,7 +78,7 @@ export default function OppositeGameSecondPracticeScreen({ navigation }) {
           <Text style={styles.submitText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F3F3F3",
   },
   optionsSelected: {
-    backgroundColor: "#BAC7E9",
+    backgroundColor: "#2c6975",
   },
   optionsBox: {
     alignItems: "center",

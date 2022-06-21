@@ -4,12 +4,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // screens
 import ProfileScreen from "../screens/ProfileScreen";
 import ExercisesScreen from "../screens/exerciseScreens/ExercisesScreen";
-import BodyScanFirstScreen from "../screens/exerciseScreens/BodyScanFirstScreen";
-import BodyScanBodyMap from "../screens/exerciseScreens/BodyScanBodyMap";
-import BodyScanReflection1 from "../screens/exerciseScreens/BodyScanReflection1";
-import BodyScanReflection2 from "../screens/exerciseScreens/BodyScanReflection2";
-import BodyScanReflection3 from "../screens/exerciseScreens/BodyScanReflection3";
-import BodyScanFinished from "../screens/exerciseScreens/BodyScanFinished";
+import BodyScanFirstScreen from "../screens/exerciseScreens/bodyscanScreens/BodyScanFirstScreen";
+import BodyScanBodyMap from "../screens/exerciseScreens/bodyscanScreens/BodyScanBodyMap";
+import BodyScanReflection1 from "../screens/exerciseScreens/bodyscanScreens/BodyScanReflection1";
+import BodyScanReflection2 from "../screens/exerciseScreens/bodyscanScreens/BodyScanReflection2";
+import BodyScanReflection3 from "../screens/exerciseScreens/bodyscanScreens/BodyScanReflection3";
+import BodyScanFinished from "../screens/exerciseScreens//bodyscanScreens/BodyScanFinished";
 import OppositeActionFirstScreen from "../screens/exerciseScreens/oppositeActionScreens/OppositeActionFirstScreen";
 import OppositeGameFirstPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameFirstPracticeScreen";
 import OppositeGameSecondPracticeScreen from "../screens/exerciseScreens/oppositeActionScreens/practice/OppositeGameSecondPracticeScreen";
@@ -37,7 +37,7 @@ const ExercisesStackNavigator = () => {
       initialRouteName="ExercisesScreen"
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#063559",
+          backgroundColor: "#2f9676",
         },
         headerTitleStyle: {
           color: "#C2C2C2",

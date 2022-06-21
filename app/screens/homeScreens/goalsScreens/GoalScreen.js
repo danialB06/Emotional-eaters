@@ -6,6 +6,8 @@ import { doc, getDoc, deleteDoc, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import { db } from "../../../api/Firebase";
 import { LogBox } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { MaterialIcons } from "@expo/vector-icons";
 LogBox.ignoreLogs([
   "Non-serializable values were found in the navigation state",
 ]);
@@ -43,11 +45,13 @@ export default function GoalScreen({ navigation, route }) {
   };
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <TouchableOpacity style={styles.imageContainer} /*onPress={DeleteGoal}*/>
-        <Image
+        <MaterialIcons
+          name="delete"
+          size={35}
+          color="black"
           style={styles.deleteButton}
-          source={require("../../../assets/homescreen/goalsscreen/delete.png")}
         />
       </TouchableOpacity>
       <View style={styles.goalTitleContainer}>
@@ -73,7 +77,7 @@ export default function GoalScreen({ navigation, route }) {
           {description}
         </TextInput>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 

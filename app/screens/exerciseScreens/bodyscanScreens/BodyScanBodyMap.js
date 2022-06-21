@@ -1,6 +1,6 @@
 import { View, Image, StyleSheet, Text, Pressable } from "react-native";
 import { useState } from 'react';
-import {LinearGradient} from 'expo-linear-gradient';
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function BodyScanBodyMap({ navigation }) {
   //Bodypart evaluation scores
@@ -75,21 +75,25 @@ export default function BodyScanBodyMap({ navigation }) {
     }
   }
 
-  var foreheadImg = [require("../../assets/bodyscan/headForeheadC.png"), require("../../assets/bodyscan/headForehead.png"),  require("../../assets/bodyscan/headForeheadB.png")];
-  var eyesImg = [require("../../assets/bodyscan/headEyesC.png"), require("../../assets/bodyscan/headEyes.png"), require("../../assets/bodyscan/headEyesB.png")];
-  var jawImg = [require("../../assets/bodyscan/headJawC.png"), require("../../assets/bodyscan/headJaw.png"), require("../../assets/bodyscan/headJawB.png")]
-  var shoulderImg = [require("../../assets/bodyscan/bodyShouldersC.png"), require("../../assets/bodyscan/bodyShoulders.png"), require("../../assets/bodyscan/bodyShouldersB.png") ]
-  var chestImg = [require("../../assets/bodyscan/bodyChestC.png"), require("../../assets/bodyscan/bodyChest.png"), require("../../assets/bodyscan/bodyChestB.png")];
-  var gutImg = [require("../../assets/bodyscan/bodyGutC.png"), require("../../assets/bodyscan/bodyGut.png"), require("../../assets/bodyscan/bodyGutB.png")];
-  var crotchImg = [require("../../assets/bodyscan/bodyCrotchC.png"), require("../../assets/bodyscan/bodyCrotch.png"), require("../../assets/bodyscan/bodyCrotchB.png")];
-  var upperLegsImg = [require("../../assets/bodyscan/legsUpperC.png"), require("../../assets/bodyscan/legsUpper.png"), require("../../assets/bodyscan/legsUpperB.png")];
-  var lowerLegsImg = [require("../../assets/bodyscan/legsLowerC.png"), require("../../assets/bodyscan/legsLower.png"), require("../../assets/bodyscan/legsLowerB.png")]
-  var feetImg = [require("../../assets/bodyscan/legsFeetC.png"), require("../../assets/bodyscan/legsFeet.png"), require("../../assets/bodyscan/legsFeetB.png")]
-  var upperArmsImg = [require("../../assets/bodyscan/armsUpperC.png"), require("../../assets/bodyscan/armsUpper.png"), require("../../assets/bodyscan/armsUpperB.png")];
-  var lowerArmsImg = [require("../../assets/bodyscan/armsLowerC.png"), require("../../assets/bodyscan/armsLower.png"), require("../../assets/bodyscan/armsLowerB.png")]
-  var handsImg = [require("../../assets/bodyscan/armsHandsC.png"),  require("../../assets/bodyscan/armsHands.png"),  require("../../assets/bodyscan/armsHandsB.png")]
+  var foreheadImg = [require("../../../assets/bodyscan/headForeheadC.png"), require("../../../assets/bodyscan/headForehead.png"),  require("../../../assets/bodyscan/headForeheadB.png")];
+  var eyesImg = [require("../../../assets/bodyscan/headEyesC.png"), require("../../../assets/bodyscan/headEyes.png"), require("../../../assets/bodyscan/headEyesB.png")];
+  var jawImg = [require("../../../assets/bodyscan/headJawC.png"), require("../../../assets/bodyscan/headJaw.png"), require("../../../assets/bodyscan/headJawB.png")]
+  var shoulderImg = [require("../../../assets/bodyscan/bodyShouldersC.png"), require("../../../assets/bodyscan/bodyShoulders.png"), require("../../../assets/bodyscan/bodyShouldersB.png") ]
+  var chestImg = [require("../../../assets/bodyscan/bodyChestC.png"), require("../../../assets/bodyscan/bodyChest.png"), require("../../../assets/bodyscan/bodyChestB.png")];
+  var gutImg = [require("../../../assets/bodyscan/bodyGutC.png"), require("../../../assets/bodyscan/bodyGut.png"), require("../../../assets/bodyscan/bodyGutB.png")];
+  var crotchImg = [require("../../../assets/bodyscan/bodyCrotchC.png"), require("../../../assets/bodyscan/bodyCrotch.png"), require("../../../assets/bodyscan/bodyCrotchB.png")];
+  var upperLegsImg = [require("../../../assets/bodyscan/legsUpperC.png"), require("../../../assets/bodyscan/legsUpper.png"), require("../../../assets/bodyscan/legsUpperB.png")];
+  var lowerLegsImg = [require("../../../assets/bodyscan/legsLowerC.png"), require("../../../assets/bodyscan/legsLower.png"), require("../../../assets/bodyscan/legsLowerB.png")]
+  var feetImg = [require("../../../assets/bodyscan/legsFeetC.png"), require("../../../assets/bodyscan/legsFeet.png"), require("../../../assets/bodyscan/legsFeetB.png")]
+  var upperArmsImg = [require("../../../assets/bodyscan/armsUpperC.png"), require("../../../assets/bodyscan/armsUpper.png"), require("../../../assets/bodyscan/armsUpperB.png")];
+  var lowerArmsImg = [require("../../../assets/bodyscan/armsLowerC.png"), require("../../../assets/bodyscan/armsLower.png"), require("../../../assets/bodyscan/armsLowerB.png")]
+  var handsImg = [require("../../../assets/bodyscan/armsHandsC.png"),  require("../../../assets/bodyscan/armsHands.png"),  require("../../../assets/bodyscan/armsHandsB.png")]
 
   return(
+    <LinearGradient
+    colors={["#FFFFFF", "#CDE0C9"]}
+    style={styles.gradientBG}
+    >
       <View style={styles.container}>
         <Text style={styles.exerExpl}>
           <Text style={styles.greenText}>Green</Text> = pleasant. <Text style={styles.redText}>Red</Text> = unpleasant.
@@ -108,7 +112,7 @@ export default function BodyScanBodyMap({ navigation }) {
           <Image style={styles.bodyImage} source={upperLegsImg[evalUpperLegs]}/>
           <Image style={styles.bodyImage} source={lowerLegsImg[evalLowerLegs]}/>
           <Image style={styles.bodyImage} source={feetImg[evalFeet]}/>
-          <Image style={styles.bodyImage} source={require("../../assets/bodyscan/body.png")}/>
+          <Image style={styles.bodyImage} source={require("../../../assets/bodyscan/body.png")}/>
 
           <Pressable style={bodyParts.bodyForehead} onPress={()=>ImgHandler("Forehead")}/>
           <Pressable style={bodyParts.bodyEyes} onPress={()=>ImgHandler("Eyes")}/>
@@ -133,6 +137,7 @@ export default function BodyScanBodyMap({ navigation }) {
           </Text>
         </Pressable >
       </View> 
+    </LinearGradient>
   );
 }
 
@@ -145,7 +150,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#B9D5EB",
     alignItems: "center",
   },
   bodyMapContainer:{
@@ -186,13 +190,17 @@ const styles = StyleSheet.create({
     padding: 15,
     width: 140,
     borderRadius: 100,
-    bottom: 8,
+    bottom: 4,
     position: "absolute",
   },
   startText:{
     fontSize: 20,
     color: "#E0ECDE",
-  }
+  },
+  gradientBG:{
+    height: "100%",
+    width: "100%",
+  },
 });
 
 const bodyParts = StyleSheet.create({

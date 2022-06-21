@@ -7,6 +7,7 @@ import PositiveReframingAnswer from "./components/PositiveReframingAnswer.js";
 import { doc, getDoc, deleteDoc, setDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import { db } from "../../api/Firebase";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function ExerciseResultsScreen({ navigation, route }) {
   const { title } = route.params;
@@ -24,7 +25,7 @@ export default function ExerciseResultsScreen({ navigation, route }) {
   };
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>{title}</Text>
@@ -45,7 +46,7 @@ export default function ExerciseResultsScreen({ navigation, route }) {
       ) : (
         <BodyscanAnswer myKey={id} description={description} />
       )}
-    </View>
+    </LinearGradient>
   );
 }
 

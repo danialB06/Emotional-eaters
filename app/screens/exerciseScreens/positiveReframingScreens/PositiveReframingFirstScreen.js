@@ -1,10 +1,11 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { TextInput } from "react-native";
 import { Keyboard } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function PositiveReframingFirstScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.stepCounter}>Positive Reframing 1/5</Text>
       <Text style={styles.title}>Describe the unpleasant situation</Text>
       <Text style={styles.question}>Who was involved?</Text>
@@ -42,7 +43,7 @@ export default function PositiveReframingFirstScreen({ navigation }) {
           <Text style={styles.submitText}>Next</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 

@@ -4,6 +4,7 @@ import { TextInput } from "react-native";
 import { Keyboard, Alert } from "react-native";
 import { db } from "../../../api/Firebase";
 import React, { useState, useEffect } from "react";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function NewGoalScreen({ navigation }) {
   const [title, setTitle] = useState("");
@@ -23,7 +24,7 @@ export default function NewGoalScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <View style={styles.goalTitleContainer}>
         <TextInput
           style={styles.goalTitle}
@@ -52,7 +53,7 @@ export default function NewGoalScreen({ navigation }) {
         />
         <Button title="Save" color="#063559" onPress={saveAnswer} />
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 

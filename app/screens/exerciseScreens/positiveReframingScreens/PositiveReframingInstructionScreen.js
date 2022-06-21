@@ -1,8 +1,9 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function PositiveReframingInstructionScreen({ navigation }) {
   return (
-    <View style={styles.container}>
+    <LinearGradient colors={["#FFFFFF", "#CDE0C9"]} style={styles.container}>
       <Text style={styles.title}>Positive reframing exercise</Text>
 
       <View style={styles.instructions}>
@@ -34,7 +35,7 @@ export default function PositiveReframingInstructionScreen({ navigation }) {
           <Text style={styles.submitText}>Start</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
