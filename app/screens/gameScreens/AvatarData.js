@@ -95,6 +95,25 @@ const AvatarParamFetch = (props) => {
   )
 }
 
+
+export const AvatarBattleParam = (props) => {
+  return(
+    <View style={styles.container}>    
+        <View style={[styles.avatarParamColumn, {width: 200, backgroundColor: "#CDEDC9"}]}>
+          <View style={[styles.avatarParamRow, {backgroundColor: "#CDEDC9"}]}>
+            <Image style={styles.avatarStatIcon} source={require("../../assets/AdventureGame/hpIcon.png")}/>
+            <Text style={[styles.avatarParamText, {color: "#2C6975"}]}> 20 </Text> 
+          </View>
+          <View style={[styles.avatarParamRow, {backgroundColor: "#CDEDC9"}]}>
+            <Image style={styles.avatarStatIcon} source={require("../../assets/AdventureGame/attkIcon.png")}/> 
+            <Text style={[styles.avatarParamText, {color: "#2C6975"}]}> 20</Text>
+          </View>
+      </View>
+    </View>
+  )
+}
+
+
 const AvatarDressed = () => {
 
   const [ avatarCustomSet, setAvatarCustomSet ] = useState(null);

@@ -1,12 +1,16 @@
 import { View, StyleSheet, Text, Pressable, Image, Modal, ScrollView } from "react-native";
 import { useState, useEffect } from 'react';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LinearGradient } from "expo-linear-gradient";
+
 
 //Import custom sets
 import { hairOptions } from "./customOptionsDatasets/HairOptions.js";
 import { bottomOptions } from "./customOptionsDatasets/BottomOptions.js";
 import { feetOptions } from './customOptionsDatasets/FeetOptions.js';
 import { topOptions } from './customOptionsDatasets/TopOptions.js';
+import { accOptions } from './customOptionsDatasets/AccOptions.js';
+
 
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../api/Firebase';
@@ -16,6 +20,35 @@ export default function AvatarCustomizeScreen({ navigation }) {
   const [topModalShow, setTopModalShow] = useState(false);
   const [bottomsModalShow, setBottomsModalShow] = useState(false);
   const [feetModalShow, setFeetModalShow] = useState(false);
+  const [accModalShow, setAccModalShow] = useState(false);
+
+  //Acc Mapper
+  const [equippedAcc, SetEquippedAcc] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
+  const [chosenAcc, setChosenAcc] = useState("none");
+  const [acceShow, setAcceShow] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
+  const accItems = accOptions.map((hairStyle, stylekey)=> {
+    return ( 
+      <View key={stylekey}>
+        <View style={styles.clothingLabel}>             
+          <Text style={styles.clothingName}>{hairStyle.style}</Text>
+        </View>
+        <ScrollView horizontal = {true}> 
+        {hairStyle.options.map((haircolor, colorkey)=> {
+          return(
+            <View key={colorkey}>
+              <Pressable 
+                onPress={()=> [setChosenAcc(haircolor.name), setAcceShow(haircolor.image)]}
+                style={[styles.selectButton, chosenAcc == haircolor.name ? styles.optionActive : styles.optionInactive,]} 
+              >
+                <Image source={haircolor.image} style={{top: -70}}/>              
+              </Pressable>
+            </View>
+          )
+        })}
+        </ScrollView>
+      </View>
+    )
+  });
   
   //Hair Mapper
   const [equippedHair, SetEquippedHair] = useState(require("../../assets/AdventureGame/AvatarCustomization/Hair/empty.png"));
@@ -179,12 +212,27 @@ export default function AvatarCustomizeScreen({ navigation }) {
   }
 
   return(
+      <LinearGradient
+      colors={["#FFFFFF", "#CDE0C9"]}
+      style={styles.gradientBG}
+      >
       <View>
         <Modal animationType="slide" transparent={false} visible={feetModalShow} onRequestClose={()=>{setFeetModalShow(!feetModalShow)}}>
               <View style={styles.modal}>
                 <ScrollView>
                   {feetItems}    
                   <Pressable style={styles.clothingButton} onPress={()=> setFeetModalShow(false)}>
+                      <Text style={styles.clothingButtonText}>Back</Text>
+                  </Pressable>
+                </ScrollView>
+              </View>
+          </Modal>
+
+          <Modal animationType="slide" transparent={false} visible={accModalShow} onRequestClose={()=>{setAccModalShow(!accModalShow)}}>
+              <View style={styles.modal}>
+                <ScrollView>
+                  {accItems}    
+                  <Pressable style={styles.clothingButton} onPress={()=> setAccModalShow(false)}>
                       <Text style={styles.clothingButtonText}>Back</Text>
                   </Pressable>
                 </ScrollView>
@@ -241,9 +289,18 @@ export default function AvatarCustomizeScreen({ navigation }) {
                   <Image source={require("../../assets/AdventureGame/AvatarCustomization/ui/feetIcon.png")}/>
                   <Text style={styles.clothingButtonText}>Feet</Text>
               </Pressable>
+              <Pressable style={styles.clothingButton} onPress={()=> setFeetModalShow(true)}>
+                  <Image source={require("../../assets/AdventureGame/AvatarCustomization/ui/faceIcon.png")}/>
+                  <Text style={styles.clothingButtonText}>Face</Text>
+              </Pressable>
+              <Pressable style={styles.clothingButton} onPress={()=> setAccModalShow(true)}>
+                  <Image source={require("../../assets/AdventureGame/AvatarCustomization/ui/accIcon.png")}/>
+                  <Text style={styles.clothingButtonText}>Acc.</Text>
+              </Pressable>
           </View>
 
           <View style={styles.avatarImg}>
+              <Image source={acceShow} style={[styles.hairPosition, {top: 0, left: -10}]}/>
               <Image source={require("../../assets/AdventureGame/avatarBody.png")}/>
               <Image source={bottomsShow} style={styles.topPosition}/>
               <Image source={feetShow} style={styles.topPosition}/>
@@ -255,11 +312,12 @@ export default function AvatarCustomizeScreen({ navigation }) {
               <Pressable style={styles.clothingButton} onPress={()=> navigation.navigate("Adventure Game")}>
                       <Text style={styles.clothingButtonText}>Back</Text>
               </Pressable>
-              <Pressable style={styles.clothingButton} onPress={createCustomizationFirebase}>
+              <Pressable style={styles.clothingButton} onPress={()=> navigation.navigate("Adventure Game")}>
                       <Text style={styles.clothingButtonText}>Save and Exit</Text>
               </Pressable>
           </View>
       </View>
+    </LinearGradient>
   )
 }
 
@@ -267,7 +325,6 @@ const styles = StyleSheet.create({
     rowClothing:{
         flexDirection: "row",
         marginLeft: "5%",
-        backgroundColor: "#F3F3F3",
         flexWrap:"wrap",
     },
     rowButtons:{
@@ -344,5 +401,9 @@ const styles = StyleSheet.create({
       borderColor: "#CDE0C9",
       paddingBottom: 5,
       marginBottom: 10,
-    }
+    }, 
+    gradientBG:{
+      height: "100%",
+      width: "100%",
+    },
 });

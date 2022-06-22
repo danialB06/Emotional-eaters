@@ -2,6 +2,7 @@
 import {Component, useState, useEffect} from 'react';
 import { View, StyleSheet, Text, Image, ImageBackground, Pressable, Dimensions, Modal} from 'react-native';
 import MonsterData from './MonsterData';
+import AvatarData, { AvatarBattleParam } from './AvatarData';
 
 export default class MapNodes extends Component{
   render(){
@@ -38,6 +39,17 @@ const monsterNodeData = new Array(
   [30, 4, 50], 
 );
 
+const battleDialogue = new Array(
+  "Tartoise wants to fight!", 
+  "You attack the Tartoise!",
+  "CRITICAL HIT!",
+  "The tartoise is slain!",
+  "You found a pair of red wings!",
+  "You found a pair of black wings!",
+  "You found a pair of pink wings!",
+  "You found a pair of white wings!",
+)
+
 const DrawActors = (props) => {
   //Avatar Location
   const [playerProgress, setPlayerProgress] = useState(0);
@@ -46,8 +58,8 @@ const DrawActors = (props) => {
 
   //Drawing map nodes
   const [nodeImg, setNodeImg] = useState(require("../../assets/AdventureGame/MapNodeImages/nodeDefault.png"));
-  const mapItems = mapNodeData.map((mapNodeData)=>
-    <View style={{zIndex: -4, zIndex: mapNodeData[1], top: mapNodeData[3], left: mapNodeData[2], width: 130, position: "absolute"}}>
+  const mapItems = mapNodeData.map((mapNodeData, idkey)=>
+    <View key={idkey} style={{zIndex: -4, zIndex: mapNodeData[1], top: mapNodeData[3], left: mapNodeData[2], width: 130, position: "absolute"}}>
       <Pressable onPress={()=>avatarMove(mapNodeData[1])}>
         <Image source={nodeImg}/>
       </Pressable>
@@ -61,7 +73,8 @@ const DrawActors = (props) => {
   const [monsterNDGold, setMonsterNDGold] = useState(0);
 
   //Node Scenes Modal
-   const [battleModalShow, setbattleModalShow] = useState(false);
+  const [battleModalShow, setbattleModalShow] = useState(false);
+  const [battleTextProgr, setBattleTextProgr] = useState(0);
 
   //Avatar Movement
   const avatarMove = (nodeID) => {  
@@ -88,21 +101,28 @@ const DrawActors = (props) => {
     <View>
       <Modal animationType="slide" transparent={false} visible={battleModalShow} onRequestClose={()=>{setbattleModalShow(!false)}}>
         <View style={styles.modalWindow}>
-          <MonsterData MonstHP={monsterNDHP} MonstAttk={monsterNDAttk}/>
-          <Text style={styles.modalText}>
-            Tartoise wants to fight!
-          </Text>
-          <Image style={styles.battleAvatar} source={require("../../assets/AdventureGame/avatarBody.png")}/>
+          { battleTextProgr <= 2 && 
+            <MonsterData MonstHP={15} MonstAttk={5}/>
+          }
+            <Text style={[styles.modalText, {position: "absolute", top: 130 } ]}>
+              {battleDialogue[battleTextProgr]}
+            </Text>
+            <ImageBackground source={require("./../../assets/AdventureGame/MapNodeImages/battleBG.png")} style={{width: "100%", top: 230, height: 300, zIndex: -1, position: "absolute"}}>
+              <Image style={[styles.battleAvatar, {top: - 10}]} source={require("../../assets/AdventureGame/avatarBody.png")}/>
+            </ImageBackground>
 
-          <View style={styles.battleOptions}>
-            <Pressable onPress={() => setbattleModalShow(!battleModalShow)} style={styles.modalButton}>
-              <Text style={{textAlign: "center", color: "#272A40"}}>Fight</Text>
-            </Pressable>
-            <Pressable onPress={() => setbattleModalShow(!battleModalShow)} style={styles.modalButton}>
-              <Text style={{textAlign: "center", color: "#272A40"}}>Run</Text>
-            </Pressable>
+            <View style={[styles.battleBottomUI, {position: "absolute", top: 560, marginLeft: -100}]}>
+              <AvatarBattleParam/>
+              <View style={[styles.battleOptions]}>
+                <Pressable onPress={()=>setBattleTextProgr(battleTextProgr+1)} style={styles.modalButton}>
+                  <Text style={{color:"#2C6975", fontSize: 20, width: 150}}>Fight!</Text>
+                </Pressable>
+                <Pressable onPress={() => setbattleModalShow(!battleModalShow)} style={styles.modalButton}>
+                  <Text style={{color:"#2C6975", fontSize: 20, width: 150}}>Run</Text>
+                </Pressable>
+              </View> 
+            </View>
           </View>
-        </View>
       </Modal>
 
       <Image style={{position: "absolute", zIndex: 200, top: playerY, left: playerX }} source={require("../../assets/AdventureGame/avatarBody.png")}/>
@@ -112,8 +132,9 @@ const DrawActors = (props) => {
 }
 
 const BattleScene = (props) => {
-
+  //Not realized for demo. No time.
 }
+
 const styles = StyleSheet.create({
   mapText:{
     fontSize: 20,
@@ -125,20 +146,22 @@ const styles = StyleSheet.create({
     color: "white",
   },
   modalButton:{
-    borderColor: "#000000",
-    borderWidth: 2, 
-    padding: 15,
+    padding: 20,
     borderRadius: 50,
     width: 100,
     textAlign: "center",
-    backgroundColor: "#F3F3F3",
-    color: "#272A40",
+    backgroundColor: "#CDE0C9",
+    marginBottom: "10%"
   },
   modalText:{
+    top: 50,
     textAlign: "center", 
-    paddingTop:"20%", 
+    padding: 10,
+    borderRadius: 20,
+    width: "80%",
     color: "white", 
     fontSize: 20,
+    backgroundColor: "#2C6975",
   },
   battleAvatar:{
     top: 250,
@@ -151,9 +174,14 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center"
   },
+  battleBottomUI:{
+    flexDirection: "row",
+    width: "90%",
+    top: 160,
+    marginLeft: "-15%",
+  },
   battleOptions:{
-    bottom: 20,
-    position: "absolute",
+    marginLeft: "-40%",
   },
   battleBG:{
     width: 1500,

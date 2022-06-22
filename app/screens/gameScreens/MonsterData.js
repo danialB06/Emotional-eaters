@@ -39,17 +39,18 @@ const styles = StyleSheet.create({
   },
   monsterParamColumn:{
     width: "80%", 
-    borderColor: "#000000",
-    borderWidth: 2, 
-    padding: 15,
+    paddingLeft: 10,
+    paddingTop: 15,
+    paddingBottom: 15,
     borderRadius: 50,
-    backgroundColor: "white",
+    paddingRight: 30,
+    backgroundColor: "#2C6975",
     margin: "auto",
     top: 30,
   },
   monsterParamRow:{
     flexDirection: "row",
-    backgroundColor: "#F3F3F3",
+    backgroundColor: "#2C6975",
   },
   monsterStatIcon:{
     width: 60,
@@ -60,10 +61,11 @@ const styles = StyleSheet.create({
   monsterParamText:{
     textAlignVertical: "center",
     fontSize: 35,
+    color: "white",
   },
   monsterImg:{
-    top: 250,
-    left: 130,
+    top: 260,
+    left: 97,
     position: "absolute",
     width: "100%", 
   },
